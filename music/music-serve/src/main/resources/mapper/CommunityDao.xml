@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.CommunityDao">
+  <resultMap id="BaseResultMap" type="com.xuwei.music.entity.Community">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="up" jdbcType="INTEGER" property="up" />
+    <result column="img" jdbcType="VARCHAR" property="img"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, `type`, url, content, create_time, up,img
+  </sql>
+  <select id="allCommunity" resultMap="BaseResultMap">
+        select * from community
+    </select>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from community
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTime" parameterType="java.util.Date"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from community
+    where create_time = #{create_time,jdbcType=TIMESTAMP}
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from community
+    where `name` = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from community
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Community" useGeneratedKeys="true">
+    insert into community (`name`, `type`, url,
+      content, create_time, up
+      )
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR},
+      #{content,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{up,jdbcType=INTEGER},#{img,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Community" useGeneratedKeys="true">
+    insert into community
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+        create_time,
+      <if test="up != null">
+        up,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      now(),
+      <if test="up != null">
+        #{up,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="com.xuwei.music.entity.Community">
+    update community
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        up = #{up,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIdSelective" parameterType="com.xuwei.music.entity.Community">
+    update community
+    set `name` = #{name,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      up = #{up,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="uploadImg" parameterType="com.xuwei.music.entity.Community">
+    update community
+    <set>
+      <if test="img != null">
+        img = #{img}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="uploadUrl" parameterType="com.xuwei.music.entity.Community">
+    update community
+    <set>
+      <if test="url != null">
+        url = #{url}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>

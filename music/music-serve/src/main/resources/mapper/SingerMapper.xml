@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.SingerDao">
+    <resultMap id="BaseResultMapper" type="com.xuwei.music.entity.Singer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="singer_birth" jdbcType="TIMESTAMP" property="singer_birth"/>
+        <result column="singer_location" jdbcType="VARCHAR" property="singer_location"/>
+        <result column="singer_intro" jdbcType="LONGVARCHAR" property="singer_intro"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,sex,pic,singer_birth,singer_location,singer_intro
+    </sql>
+
+    <!-- 增加   -->
+    <insert id="addSinger" parameterType="com.xuwei.music.entity.Singer">
+        insert into singer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="pic != null">
+                pic,
+            </if>
+            <if test="singer_birth != null">
+                singer_birth,
+            </if>
+            <if test="singer_location != null">
+                singer_location,
+            </if>
+            <if test="singer_intro != null">
+                singer_intro,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="pic != null">
+                #{pic},
+            </if>
+            <if test="singer_birth != null">
+                #{singer_birth},
+            </if>
+            <if test="singer_location != null">
+                #{singer_location},
+            </if>
+            <if test="singer_intro != null">
+                #{singer_intro},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 修改   -->
+    <update id="updateSinger" parameterType="com.xuwei.music.entity.Singer">
+        update singer
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="singer_birth != null">
+                singer_birth = #{singer_birth},
+            </if>
+            <if test="singer_location != null">
+                singer_location = #{singer_location},
+            </if>
+            <if test="singer_intro != null">
+                singer_intro = #{singer_intro},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteSinger" parameterType="java.lang.Integer">
+        delete from singer
+        where id=#{id}
+    </delete>
+    <!--根据id查询-->
+    <select id="selectSingerById" resultMap="BaseResultMapper" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from singer
+        where id=#{id}
+    </select>
+
+    <!--查询所有参数-->
+    <select id="allSinger" resultMap="BaseResultMapper">
+        select
+        <include refid="Base_Column_List"/>
+        from singer
+    </select>
+
+    <!--根据歌手名字模糊查询-->
+    <select id="singerOfName" resultMap="BaseResultMapper" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from singer
+        where name like #{name}
+    </select>
+
+    <!--根据歌手性别查询-->
+    <select id="singerOfSex" resultMap="BaseResultMapper" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from singer
+        where sex = #{sex}
+    </select>
+
+    <!-- 修改歌手图片   -->
+    <update id="updateSingerImg" parameterType="com.xuwei.music.entity.Singer">
+        update singer
+        <set>
+            <if test="pic != null">
+                pic = #{pic}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.CommentDao">
+    <resultMap id="BaseResultMap" type="com.xuwei.music.entity.Comment">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="song_id" jdbcType="INTEGER" property="song_id"/>
+        <result column="songlist_id" jdbcType="INTEGER" property="songlist_id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="up" jdbcType="INTEGER" property="up"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, `type`, song_id, songlist_id, create_time, content, up
+  </sql>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="allComment" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+    </select>
+    <select id="commentOfSongID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment where song_id = #{songId,jdbcType=INTEGER}
+    </select>
+    <select id="commentOfSongListID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where songlist_id = #{songListId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Comment"
+            useGeneratedKeys="true">
+    insert into comment (user_id, `type`, song_id, 
+      songlist_id, create_time, content, 
+      up)
+    values (#{user_id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{song_id,jdbcType=INTEGER},
+      #{songlist_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
+      #{up,jdbcType=INTEGER})
+  </insert>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Comment"
+            useGeneratedKeys="true">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user_id != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="song_id != null">
+                song_id,
+            </if>
+            <if test="songlist_id != null">
+                songlist_id,
+            </if>
+                create_time,
+            <if test="content != null">
+                content,
+            </if>
+            <if test="up != null">
+                up,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="user_id != null">
+                #{user_id,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="song_id != null">
+                #{song_id,jdbcType=INTEGER},
+            </if>
+            <if test="songlist_id != null">
+                #{songlist_id,jdbcType=INTEGER},
+            </if>
+            now(),
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="up != null">
+                #{up,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateById" parameterType="com.xuwei.music.entity.Comment">
+        update comment
+        <set>
+            <if test="user_id != null">
+                user_id = #{user_id,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="song_id != null">
+                song_id = #{song_id,jdbcType=INTEGER},
+            </if>
+            <if test="songlist_id != null">
+                songlist_id = #{songlist_id,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="up != null">
+                up = #{up,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByIdSelective" parameterType="com.xuwei.music.entity.Comment">
+    update comment
+    set user_id = #{user_id,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      song_id = #{song_id,jdbcType=INTEGER},
+      songlist_id = #{songlist_id,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
+      up = #{up,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.RankDao">
+    <resultMap id="BaseResultMap" type="com.xuwei.music.entity.Rank">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="songlist_id" jdbcType="INTEGER" property="songlist_id"/>
+        <result column="consumer_id" jdbcType="INTEGER" property="consumer_id"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, songlist_id, consumer_id, score
+  </sql>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from rank
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from rank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Rank"
+            useGeneratedKeys="true">
+    insert into rank (songlist_id, consumer_id, score
+      )
+    values (#{songlist_id,jdbcType=INTEGER}, #{consumer_id,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Rank"
+            useGeneratedKeys="true">
+        insert into rank
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="songlist_id != null">
+                songlist_id,
+            </if>
+            <if test="consumer_id != null">
+                consumer_id,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="songlist_id != null">
+                #{songlist_id,jdbcType=INTEGER},
+            </if>
+            <if test="consumer_id != null">
+                #{consumer_id,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectScoreSum" resultType="java.lang.Integer">
+        select coalesce(sum(score),0) as score from rank where songlist_id = #{songlist_id} ;
+    </select>
+    <select id="selectRankNum" resultType="java.lang.Integer">
+        select coalesce(count(id),0) as num from rank where songlist_id = #{songlist_id} ;
+    </select>
+</mapper>

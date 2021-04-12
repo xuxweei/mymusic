@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.ConsumerDao">
+    <resultMap id="BaseResultMap" type="com.xuwei.music.entity.Consumer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="phone_num" jdbcType="CHAR" property="phone_num"/>
+        <result column="email" jdbcType="CHAR" property="email"/>
+        <result column="birth" jdbcType="TIMESTAMP" property="birth"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="userpic" jdbcType="VARCHAR" property="userpic"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="update_time"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, username, `password`, sex, phone_num, email, birth, introduction, `location`,
+        userpic, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from consumer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="consumerOfId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from consumer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="verifyPassword" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select
+        count(*)
+        from consumer
+        where username= #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+    <select id="loginStatus" resultMap="BaseResultMap">
+        select *
+        from consumer
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+  <select id="allConsumer" resultMap="BaseResultMap">
+        select * from consumer
+    </select>
+    <select id="consumerByUserName" resultMap="BaseResultMap"  parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+         from consumer
+         where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="consumerByName" resultType="com.xuwei.music.entity.Consumer">
+        select
+        userpic
+        from consumer
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from consumer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Consumer"
+            useGeneratedKeys="true">
+        insert into consumer (username, `password`, sex,
+        phone_num, email, birth,
+        introduction, `location`, userpic,
+        create_time, update_time)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+        #{phone_num,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP},
+        #{introduction,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{userpic,jdbcType=VARCHAR},
+        #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertConsumer" parameterType="com.xuwei.music.entity.Consumer">
+        insert into consumer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone_num != null">
+                phone_num,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="userpic != null">
+                userpic,
+            </if>
+                create_time,
+                update_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="phone_num != null">
+                #{phone_num,jdbcType=CHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=CHAR},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=TIMESTAMP},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="userpic != null">
+                #{userpic,jdbcType=VARCHAR},
+            </if>
+          now(),now(),
+        </trim>
+    </insert>
+    <update id="updateUserMsg" parameterType="com.xuwei.music.entity.Consumer">
+        update consumer
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="phone_num != null">
+                phone_num = #{phone_num,jdbcType=CHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=CHAR},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=TIMESTAMP},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="userpic != null">
+                userpic = #{userpic,jdbcType=VARCHAR},
+            </if>
+            create_time = now(),
+            update_time = now(),
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+  <update id="updateUserAvator" parameterType="com.xuwei.music.entity.Consumer" >
+    update consumer
+    <set >
+      <if test="userpic != null" >
+        userpic = #{userpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.xuwei.music.entity.Consumer">
+    update consumer
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      phone_num = #{phone_num,jdbcType=CHAR},
+      email = #{email,jdbcType=CHAR},
+      birth = #{birth,jdbcType=TIMESTAMP},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      `location` = #{location,jdbcType=VARCHAR},
+      userpic = #{userpic,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

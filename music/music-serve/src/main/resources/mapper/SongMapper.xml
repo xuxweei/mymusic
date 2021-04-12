@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.SongDao">
+    <resultMap id="BaseResultMapper" type="com.xuwei.music.entity.Song">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="singer_id" jdbcType="INTEGER" property="singer_id"/>
+        <result column="song_name" jdbcType="VARCHAR" property="song_name"/>
+        <result column="song_intro" jdbcType="VARCHAR" property="song_intro"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="update_time"/>
+        <result column="song_pic" jdbcType="VARCHAR" property="song_pic"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+
+    <resultMap id="ResultMapperWithLyric" type="com.xuwei.music.entity.Song" extends="BaseResultMapper">
+        <result column="lyric" jdbcType="LONGVARCHAR" property="lyric"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,singer_id,song_name,song_intro,create_time,update_time,song_pic,url
+    </sql>
+
+    <sql id="Lyric_Column_List">
+        id,singer_id,song_name,song_intro,create_time,update_time,song_pic,lyric,url
+    </sql>
+
+    <!-- 增加   -->
+    <insert id="addSong" parameterType="com.xuwei.music.entity.Song">
+        insert into song
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="singer_id != null">
+                singer_id,
+            </if>
+            <if test="song_name != null">
+                song_name,
+            </if>
+            <if test="song_intro != null">
+                song_intro,
+            </if>
+                create_time,
+                update_time,
+            <if test="song_pic != null">
+                song_pic,
+            </if>
+            <if test="lyric != null">
+                lyric,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="singer_id != null">
+                #{singer_id},
+            </if>
+            <if test="song_name != null">
+                #{song_name},
+            </if>
+            <if test="song_intro != null">
+                #{song_intro},
+            </if>
+            now(),
+            now(),
+            <if test="song_pic != null">
+                #{song_pic},
+            </if>
+            <if test="lyric != null">
+                #{lyric},
+            </if>
+            <if test="url != null">
+                #{url},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 修改   -->
+    <update id="updateSong" parameterType="com.xuwei.music.entity.Song">
+        update song
+        <set>
+            <if test="singer_id != null">
+                singer_id = #{singer_id},
+            </if>
+            <if test="song_name != null">
+                song_name = #{song_name},
+            </if>
+            <if test="song_intro != null">
+                song_intro = #{song_intro},
+            </if>
+            update_time = now(),
+            <if test="song_pic != null">
+                song_pic = #{song_pic},
+            </if>
+            <if test="lyric != null">
+                lyric = #{lyric},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteSong" parameterType="java.lang.Integer">
+        delete from song
+        where id=${id}
+    </delete>
+
+
+    <!--根据id查询-->
+    <select id="selectSongById" resultMap="ResultMapperWithLyric" parameterType="java.lang.Integer">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+        where id=#{id}
+    </select>
+
+
+    <!--根据id查询-->
+    <select id="selectSongUrlById" resultMap="ResultMapperWithLyric" parameterType="java.lang.Integer">
+        select url
+        from song
+        where id=#{id}
+    </select>
+
+    <!--查询所有参数-->
+    <select id="allSong" resultMap="ResultMapperWithLyric">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+    </select>
+
+
+
+    <!--根据歌曲名字模糊查询-->
+    <select id="likeSongOfName" resultMap="ResultMapperWithLyric" parameterType="java.lang.String">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+        where song_name like #{song_name}
+    </select>
+
+    <!--根据歌曲名字模糊查询-->
+    <select id="likeSongOfIntro" resultMap="ResultMapperWithLyric" parameterType="java.lang.String">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+        where song_intro like #{song_intro}
+    </select>
+
+    <!--根据歌曲名字精准查询-->
+    <select id="songOfSongName" resultMap="ResultMapperWithLyric" parameterType="java.lang.String">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+        where song_name = #{song_name}
+    </select>
+
+    <!--根据歌手id查询-->
+    <select id="songOfSingerId" resultMap="ResultMapperWithLyric" parameterType="java.lang.Integer">
+        select
+        <include refid="Lyric_Column_List"/>
+        from song
+        where singer_id = #{singer_id}
+    </select>
+    <select id="songOfSongUrl" resultType="com.xuwei.music.entity.Song">
+        select
+        song_pic
+        from song
+        where url = #{url}
+    </select>
+
+    <!-- 修改歌曲图片   -->
+    <update id="updateSongImg" parameterType="com.xuwei.music.entity.Song">
+        update song
+        <set>
+            <if test="song_pic != null">
+                song_pic = #{song_pic}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 修改歌曲Url   -->
+    <update id="updateSongUrl" parameterType="com.xuwei.music.entity.Song">
+        update song
+        <set>
+            <if test="url != null">
+                url = #{url}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>
