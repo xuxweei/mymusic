@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul,
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+  
+  html {
+    min-width: 1200px;
+    font-size: 14px;
+  }
+  
+  div {
+    box-sizing: content-box;
+  }
+  
+  /*表单*/
+  .el-select-dropdown__item {
+    display: block !important;
+  }
+  
+  /*轮播图*/
+  .el-scrollbar__view,
+  .el-select-dropdown__list {
+    width: 100% !important;
+    text-align: center;
+  }
+  
+  .el-carousel__indicators,
+  .el-carousel__indicators--outside {
+    display: inline-block;
+    margin-left: 500px !important;
+  }
+  .el-carousel__indicators--outside button {
+    background-color: #606060 !important;
+}
+  
+  .el-slider__runway {
+    background-color: #95d2f6;
+  }
+  .el-slider__button{
+    width: 12px!important;
+    height: 12px!important;
+    border: 2px solid #525252!important;
+    background-color: #FFF;
+  }

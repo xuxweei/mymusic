@@ -1,0 +1,73 @@
+.singer_album {
+  margin-top: 70px;
+  padding-top: 150px;
+  background-color: #ffffff;
+}
+
+.singer_album::before {
+  /*背景*/
+  content: "";
+  background-color: #e7e7e7;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 220px;
+}
+
+/*左*/
+.album_slide {
+  float: left;
+  width: 400px;
+}
+
+.album_slide .singer_img {
+  position: relative;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  top: -100px;
+  left: 100px;
+  border-radius: 10%;
+  overflow: hidden;
+  border: 5px solid #ffffff;
+  background-color: #ffffff;
+}
+
+.album_slide .singer_img img {
+  width: 100%;
+}
+
+.album_slide .info {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: -100px;
+    padding: 30px 80px 30px 100px;
+}
+
+.album_slide .info li {
+  width: 100%;
+  height: 40px;
+}
+
+/*右*/
+.album_content {
+  margin-left: 300px;
+  padding: 0px 100px 30px;;
+}
+
+.album_content .intro {
+  font-size: 20px;
+}
+.album_content .intro h2{
+    font-weight: 600;
+    position: relative;
+    top: -70px;
+}
+
+.album_content .intro span {
+  color: rgba(0, 0, 0, 0.5);
+  position: relative;
+    top: -30px;
+}
+

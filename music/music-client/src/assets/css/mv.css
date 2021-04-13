@@ -1,0 +1,122 @@
+.mv {
+  margin: 30px 150px;
+  margin-top: 90px;
+  padding-bottom: 50px;
+  min-width: 800px;
+  background-color: #ffffff;
+}
+
+.mv_title {
+  width: 100%;
+  padding: 10px 40px;
+  margin-bottom: 8px;
+  height: 20px;
+}
+
+.mv_title h2 {
+  float: left;
+  max-width: 100%;
+  margin-top: -10px;
+  margin-right: 8px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.mv_title .name {
+  float: left;
+  margin: 12px 0 0 0;
+  line-height: 17px;
+}
+
+.mv .mv_content {
+  width: 100%;
+  display: flex;
+}
+
+.mv .mv_content .mv_box {
+  width: 640px;
+  height: 360px;
+  background-color: #2e2e2e;
+  font-size: 0;
+  line-height: 0;
+  margin-left: 20px;
+}
+
+.mv .mv_content .mv_box .mv_video {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 1.42857;
+  color: #fff;
+  overflow: hidden;
+}
+
+.mv_video .mv_player {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.mv_video .mv_player .videoplayer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.mv_info {
+  margin: 0px 70px;
+  width: 23%;
+}
+
+.mv_info h3 {
+  position: relative;
+  height: 23px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  color: #333;
+}
+
+.mv_info h3 span {
+  float: left;
+}
+
+.mv_info .info {
+  margin-top: -10px;
+  padding-bottom: 34px;
+}
+
+.mv_info .info p {
+  line-height: 18px;
+  color: #999;
+}
+
+.mv_info .info .tally {
+  display: flex;
+  line-height: 18px;
+}
+
+.mv_info .info .tally span {
+  margin-right: 3px;
+  flex: 0 0 42px;
+  color: #999;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  font-size: 1.5em;
+  color: #000000;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+  top: 9px;
+}

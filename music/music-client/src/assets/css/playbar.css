@@ -1,0 +1,134 @@
+.play_bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    transition: all 0.5s;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+  }
+  .play_bar .item_up {
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    cursor: pointer;
+  }
+  .play_bar .kongjian {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    min-width: 1000px;
+    background-color: #fefefe;
+  }
+  .play_bar .kongjian .item {
+    position: relative;
+    width: 70px;
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .play_bar .kongjian .item .icon.active {
+    color: #fd2d2d !important;
+  }
+  .play_bar .kongjian .item .volume {
+    position: absolute;
+    display: none;
+    height: 100px;
+    top: -110px;
+    right: 22px;
+  }
+  .play_bar .kongjian .item .show_volume {
+    display: block;
+  }
+  .play_bar .kongjian .item_img {
+    width: 60px;
+    height: 60px;
+  }
+  .play_bar .kongjian .item_img img {
+    width: 100%;
+  }
+  .play_bar .kongjian .playing_speed {
+    height: 50px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .play_bar .kongjian .playing_speed .current_time,
+  .play_bar .kongjian .playing_speed .left_time {
+    width: 70px;
+    text-align: center;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 500;
+    top: -10px;
+    margin-top: 17px;
+  }
+  .play_bar .kongjian .playing_speed .progress_box {
+    flex: 1;
+  }
+  .play_bar .kongjian .playing_speed .progress_box .item_song_title {
+    display: flex;
+    justify-content: left;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 20px;
+    line-height: 10px;
+    font-size: 13px;
+  }
+  .play_bar .kongjian .playing_speed .progress_box .progress {
+    width: 100%;
+    background: #a9dbf9;
+    height: 3px;
+  }
+  .play_bar .kongjian .playing_speed .progress_box .progress .bg {
+    height: 100%;
+    cursor: pointer;
+  }
+  .play_bar .kongjian .playing_speed .progress_box .progress .bg .cur_progress {
+    height: 100%;
+    background:#30a4fc;
+  }
+  .play_bar .kongjian .playing_speed .progress_box .progress .idot {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    border-radius: 50%;
+    background-color: #1E84E4;;
+    top: -8px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .turn {
+    transform: rotate(180deg);
+  }
+  
+  .show {
+    bottom: -60px;
+  }
+  
+  .icon {
+    width: 1.2em;
+    height: 1.2em;
+    font-size: 2em; 
+    color: #000000;
+    fill: currentColor;
+    overflow: hidden;
+    position: relative;
+    top: 9px;
+  }
+  .icon_small{
+    font-size: 1.6em; 
+    top: 6px;
+  }

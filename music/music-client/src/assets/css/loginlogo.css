@@ -1,0 +1,23 @@
+.login_logo {
+    background-color: #f0f0f0;
+    height: 120vh;
+    width: 50vw;
+    min-width: 650px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .login_logo .icon {
+    width: 5em;
+    height: 5em;
+    font-size: 5em;
+    color: #373737;
+    fill: currentColor;
+    overflow: hidden;
+    position: relative;
+    transform: rotate(-30deg);
+    opacity: 0.3;
+  }

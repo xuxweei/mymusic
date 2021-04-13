@@ -1,0 +1,61 @@
+.login {
+  position: absolute;
+  margin-left: 800px;
+  width: 330px;
+  height: 250px;
+  top: 130px;
+  padding: 30px 50px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.login .login_head {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.login .login_btn {
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.login .login_btn button {
+  display: block;
+  width: 50%;
+}
+
+.el-form-item .el-form-item__content {
+  margin-left: 50px;
+  display: flex!important;
+  justify-content: space-between!important;
+  align-items: stretch!important;
+  flex-direction: row!important;
+  flex-wrap: nowrap!important;
+}
+
+.code {
+  width: 112px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-top: -40px;
+  margin-left: 140px;
+}
+
+.validate_code {
+  width: 136px;
+  margin-right: 10px;
+}
+
+.errInfo {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  margin-left: 100px;
+  color: red;
+}

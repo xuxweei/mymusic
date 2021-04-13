@@ -1,0 +1,113 @@
+.search {
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 900px;
+  position: relative;
+}
+
+/* 大搜索框 */
+.mod_search {
+  margin-top: 70px;
+  position: relative;
+  height: 247px;
+  background-position: 50%;
+  background-size: cover;
+  background-image: url(../img/bg_search.jpg);
+}
+
+.mod_search .mod_search_input {
+  border: 0 none;
+  padding: 0 70px 0 15px;
+  line-height: 50px;
+  left: 50%;
+  top: 85px;
+  margin-top: 0;
+  margin-left: -322px;
+  background: #fff;
+}
+
+.mod_search .mod_search_input,
+.mod_search .search_input__input {
+  width: 554px;
+  height: 50px;
+}
+
+.mod_search_input {
+  border: 1px solid #c9c9c9;
+  padding: 0 33px 0 11px;
+  line-height: 36px;
+  height: 36px;
+  margin-top: 26px;
+  position: relative;
+  border-radius: 3px;
+  background-color: #fff;
+  -webkit-transition: width .6s ease-out;
+  transition: width .6s ease-out;
+}
+
+.search_input__input {
+  border: 0 none;
+  font-size: 14px;
+  background: 0 0;
+  -webkit-transition: width .6s ease-out, visibility .6s 1ms ease-out;
+  transition: width .6s ease-out, visibility .6s 1ms ease-out;
+}
+
+.search_input__input:focus {
+  outline-width: 0px;
+}
+
+.mod_search .search_input__btn {
+  width: 50px;
+  height: 50px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.search_input__btn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  border: 0 none;
+  width: 38px;
+  height: 35px;
+  overflow: visible;
+  background: 0 0;
+  cursor: pointer;
+}
+
+.search_input__btn:focus {
+  outline-width: 0px;
+}
+
+.icon_search {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  background-position: 0 -40px;
+}
+
+.searchList_nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.searchList_nav span {
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.isActive {
+  font-weight: 600;
+  border-bottom: 5px solid #13BF7E;
+  color: #31C27C;
+}

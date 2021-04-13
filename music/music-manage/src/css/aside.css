@@ -1,0 +1,20 @@
+.sidebar {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+  background-color: #545c64;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar_el_menu:not(.el-menu--collapse) {
+  width: 150px;
+}
+
+.sidebar>ul {
+  height: 100%;
+}

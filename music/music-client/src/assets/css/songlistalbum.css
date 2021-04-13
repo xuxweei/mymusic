@@ -1,0 +1,97 @@
+/*歌单背景*/
+.song_list_album {
+  margin-top: 70px;
+  padding-top: 150px;
+  background-color: #ffffff;
+}
+
+.song_list_album::before {
+  /*背景*/
+  content: "";
+  background-color: #e7e7e7;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 220px;
+}
+
+/*歌单左侧*/
+.album_slide {
+  float: left;
+  width: 400px;
+}
+
+/*歌单图像*/
+.album_slide .album_img {
+  position: relative;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  top: -100px;
+  left: 100px;
+  border-radius: 10%;
+  overflow: hidden;
+  border: 5px solid #ffffff;
+  background-color: #ffffff;
+}
+
+.album_slide .album_img img {
+  width: 100%;
+}
+
+/*歌单信息*/
+.album_slide .album_info {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: -80px;
+  padding: 30px 40px 30px 60px;
+}
+
+.album_slide .album_info span {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/*歌单内容*/
+.album_content {
+  margin-left: 300px;
+  padding: 0px 100px;
+}
+
+/*歌单标题*/
+.album_title {
+  font-size: 30px;
+  font-weight: 600;
+  position: relative;
+  margin-left: 450px;
+  top: -50px;
+
+}
+
+/*歌单打分*/
+.album_content .album_score {
+  display: flex;
+  align-items: center;
+}
+
+.album_content .album_score>div {
+  margin-left: 100px;
+}
+
+.album_content .album_score>span {
+  font-size: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.album_content .album_score h3 {
+  margin: 10px 0;
+}
+
+/*歌曲列表*/
+.album_content .songs_body {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 0 0 50px 0;
+  min-width: 700px;
+}

@@ -1,0 +1,27 @@
+.signUp {
+    position: absolute;
+    top: 90px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 350px;
+    left: 70%;
+    transform: translate(-44%);
+    padding: 30px 30px;
+  }
+  .signUp .signUp_head {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .signUp .login_btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .signUp .login_btn button {
+    display: block;
+    width: 20%;
+  }

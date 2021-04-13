@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+.content_box{
+    position: absolute;
+    left: 150px;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+    background: #f0f0f0;
+}
+.content{
+    width: auto;
+    padding: 20px;
+}
+.content_collapse{
+    left: 65px;
+}
+.container{
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.crumbs{
+    margin-bottom: 20px;
+}
+.pagination{
+    margin: 20px 0;
+    text-align: right;
+}
+
+.plugins-tips {
+    padding: 20px 10px;
+    margin-bottom: 20px;
+  }
+  
+  .el-button+.el-tooltip {
+    margin-left: 10px;
+  }
+  
+  .el-table tr:hover {
+    background: #f6faff;
+  }
+  
+  .mgb10 {
+    margin-bottom: 10px;
+  }
+
+.move_enter_active,
+.move_leave_active{
+    transition: opacity .5s;
+}
+
+.move_enter,
+.move_leave{
+    opacity: 0;
+}
+
+/* 表单 */
+.el-select{
+    width: 100%;
+}
+.table{
+    min-width: 800px;
+}
+.el_dialog_body{
+    padding: 10px 20px 0 10px;
+}

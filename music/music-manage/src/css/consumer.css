@@ -1,0 +1,19 @@
+.handle_box{
+    margin-bottom: 5px;
+}
+.consumer_img{
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+.handle_input{
+    width: 150px;
+    display: inline-block;
+
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+}

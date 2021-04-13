@@ -1,0 +1,72 @@
+.my_music {
+  margin-top: 70px;
+  padding-top: 150px;
+  background-color: #ffffff;
+}
+
+.my_music::before {
+  /*背景*/
+  content: "";
+  background-color: #e7e7e7;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 220px;
+}
+
+/*左侧*/
+.album_slide {
+  float: left;
+  width: 400px;
+
+}
+
+.album_slide .album_img {
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  position: relative;
+  top: -100px;
+  left: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #ffffff;
+}
+
+.album_slide .album_img img {
+  width: 100%;
+}
+
+/*信息*/
+.album_slide .album_info {
+  color: #000000;
+  width: 500px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -100px;
+  margin-left: 100px;
+  padding: 30px 30px;
+}
+
+.album_slide .album_info li {
+  width: 100%;
+  line-height: 40px;
+}
+
+/*歌单内容*/
+.album_content {
+  margin-left: 300px;
+  padding: 10px 100px;
+}
+
+/*个人介绍*/
+.album_content .album_title {
+  font-size: 25px;
+  font-weight: 600;
+  top: -60px;
+  position: relative;
+}
+
+.album_content .songs_body {
+  margin-top: -30px;
+}

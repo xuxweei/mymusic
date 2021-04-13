@@ -1,0 +1,197 @@
+.the_header {
+  background-color: #373737;
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 80px;
+  margin: 0;
+  /* background-color: #fefefe; */
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.header_logo {
+  color: #f8f8f8;
+  margin: 0 10px;
+  font-size: 26px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.header_logo .icon {
+  width: 46.6666666667px;
+  height: 46.6666666667px;
+  font-size: 46.6666666667px;
+  color: #000000;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+
+/*nav*/
+.navbar {
+  height: 70px;
+  white-space: nowrap;
+}
+
+.navbar li {
+  margin: 0 10px;
+  padding: 0 10px;
+  font-size: 18px;
+  color: #b8b8b8;
+  text-align: center;
+  border-bottom: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.navbar li:hover {
+  background-color: #000;
+}
+
+.navbar .noHover:hover {
+  background-color: #373737;
+}
+
+/*搜索*/
+.header_search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.header_search input {
+  height: 35px;
+  width: 270px;
+  font-size: 14px;
+  border: 0;
+  text-indent: 10px;
+  background-color: #ebeef0;
+}
+
+.header_search input:focus {
+  outline: none;
+}
+
+.header_search .search_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: #ececec;
+  width: 60px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.header_search .search_btn .icon {
+  width: 1.2em;
+  height: 1.2em;
+  font-size: 1.2em;
+  color: #ffffff;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+}
+
+/*用户*/
+.header_right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.header_right #user {
+  overflow: hidden;
+  width: 46.6666666667px;
+  height: 46.6666666667px;
+  border-radius: 50%;
+  margin: 0 25px;
+  cursor: pointer;
+}
+
+.header_right #user img {
+  width: 100%;
+}
+
+.menu {
+  display: none;
+  line-height: 0px;
+  position: absolute;
+  background-color: #ffffff;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  width: 150px;
+  padding: 7px 0px;
+  border-radius: 4px;
+  top: 80px;
+  right: -20px;
+  z-index: 5;
+  text-align: center;
+  cursor: pointer;
+}
+
+.menu li {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+
+.menu li:hover {
+  background-color: #373737;
+  color: #ffffff;
+}
+
+.menu :nth-child(1):before {
+  content: " ";
+  display: block;
+  /*独占一行*/
+  position: absolute;
+  right: 45px;
+  top: -5px;
+  /*果断的露出上半部分*/
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
+  transform: rotate(45deg);
+}
+
+.show {
+  display: block;
+}
+
+.navbar .active {
+  color: #ffffff !important;
+  border-bottom: 2px solid #757575 !important;
+  background-color: #000;
+}
+
+.dialogAnniu {
+  position: fixed;
+  z-index: 90;
+  top: 0px;
+  right: 150px;
+  display: block;
+}

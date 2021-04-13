@@ -1,0 +1,80 @@
+.content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 0px 40px;
+  min-width: 700px;
+}
+
+.content .title {
+  text-align: center;
+  font-size: 25px;
+}
+
+.content>ul {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.content>ul>li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-indent: 20px;
+  cursor: pointer;
+}
+
+.song_item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #fbfbfd;
+  color: #999;
+}
+
+.song_item .item_index {
+  width: 5%;
+}
+
+.song_item .item_title {
+  width: 30%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+  padding-left: 20px;
+}
+
+.song_item .item_name {
+  width: 25%;
+  float: left;
+  padding-left: 20px;
+}
+
+.song_item .item_intro {
+  width: 40%;
+  float: left;
+  padding-left: 20px;
+}
+
+.is_play {
+  color: #30a4fc;
+  font-weight: bold;
+}
+
+.icon {
+  width: 1.3em;
+  height: 1.3em;
+  font-size: 1.3em;
+  color: #30a4fc;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+  vertical-align: -0.3em;
+  right: 5px;
+}

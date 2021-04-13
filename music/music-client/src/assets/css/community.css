@@ -1,0 +1,343 @@
+.community {
+  margin: 30px 150px;
+  margin-top: 90px;
+  padding-bottom: 50px;
+  min-width: 800px;
+  background-color: #ffffff;
+}
+
+.community_main {
+  display: flex;
+}
+
+.community_left {
+  width: 66%;
+  padding: 0 40px;
+}
+
+.community_header {
+  width: 100%;
+}
+
+.community_header .community_txt {
+  display: inline-block;
+  width: 80%;
+  line-height: 40px;
+  margin: 20px 20px 15px 20px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #67757f;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.community_right_aside {
+  float: right;
+  position: relative;
+  right: -10px;
+  width: 25%;
+  padding: 0 1px;
+  background-color: rgba(244, 244, 244);
+  border: solid 1px #a4a4a4;
+}
+
+.community_right_aside .user_info_box {
+  position: relative;
+  min-height: 200px;
+}
+
+.community_right_aside .user_info_box a {
+  text-decoration: underline;
+  font-size: 2rem;
+  line-height: 200px;
+  color: #888888;
+  font-weight: 100;
+  cursor: pointer;
+  margin-left: 95px;
+}
+
+.community_right_aside .user_info_box .face {
+  position: absolute;
+  top: 38px;
+  left: 30px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.user_info_box .face img {
+  display: block;
+  width: 62px;
+  height: 62px;
+  padding: 2px;
+  background: #fff;
+  border: 1px solid #dadada;
+}
+
+.user_info_box h5 {
+  position: absolute;
+  left: 18px;
+  top: -50px;
+  font-size: 14px;
+  width: 163px;
+}
+
+.user_info_box .user_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  font-weight: bold;
+}
+
+.user_info_box .user_name a {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user_info_box .user_name a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+.user_info_box .intro {
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.user_info_box p {
+  position: absolute;
+  width: 160px;
+  height: 38px;
+  left: 112px;
+  top: 67px;
+  overflow: hidden;
+  line-height: 19px;
+  color: #888;
+}
+
+.community_left .community_content {
+  position: relative;
+  text-shadow: none;
+}
+
+.community_content .community_list {
+  position: relative;
+  width: 100%;
+}
+
+.community_content .community_list .community_list_item {
+  border-color: #e8e8e9;
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 1px solid #a4a4a4;
+  width: 100%;
+}
+
+.community_list .community_list_item:first-child {
+  border-top: none;
+}
+
+.community_list .community_list_item .list_face {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 54px;
+}
+
+.community_list .community_list_item .list_face a {
+  float: left;
+  position: relative;
+  zoom: 1;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.community_list .community_list_item .list_face a img {
+  display: block;
+  width: 100%;
+}
+
+.community_list .community_list_item .list_face a:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.list_content {
+  position: relative;
+  zoom: 1;
+  margin-left: 55px;
+  padding-top: 4px;
+}
+
+.list_content .list_name {
+  font-size: 14px;
+  position: relative;
+  left: 14px;
+}
+.list_content .list_txt {
+  font-size: 14px;
+  position: relative;
+  left: 14px;
+}
+
+.community_list .community_list_item .list_content .list_name a {
+  color: #0c73c2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.list_content .list_name a:hover {
+  text-decoration: underline;
+}
+
+.list_source_img {
+  width: 200px;
+  height: 200px;
+}
+
+.list_source_img img {
+  width: 100%;
+}
+
+.song_box {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+  height: 50px;
+  padding: 0 5px 10px;
+}
+
+.song_box .song_wrapper {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  justify-content: start;
+  padding: 0 4%;
+  border-radius: 5px;
+  position: relative;
+}
+
+.song_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.play {
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  top: 0px;
+  left: 25px;
+}
+
+.song_name {
+  position: absolute;
+  width: 200px;
+  top: 15px;
+  left: 85px;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
+.icon_controller {
+  display: flex;
+  width: 200px;
+  position: relative;
+  top: -27px;
+  left: 220px;
+}
+
+.list_up {
+  line-height: 30px;
+  position: relative;
+  top: 10px;
+  height: 30px;
+}
+
+.up {
+  width: 50px;
+  line-height: 30px;
+  position: absolute;
+  right: 60px;
+  height: 30px;
+}
+.uptxt{
+  position: absolute;
+  top: -2px;
+  left: 18px;
+}
+
+.icon {
+  width: 2em;
+  height: 2em;
+  color: rgba(255, 255, 255, 0.75);
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon_dianz {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  color: #000000;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}

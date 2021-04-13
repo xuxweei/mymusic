@@ -1,0 +1,12 @@
+#app {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  
+  .music_content {
+    flex: 1;
+  }
