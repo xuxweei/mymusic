@@ -98,7 +98,6 @@ public class CommunityController {
 
     @PostMapping(value = "/addWithUrl")
     @CrossOrigin
-//    ,@RequestParam("file") MultipartFile multipartFile
     public FileUploadDto addCommunityWithUrl(@ModelAttribute FileUploadForm form) {
 
         System.out.println(form);
