@@ -98,18 +98,48 @@ public class CommunityController {
 
     @PostMapping(value = "/addWithUrl")
     @CrossOrigin
-    public FileUploadDto addCommunityWithUrl(@ModelAttribute FileUploadForm form) {
+    public FileUploadDto addCommunityWithUrl(@ModelAttribute FileUploadForm form, HttpServletRequest request) {
 
         System.out.println(form);
         //文件在本地的路径
         String path = fileService.writeFile(form.getFile(), form.getType());
-
+        JSONObject jsonObject = new JSONObject();
+        //用户名
+        String name = request.getParameter("name").trim();
+        //上传类型
+        String type = request.getParameter("type").trim();
+        //地址
+//        String url = request.getParameter("url").trim();
+        //动态内容
+        String content = request.getParameter("content").trim();
+        //图片
+//        String img = request.getParameter("img").trim();
+        Community community = new Community();
+        community.setName(name);
+        community.setType(Integer.parseInt(type));
+        community.setContent(content);
+        if (Integer.parseInt(type) == 0 || Integer.parseInt(type) == 1) {
+            community.setUrl(path);
+            community.setImg(null);
+        }else if (Integer.parseInt(type) == 2){
+            community.setUrl(null);
+            community.setImg(path);
+        }
+        boolean flag = communityService.insert(community);
+        if (flag) {
+            //保存成功
+            jsonObject.put(Consts.CODE, 1);
+            jsonObject.put(Consts.MSG, "添加成功");
+//            return jsonObject;
+        }
+        jsonObject.put(Consts.CODE, 0);
+        jsonObject.put(Consts.MSG, "添加失败");
+//        return jsonObject;
         //todo 存数据库xxxxxxx
         System.out.println(path);
         return new FileUploadDto();
 
     }
-
 
 
     /*上传图片*/

@@ -1,4 +1,4 @@
-package com.xuwei.music.cons;
+package com.xuwei.music.utils;
 
 /**
  * @ClassName DirTypes

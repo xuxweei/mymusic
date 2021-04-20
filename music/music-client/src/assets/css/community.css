@@ -188,6 +188,7 @@
   position: relative;
   left: 14px;
 }
+
 .list_content .list_txt {
   font-size: 14px;
   position: relative;
@@ -292,8 +293,7 @@
   display: flex;
   width: 200px;
   position: relative;
-  top: -27px;
-  left: 220px;
+  margin-top: 10px;
 }
 
 .list_up {
@@ -310,7 +310,8 @@
   right: 60px;
   height: 30px;
 }
-.uptxt{
+
+.uptxt {
   position: absolute;
   top: -2px;
   left: 18px;

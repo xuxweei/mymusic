@@ -100,6 +100,7 @@ export const getCollectOfUserId = (userId) => get(`/collect/collectOfUserId?user
 export const addCommunity = (params) => post(`community/add`, params);
 //添加动态
 export const addCommunityWithUrl = (params) => post(`/community/addWithUrl`, params);
+// export const uploadImgCom = (id) => post(`community/uploadImg`,id)
 //查询所有动态
 export const getAllCommunity = () => get(`community/allCommunity`);
 //查询指定动态

@@ -1,6 +1,6 @@
 package com.xuwei.music.service.impl;
 
-import com.xuwei.music.cons.DirTypes;
+import com.xuwei.music.utils.DirTypes;
 import com.xuwei.music.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +61,7 @@ public class FileServiceImpl implements FileService {
             t = "video";
             dirPath = fileStore + "/" + "video";
         } else if (dir == DirTypes.IMG) {
-            t = "img";
+            t = "img/communityPic";
             dirPath = fileStore + "/" + "img" + "/" + "communityPic";
         } else {
             return null;
