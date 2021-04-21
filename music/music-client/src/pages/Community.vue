@@ -65,6 +65,7 @@
                 </div>
               </div>
               <div class="list_up">
+                <!-- 点赞 -->
                 <div class="up" ref="up" @click="postUp(val.id,val.up,index)">
                   <svg class="icon_dianz" v-if="lsts[index]===1" style="color:#F36161;">
                     <use xlink:href="#icon-dianzan1"></use>
@@ -74,10 +75,8 @@
                   </svg>
                   <span class="uptxt"> {{val.up}}</span>
                 </div>
+                <!-- 评论 -->
                 <div class="up" ref="up" style="right: 20px;">
-                  <!-- <svg class="icon_dianz" v-if="lsts[index]===1" style="color:#F36161;">
-                    <use xlink:href="#icon-pinglun"></use>
-                  </svg> -->
                   <svg class="icon_dianz" style="color:#000;">
                     <use xlink:href="#icon-pinglun"></use>
                   </svg>
@@ -119,21 +118,20 @@
       </div>
     </div>
     <el-dialog title="添加动态" :visible.sync="dialogVisible" width="30%" center :before-close="handleClose">
-      <el-steps :active="act">
+      <!-- <el-steps :active="act">
         <el-step title="步骤 1" icon="el-icon-edit"></el-step>
         <el-step title="步骤 2" icon="el-icon-upload"></el-step>
-        <!-- <el-step title="步骤 3" icon="el-icon-picture"></el-step> -->
-      </el-steps>
+      </el-steps> v-if="act===0"v-if="act===0"v-if="act===1"-->
       <!-- 歌单名 -->
       <el-form :model="addForm" ref="addForm" class="demo-ruleForm" id="af">
-        <el-form-item prop="content" v-if="act===0">
+        <el-form-item prop="content" >
           <div class="community_txt">
             <el-input type="textarea" resize="none" placeholder="一起聊聊吧~" v-model="textarea" maxlength="150"
               show-word-limit :rows="4">
             </el-input>
           </div>
         </el-form-item>
-        <el-form-item prop="type" v-if="act===0">
+        <el-form-item prop="type" >
           <el-select v-model="addForm.type" placeholder="请选择类型" @change.native="getTypes" @blur.native="getTypes">
             <el-option label="歌曲" value="0"></el-option>
             <el-option label="视频" value="1"></el-option>
@@ -141,7 +139,7 @@
             <el-option label="文字" value="3"></el-option>
           </el-select>
         </el-form-item>
-        <div v-if="act===1">
+        <div >
           <el-form-item>
             <div class="icon_controller" @click="itemVisible=true">
               <span style="margin:-10px 15px;">
@@ -180,17 +178,17 @@
                 <input type="file" name="file">
               </div> -->
               <el-upload v-if="this.addForm.type==2" class="upload-demo" :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload" :show-file-list="false" :action="uploadImg(nextId)"
+                :before-upload="beforeAvatarUpload" :show-file-list="false" :action="uploadImg(nextId)" :auto-upload="false"
                 >
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
               <el-upload v-else-if="this.addForm.type==0" class="upload-demo" :on-success="handleSongSuccess"
-                :before-upload="beforeSongUpload" :show-file-list="false" :action="uploadUrl(nextId)"
+                :before-upload="beforeSongUpload" :show-file-list="false" :action="uploadUrl(nextId)" :auto-upload="false"
                 >
                 <el-button size="mini" type="primary">上传歌曲</el-button>
               </el-upload>
               <el-upload v-else-if="this.addForm.type==1" class="upload-demo" :on-success="handleUrlSuccess"
-                :before-upload="beforeUrlUpload" :show-file-list="false" :action="uploadUrl(nextId)">
+                :before-upload="beforeUrlUpload" :show-file-list="false" :action="uploadUrl(nextId)" :auto-upload="false">
                 <el-button size="mini" type="primary">上传视频</el-button>
               </el-upload>
             </el-form-item>
@@ -204,8 +202,8 @@
         <!-- <template slot-scope="scope"> -->
         <el-button @click="dialogVisible = false">取 消</el-button>
         <!-- <el-button @click="prev" v-if="act===1">上一步</el-button> -->
-        <el-button @click="addCommunity" v-if="act===0">提交基础信息</el-button>
-        <el-button type="primary" @click="uploadAll" v-if="act===1">确 定</el-button>
+        <!-- <el-button @click="addCommunity" v-if="act===0">提交基础信息</el-button>v-if="act===1" -->
+        <el-button type="primary" @click="addCommunity" >确 定</el-button>
         <!-- </template> -->
       </span>
     </el-dialog>
@@ -240,7 +238,7 @@
         textarea: '',
         // 用户头像
         userpic: '',
-        // 用户名 
+        // 用户名
         username: '',
         // 个人介绍
         introduction: '',
@@ -261,8 +259,9 @@
         },
         itemVisible: false,
         lsts: [],
-        act: 0,
-        nextId: ''
+        // act: 0,
+        nextId: '',
+        like: 1,
         // imgurl:''
       }
     },
@@ -314,12 +313,12 @@
           console.log("2222" + this.nextId)
         });
       },
-      prev() {
-        --this.act
-        if (this.act < 0) {
-          this.act = 0
-        }
-      },
+      // prev() {
+      //   --this.act
+      //   if (this.act < 0) {
+      //     this.act = 0
+      //   }
+      // },
       //添加动态
       addCommunity() {
         if (this.loginIn) {
@@ -344,7 +343,7 @@
               } else {
                 params.append('img', this.addForm.img = '');
               }
-              addCommunity(params)
+              addCommunityWithUrl(params)
                 .then(res => {
                   if (res.code == 1) {
                     this.getData();
@@ -358,12 +357,10 @@
                 .catch(err => {
                   console.log(err)
                 });
-              // this.dialogVisible = false;
             }
-            // ++this.act
-            if (this.act++ > 2) {
-              this.act = 0
-            }
+            // if (this.act++ > 2) {
+            //   this.act = 0
+            // }
           })
 
         } else {
@@ -422,30 +419,10 @@
       },
       //上传地址
       uploadAll() {
-        // this.reload();
-        // this.upUrl(this.nextId).then(res => {
-
-        // this.$axios({
-        //   method: 'post',
-        //   url: `${this.$store.state.config.HOST}/community/uploadImg?id=${this.nextId}`,
-        //   data: this.nextId
-        // })
-        // uploadImgCom().then((res) => {
-        //   if (res.code == 1) {
             this.getData();
             // this.notify("提交成功", "success");
             this.dialogVisible = false;
             this.reload();
-
-        //   } else {
-        //     this.notify("提交失败", "error");
-        //   }
-        //   })
-            
-        // .catch(err => {
-        //   console.log(err)
-        // });
-
       },
       validateFileSize(file, num, fileType) {
         let fileName = file.name
@@ -494,7 +471,7 @@
           // this.imageUrl = file.name
           this.addForm.img = URL.createObjectURL(file.raw)
           // this.addForm.img = file.raw
-          // this. 
+          // this.
         }
       },
       //上传前的校验
@@ -600,7 +577,50 @@
           });
         }
       },
-      postUp(id, up, index) {}
+      postUp(id, up, index) {
+        if (this.loginIn) {
+          let pam = new URLSearchParams()
+          pam.append('consumer_id', this.userId)
+          pam.append('community_id', id)
+          setUp(pam).then(r => {
+              if (r.code == 1) {
+                let params = new URLSearchParams();
+                params.append('id', id)
+                params.append('up', up + this.like)
+                setLike(params).then(res => {
+                  if (res.code == 1) {
+                    console.log(this.likeStatus);
+                    if (this.likeStatus) {
+                      console.log('哪里');
+                      this.notify('取消赞成功', 'success')
+                      this.$refs.up[index].children[0].style.color = '#000'
+                      this.getComment(this.songListId)
+                      this.likeStatus = false;
+                      this.like = 1
+                    } else {
+                      console.log('这里');
+                      this.notify('点赞成功', 'success')
+                      this.$refs.up[index].children[0].style.color = '#F36161'
+                      this.getComment(this.songListId)
+                      this.likeStatus = true;
+                      this.like = -1
+                    }
+                  }
+                })
+
+              } else {
+                this.notify('点赞失败', 'error')
+              }
+            })
+            .catch(err => {
+              this.notify('点赞失败', 'error')
+              console.log(err)
+            })
+
+        } else {
+          this.notify('请先登录哦~', 'warning')
+        }
+      }
 
     },
 
