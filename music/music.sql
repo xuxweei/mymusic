@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localmusic
-Source Server Version : 50725
+Source Server Version : 50730
 Source Host           : localhost:3306
 Source Database       : music
 
 Target Server Type    : MYSQL
-Target Server Version : 50725
+Target Server Version : 50730
 File Encoding         : 65001
 
-Date: 2021-04-20 23:59:25
+Date: 2021-04-22 17:41:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -143,7 +143,30 @@ INSERT INTO `community` VALUES ('38', '333', '2', 'undefined', null, '2021-04-18
 INSERT INTO `community` VALUES ('49', '333', '2', 'undefined', null, '2021-04-18 22:32:32', null, '/img/communityPic/1618756362564p.jpg');
 INSERT INTO `community` VALUES ('54', '333', '2', 'undefined', null, '2021-04-18 22:43:29', null, '/img/communityPic/1618757017707109951165549520393.jpg');
 INSERT INTO `community` VALUES ('60', '333', '2', 'undefined', null, '2021-04-18 23:06:11', null, '/img/communityPic/1618758381400T001R300x300M0000007sHCz2lllqK.jpg');
-INSERT INTO `community` VALUES ('61', '333', '1', '/video/1618758958201杨千嬅 - 可惜我是水瓶座.mp3', null, '2021-04-18 23:09:09', null, 'undefined');
+INSERT INTO `community` VALUES ('61', '333', '1', '/video/1618758958201杨千嬅 - 可惜我是水瓶座.mp3', null, '2021-04-18 23:09:09', null, '/img/communityPic/16189941324771.jpg');
+
+-- ----------------------------
+-- Table structure for community_up
+-- ----------------------------
+DROP TABLE IF EXISTS `community_up`;
+CREATE TABLE `community_up` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `consumer_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `community_id` int(11) DEFAULT NULL COMMENT '动态id',
+  `comment_son_id` int(11) DEFAULT NULL COMMENT '社区评论id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of community_up
+-- ----------------------------
+INSERT INTO `community_up` VALUES ('1', '2', '2', null);
+INSERT INTO `community_up` VALUES ('2', '2', '1', null);
+INSERT INTO `community_up` VALUES ('3', '1', '1', '1');
+INSERT INTO `community_up` VALUES ('4', '1', '2', null);
+INSERT INTO `community_up` VALUES ('5', '1', '3', null);
+INSERT INTO `community_up` VALUES ('6', '1', '4', null);
+INSERT INTO `community_up` VALUES ('7', '1', '5', null);
 
 -- ----------------------------
 -- Table structure for consumer
