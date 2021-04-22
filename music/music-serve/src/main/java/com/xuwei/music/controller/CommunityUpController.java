@@ -21,65 +21,85 @@ public class CommunityUpController {
     private CommunityUpService communityUpService;
 
     /**
-     * 点赞
+     * 动态点赞
      */
-//    @PostMapping(value = "/like")
-//    public Object like(HttpServletRequest request, HttpSession session) {
-//        JSONObject jsonObject = new JSONObject();
-//        String consumer_id = request.getParameter("consumer_id");
-//        String comment_id = request.getParameter("comment_id");
-////        String like_status = request.getParameter("like_status");
-//        CommunityUp communityUp = new CommunityUp();
-//        communityUp.setConsumer_id(Integer.parseInt(consumer_id));
-//        communityUp.setComment_id(Integer.parseInt(comment_id));
-////        up.setLike_status(Integer.parseInt(like_status));
-//        System.out.println("点赞：" + up.toString());
-//        boolean flag;
-//        Up checked = communityUpService.hasCommunityUp(up);
-//        if (checked==null){
-//            System.out.println("未点赞");
-//            up.setLike_status(1);
-//            flag = communityUpService.insert(up);
-//        }else {
-//            System.out.println("已点赞");
-//            if (checked.getLike_status() == 0){
-//                up.setLike_status(1);
-//            }else {
-//                up.setLike_status(0);
-//            }
-//            flag = communityUpService.update(up);
-//        }
-//        if (flag) {
-//            if (up.getLike_status() == 0 ){
-//                up.setLike_status(-1);
-//            }
-//            jsonObject.put(Consts.CODE, 1);
-//            jsonObject.put(Consts.MSG, "点赞成功");
-//            return jsonObject;
-//        }
-//        jsonObject.put(Consts.CODE, 0);
-//        jsonObject.put(Consts.MSG, "点赞失败");
-//        return jsonObject;
-//    }
+    @PostMapping(value = "/communityLike")
+    public Object communityLike(HttpServletRequest request, HttpSession session) {
+        JSONObject jsonObject = new JSONObject();
+        String consumer_id = request.getParameter("consumer_id");
+        String community_id = request.getParameter("community_id");
+
+        CommunityUp communityUp = new CommunityUp();
+        communityUp.setConsumerId(Integer.parseInt(consumer_id));
+        communityUp.setCommunityId(Integer.parseInt(community_id));
+
+        System.out.println("点赞：" + communityUp.toString());
+
+        boolean flag = communityUpService.insert(communityUp);
+
+        if (flag) {
+            jsonObject.put(Consts.CODE, 1);
+            jsonObject.put(Consts.MSG, "点赞成功");
+            return jsonObject;
+        }
+        jsonObject.put(Consts.CODE, 0);
+        jsonObject.put(Consts.MSG, "点赞失败");
+        return jsonObject;
+    }
+
+
+    /**
+     * 评论点赞
+     */
+    @PostMapping(value = "/commentLike")
+    public Object commentLike(HttpServletRequest request, HttpSession session) {
+        JSONObject jsonObject = new JSONObject();
+        String consumer_id = request.getParameter("consumer_id");
+        String comment_son_id = request.getParameter("comment_son_id");
+        String community_id = request.getParameter("community_id");
+        CommunityUp communityUp = new CommunityUp();
+        communityUp.setConsumerId(Integer.parseInt(consumer_id));
+        communityUp.setCommentSonId(Integer.parseInt(comment_son_id));
+        communityUp.setCommunityId(Integer.parseInt(community_id));
+
+        System.out.println("点赞：" + communityUp.toString());
+        boolean flag = communityUpService.insert(communityUp);
+        if (flag) {
+            jsonObject.put(Consts.CODE, 1);
+            jsonObject.put(Consts.MSG, "点赞成功");
+            return jsonObject;
+        }
+        jsonObject.put(Consts.CODE, 0);
+        jsonObject.put(Consts.MSG, "点赞失败");
+        return jsonObject;
+    }
 
     /**
      * 点赞
      */
-//    @GetMapping(value = "/getLiked")
-//    public Object getLiked(HttpServletRequest request) {
-//        String consumer_id = request.getParameter("consumer_id").trim();
-//        return communityUpService.getLiked(Integer.parseInt(consumer_id));
-//    }
+    @GetMapping(value = "/getLikes")
+    public Object getLikes(HttpServletRequest request) {
+        String consumer_id = request.getParameter("consumer_id").trim();
+        return communityUpService.getLikes(Integer.parseInt(consumer_id));
+    }
 
     /**
-     * 点赞
+     * 获取动态的评论点赞
      */
-//    @GetMapping(value = "/getLikedById")
-//    public Object getLikedById(HttpServletRequest request) {
-//        String consumer_id = request.getParameter("consumer_id").trim();
-//        String comment_id = request.getParameter("comment_id").trim();
-//        return communityUpService.getLikedByCommentId(Integer.parseInt(consumer_id),Integer.parseInt(comment_id));
-//    }
+    @GetMapping(value = "/getLikedOfComment")
+    public Object getLikedOfComment(HttpServletRequest request) {
+        String consumer_id = request.getParameter("consumer_id").trim();
+        String community_id = request.getParameter("community_id").trim();
+        return communityUpService.getLikedOfComment(Integer.parseInt(community_id),Integer.parseInt(consumer_id));
+    }
+    /**
+     * 获取动态点赞
+     */
+    @GetMapping(value = "/getLikedOfCommunity")
+    public Object getLikedOfCommunity(HttpServletRequest request) {
+        String consumer_id = request.getParameter("consumer_id").trim();
+        return communityUpService.getLikedOfCommunity(Integer.parseInt(consumer_id));
+    }
 
 
 }

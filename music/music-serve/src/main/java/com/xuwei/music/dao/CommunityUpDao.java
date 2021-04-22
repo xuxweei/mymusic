@@ -8,7 +8,21 @@ import java.util.List;
 
 @Repository
 public interface CommunityUpDao {
-    int deleteById(Integer id);
+
+    /**
+     * 删除动态点赞
+     * @param id
+     * @return
+     */
+    int deleteCommunity(Integer id);
+
+    /**
+     * 删除动态的评论点赞
+     * @param id
+     * @param community_id
+     * @return
+     */
+    int deleteComment(Integer id,Integer community_id);
 
     int insert(CommunityUp record);
 
@@ -41,20 +55,19 @@ public interface CommunityUpDao {
     /**
      * 查询动态是否已点赞
      *
-     * @param community_id
      * @param consumer_id
      * @return
      */
-    List<CommunityUp> getLikedByCommunityId(Integer community_id, Integer consumer_id);
+    List<CommunityUp> getLikedOfCommunity(Integer consumer_id);
 
     /**
      * 查询动态评论是否已点赞
      *
-     * @param comment_son_id
+     * @param community_id
      * @param consumer_id
      * @return
      */
-    List<CommunityUp> getLikedByCommentSonId(Integer comment_son_id, Integer consumer_id);
+    List<CommunityUp> getLikedOfComment(Integer community_id, Integer consumer_id);
 
     /**
      * 取消动态赞
@@ -62,7 +75,7 @@ public interface CommunityUpDao {
      * @param record
      * @return
      */
-    int updateCommunity(CommunityUp record);
+//    int updateCommunity(CommunityUp record);
 
     /**
      * 取消动态评论赞
@@ -70,7 +83,7 @@ public interface CommunityUpDao {
      * @param record
      * @return
      */
-    int updateComment(CommunityUp record);
+//    int updateComment(CommunityUp record);
 
     int updateByPrimaryKeySelective(CommunityUp record);
 
