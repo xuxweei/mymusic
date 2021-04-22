@@ -99,7 +99,7 @@ export const getCollectOfUserId = (userId) => get(`/collect/collectOfUserId?user
 //添加动态
 export const addCommunity = (params) => post(`community/add`, params);
 //添加动态
-export const addCommunityWithUrl = (params) => post(`/community/addWithUrl`, params);
+export const addCommunityWithUrl = (params) => post(`community/addWithUrl`, params);
 // export const uploadImgCom = (id) => post(`community/uploadImg`,id)
 //查询所有动态
 export const getAllCommunity = () => get(`community/allCommunity`);
@@ -109,3 +109,8 @@ export const getCommunityOfUsername = (name) => get(`community/communityOfUserna
 export const getCommunityOfId = (id) => get(`community/selectById?id=${id}`);
 // 删除动态
 export const deleteCommunity = (id) => deletes(`/community/delete?id=${id}`)
+// ==================社区点赞=====================
+//动态点赞
+export const communityLike = (params) => post(`communityUp/communityLike`,params)
+//删除动态点赞
+export const deleteCommunityUp = (id) => deletes(`communityUp/delete?id=${id}`)

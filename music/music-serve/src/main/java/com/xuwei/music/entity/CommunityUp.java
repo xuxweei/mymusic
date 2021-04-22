@@ -3,6 +3,7 @@ package com.xuwei.music.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,6 +13,7 @@ import lombok.Data;
  * community_up
  * @author 
  */
+@Entity
 @Table(name="community_up")
 @ApiModel(value="com.xuwei.music.entity.CommunityUp")
 @Data

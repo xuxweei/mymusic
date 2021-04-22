@@ -1,15 +1,13 @@
 package com.xuwei.music.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xuwei.music.entity.Community;
 import com.xuwei.music.entity.CommunityUp;
 import com.xuwei.music.entity.Up;
 import com.xuwei.music.service.CommunityUpService;
 import com.xuwei.music.utils.Consts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -72,6 +70,17 @@ public class CommunityUpController {
         jsonObject.put(Consts.CODE, 0);
         jsonObject.put(Consts.MSG, "点赞失败");
         return jsonObject;
+    }
+
+    /**
+     * 删除动态点赞
+     * @param request
+     * @return
+     */
+    @DeleteMapping("/delete")
+    public Object deleteCommunityUp(HttpServletRequest request) {
+        String id = request.getParameter("id").trim();
+        return communityUpService.deleteCommunity(Integer.parseInt(id));
     }
 
     /**
