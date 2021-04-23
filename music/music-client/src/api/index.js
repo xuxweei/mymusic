@@ -12,7 +12,7 @@ import {
 //查询所有歌手
 export const getAllSinger = () => get(`singer/allSinger`);
 // 根据歌手性别查询
-export const getSingerOfSex = (sex)=>get(`singer/singerOfSex?sex=${sex}`)
+export const getSingerOfSex = (sex) => get(`singer/singerOfSex?sex=${sex}`)
 
 // ==================歌曲相关=====================
 //查询所有歌曲
@@ -77,7 +77,7 @@ export const addComment = (params) => post('/comment/add', params)
 // 点赞
 export const setLike = (params) => post('/comment/like', params)
 // 返回当前歌单或歌曲的评论列表
-export const getAllComment = (type, id,uid) => {
+export const getAllComment = (type, id, uid) => {
   if (type == 0) {
     return get(`/comment/commentOfSongId?song_id=${id}`) //歌曲
   } else {
@@ -89,10 +89,10 @@ export const getAllComment = (type, id,uid) => {
 // 点赞
 export const setUp = (liked) => post(`/up/like`, liked)
 //获取点赞状态
-export const getLike = (uid,cid) => get(`/up/getLikedById?uid=${uid}&cid=${cid}`)
+export const getLike = (uid, cid) => get(`/up/getLikedById?uid=${uid}&cid=${cid}`)
 // ==================收藏=====================
 // 新增收藏
-export const setCollect = (params) => post(`/collect/add`,params)
+export const setCollect = (params) => post(`/collect/add`, params)
 // 指定用户的收藏列表
 export const getCollectOfUserId = (userId) => get(`/collect/collectOfUserId?user_id=${userId}`)
 // ==================社区=====================
@@ -109,8 +109,12 @@ export const getCommunityOfUsername = (name) => get(`community/communityOfUserna
 export const getCommunityOfId = (id) => get(`community/selectById?id=${id}`);
 // 删除动态
 export const deleteCommunity = (id) => deletes(`/community/delete?id=${id}`)
+//点赞
+export const likeThis = (params) => post('/community/like', params)
 // ==================社区点赞=====================
 //动态点赞
-export const communityLike = (params) => post(`communityUp/communityLike`,params)
+export const communityLike = (params) => post(`communityUp/communityLike`, params)
 //删除动态点赞
-export const deleteCommunityUp = (id) => deletes(`communityUp/delete?id=${id}`)
+export const deleteCommunityUp = (id) => deletes(`/communityUp/delete?id=${id}`)
+//获取用户的点赞信息
+export const getLikes = (consumer_id) => get(`communityUp/getLikes?consumer_id=${consumer_id}`)

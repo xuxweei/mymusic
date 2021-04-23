@@ -54,6 +54,16 @@ public class Community implements Serializable {
     private String userpic;
     private String songpic;
     private String lyric;
+    private Integer upid;
+
+    public Integer getUpid() {
+        return upid;
+    }
+
+    public void setUpid(Integer upid) {
+        this.upid = upid;
+    }
+
     public String getLyric() {
         return lyric;
     }

@@ -6,25 +6,18 @@ import com.xuwei.music.entity.Community;
 import com.xuwei.music.entity.Consumer;
 import com.xuwei.music.entity.Song;
 import com.xuwei.music.form.FileUploadForm;
-import com.xuwei.music.service.CommunityService;
-import com.xuwei.music.service.ConsumerService;
-import com.xuwei.music.service.FileService;
-import com.xuwei.music.service.SongService;
+import com.xuwei.music.service.*;
 import com.xuwei.music.utils.Consts;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,6 +38,9 @@ public class CommunityController {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private CommunityUpService communityUpService;
 
     /*添加动态*/
     @PostMapping(value = "/add")
@@ -315,6 +311,7 @@ public class CommunityController {
             for (Consumer e : consumerService.consumerByName(m.getName())) {
                 m.setUserpic(e.getUserpic());
             }
+
             if (m.getUrl() != null && m.getType() == 0) {
                 String sname = m.getUrl().substring(m.getUrl().lastIndexOf('/'));
                 String song_name = sname.substring(14, sname.lastIndexOf(".")).replace(" ", "");
@@ -324,6 +321,7 @@ public class CommunityController {
                     m.setLyric(s.getLyric());
                 }
             }
+
             list1.add(m);
         }
 
