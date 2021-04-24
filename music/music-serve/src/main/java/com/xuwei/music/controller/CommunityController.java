@@ -118,7 +118,7 @@ public class CommunityController {
         if (Integer.parseInt(type) == 0 || Integer.parseInt(type) == 1) {
             community.setUrl(path);
             community.setImg(null);
-        }else if (Integer.parseInt(type) == 2){
+        } else if (Integer.parseInt(type) == 2) {
             community.setUrl(null);
             community.setImg(path);
         }
@@ -167,7 +167,8 @@ public class CommunityController {
             if (flag) {
                 jsonObject.put(Consts.CODE, 1);
                 jsonObject.put(Consts.MSG, "上传成功");
-                jsonObject.put("pic", storeSongPath);
+                jsonObject.put("img", storeSongPath);
+                System.out.println(storeSongPath);
                 return jsonObject;
             }
             jsonObject.put(Consts.CODE, 0);
@@ -311,6 +312,10 @@ public class CommunityController {
         for (Community m : communityService.allCommunity()) {
             for (Consumer e : consumerService.consumerByName(m.getName())) {
                 m.setUserpic(e.getUserpic());
+                for (CommunityUp u : communityUpService.getLiked(e.getId())) {
+                    System.out.println("状态"+u.getLikeStatus());
+//                    m.setLikeStatus(u.getLikeStatus());
+                }
             }
             if (m.getUrl() != null && m.getType() == 0) {
                 String sname = m.getUrl().substring(m.getUrl().lastIndexOf('/'));
