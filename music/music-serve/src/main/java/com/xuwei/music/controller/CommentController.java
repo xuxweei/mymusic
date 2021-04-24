@@ -173,7 +173,6 @@ public class CommentController {
     @GetMapping(value = "/commentOfSongListId")
     public List commentOfSongListID(HttpServletRequest request) {
         List<Comment> cmt = new ArrayList<>();
-        HttpSession session = request.getSession();
         String songlist_id = request.getParameter("songlist_id");
         String consumer_id = request.getParameter("consumer_id");
         Integer conid = Integer.parseInt(consumer_id);

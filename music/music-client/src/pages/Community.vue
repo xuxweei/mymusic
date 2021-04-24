@@ -106,17 +106,12 @@
                   <svg
                     class="icon_dianz"
                     style="color:#F36161;"
-                    v-if="val.id != comid.id"
-                    @click="deleteUp(comid.id, index)"
+                    v-if="lsts[index] === 1"
+                    @click="postUp(val.id, val.up, index)"
                   >
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
-                  <svg
-                    class="icon_dianz"
-                    style="color:#000;"
-                    v-else
-                    @click="postUp(val.id, val.up, index)"
-                  >
+                  <svg class="icon_dianz" style="color:#000;" v-else>
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
                   <span class="uptxt"> {{ val.up }}</span>
@@ -236,31 +231,48 @@
             </div>
             <el-form-item v-if="itemVisible">
               <!-- 图片 -->
-              <!-- <div v-if="this.addForm.type==2"> -->
-              <!-- <el-upload class="avatar-uploader" action="http://localhost:8888/community/addWithUrl"
-              :show-file-list="false" :on-change="showLogo" :auto-upload="false" multiple>
-              <img v-if="this.addForm.img" :src="this.addForm.img" class="avatar" />
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload> -->
-              <!-- <label style="margin-left: 15px; margin-right: 5px;">图片上传</label>
-                <input type="file" name="file">
+              <div v-if="this.addForm.type == 2">
+                <el-upload
+                  class="avatar-uploader"
+                  action="http://localhost:8888/community/uploadImg"
+                  :show-file-list="false"
+                  :on-change="showLogo"
+                  :auto-upload="false"
+                  multiple
+                >
+                  <img
+                    v-if="this.addForm.img"
+                    :src="this.addForm.img"
+                    class="avatar"
+                  />
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+                <!-- <label style="margin-left: 15px; margin-right: 5px;"
+                  >图片上传</label
+                >
+                <input type="file" name="file" /> -->
               </div>
-              <div v-else-if="this.addForm.type==0">
-                <label style="margin-left: 15px; margin-right: 5px;">歌曲上传</label>
-                <input type="file" name="file">
+              <div v-else-if="this.addForm.type == 0">
+                <label style="margin-left: 15px; margin-right: 5px;"
+                  >歌曲上传</label
+                >
+                <input type="file" name="file" />
               </div>
-              <div v-else-if="this.addForm.type==1">
-                <label style="margin-left: 15px; margin-right: 5px;">视频上传</label>
-                <input type="file" name="file">
-              </div> -->
-              <el-upload
+              <div v-else-if="this.addForm.type == 1">
+                <label style="margin-left: 15px; margin-right: 5px;"
+                  >视频上传</label
+                >
+                <input type="file" name="file" />
+              </div>
+              <!-- <el-upload
                 v-if="this.addForm.type == 2"
                 class="upload-demo"
+                action="http://localhost:8888/community/addWithUrl"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
                 :show-file-list="false"
-                :action="uploadImg(nextId)"
                 :auto-upload="false"
+                multiple
               >
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
@@ -285,7 +297,7 @@
                 :auto-upload="false"
               >
                 <el-button size="mini" type="primary">上传视频</el-button>
-              </el-upload>
+              </el-upload> -->
             </el-form-item>
           </el-form-item>
         </div>
@@ -306,8 +318,8 @@ import {
   addCommunityWithUrl,
   communityLike,
   likeThis,
-  deleteCommunityUp,
-  getLikes
+  deleteCommunityUp
+  // getLikes
 } from "../api/index";
 import { mapGetters } from "vuex";
 import { mixin } from "../mixins";
@@ -348,7 +360,7 @@ export default {
       nextId: "",
       likeStatus: false,
       like: 1,
-      comid: []
+      lsts: []
     };
   },
 
@@ -364,7 +376,7 @@ export default {
   },
   mounted() {
     this.getUserMsg(this.userId);
-    this.getUserUp(this.userId);
+    // this.getUserUp(this.userId);
   },
 
   created() {
@@ -395,8 +407,6 @@ export default {
         this.communityDatas = res;
         this.currentPage = 1;
         this.nextId = res[res.length - 1].id;
-        // this.comid = res;
-        // console.log("22222", this.comid);
       });
     },
     //添加动态
@@ -428,11 +438,12 @@ export default {
             }
             addCommunityWithUrl(params)
               .then(res => {
+                console.log(res);
                 if (res.code == 1) {
                   this.getData();
                   this.notify("提交成功", "success");
 
-                  // this.reload();
+                  this.reload();
                 } else {
                   this.notify("提交失败", "error");
                 }
@@ -459,18 +470,18 @@ export default {
           console.log(err);
         });
     },
-    getUserUp(userId) {
-      getLikes(userId)
-        .then(res => {
-          console.log(res);
-          // for (var i = 0; i < res.length; i++) {
-          //   this.comid.push(res[i].id);
-          // }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
+    // getUserUp(userId) {
+    //   getLikes(userId)
+    //     .then(res => {
+    //       console.log(res);
+    //       // for (var i = 0; i < res.length; i++) {
+    //       //   this.comid.push(res[i].id);
+    //       // }
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
     // 登录
     goLoginIn() {
       this.$router.push({
@@ -559,7 +570,8 @@ export default {
       if (this.validateFileSize(file, 10, 2)) {
         console.log(file);
         // this.imageUrl = file.name
-        this.addForm.img = URL.createObjectURL(file.raw);
+        this.addForm.img = file.raw;
+        console.log("222", URL.createObjectURL(file.raw));
         // this.addForm.img = file.raw
         // this.
       }
@@ -683,13 +695,22 @@ export default {
               params.append("up", up + this.like);
               likeThis(params).then(res => {
                 if (res.code == 1) {
-                  console.log("这里");
-                  this.notify("点赞成功", "success");
-                  this.$refs.up[index].children[0].style.color = "#F36161";
-                  this.like = 1;
-                  this.likeStatus = true;
-                  this.getData();
-                  this.reload();
+                  console.log(this.likeStatus);
+                  if (this.likeStatus) {
+                    console.log("哪里");
+                    this.notify("取消赞成功", "success");
+                    this.$refs.up[index].children[0].style.color = "#000";
+                    this.getData();
+                    this.likeStatus = false;
+                    this.like = 1;
+                  } else {
+                    console.log("这里");
+                    this.notify("点赞成功", "success");
+                    this.$refs.up[index].children[0].style.color = "#F36161";
+                    this.getData();
+                    this.likeStatus = true;
+                    this.like = -1;
+                  }
                 }
               });
             } else {
@@ -703,28 +724,6 @@ export default {
       } else {
         this.notify("请先登录哦~", "warning");
       }
-    },
-    deleteUp(id, index) {
-      deleteCommunityUp(id)
-        .then(rs => {
-          // deleteCommunityUp(id).then(rs => {
-          // });
-          console.log("调用了删除");
-          if (rs) {
-            console.log("哪里" + rs);
-            this.notify("删除成功", "success");
-            this.$refs.up[index].children[0].style.color = "#000";
-            this.likeStatus = false;
-            this.like = -1;
-            this.getData();
-            this.reload();
-          } else {
-            this.notify("删除失败", "error");
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
     }
   },
 

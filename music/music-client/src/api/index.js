@@ -113,8 +113,8 @@ export const deleteCommunity = (id) => deletes(`/community/delete?id=${id}`)
 export const likeThis = (params) => post('/community/like', params)
 // ==================社区点赞=====================
 //动态点赞
-export const communityLike = (params) => post(`communityUp/communityLike`, params)
+export const communityLike = (params) => post(`communityUp/like`, params)
 //删除动态点赞
 export const deleteCommunityUp = (id) => deletes(`/communityUp/delete?id=${id}`)
 //获取用户的点赞信息
-export const getLikes = (consumer_id) => get(`communityUp/getLikes?consumer_id=${consumer_id}`)
+// export const getLikes = (consumer_id) => get(`communityUp/getLikes?consumer_id=${consumer_id}`)
