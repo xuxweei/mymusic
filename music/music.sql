@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localmusic
-Source Server Version : 50730
+Source Server Version : 50725
 Source Host           : localhost:3306
 Source Database       : music
 
 Target Server Type    : MYSQL
-Target Server Version : 50730
+Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2021-04-23 17:52:38
+Date: 2021-04-25 00:08:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -131,16 +131,16 @@ CREATE TABLE `community` (
 -- ----------------------------
 -- Records of community
 -- ----------------------------
-INSERT INTO `community` VALUES ('1', '333', '3', null, '333', '2021-03-14 19:42:00', '51', null);
-INSERT INTO `community` VALUES ('5', 'a', '1', '/video/1615806676327WeChat_20210315171143.mp4', '图片测试', '2021-03-14 20:25:04', '15', 'null');
-INSERT INTO `community` VALUES ('9', 'b', '2', null, '图片测试', '2021-03-14 23:21:37', '4', '/img/communityPic/1615810649043juzi.jpg');
+INSERT INTO `community` VALUES ('1', '333', '3', null, '333', '2021-03-14 19:42:00', '56', null);
+INSERT INTO `community` VALUES ('5', 'a', '1', '/video/1615806676327WeChat_20210315171143.mp4', '图片测试', '2021-03-14 20:25:04', '18', 'null');
+INSERT INTO `community` VALUES ('9', 'b', '2', null, '图片测试', '2021-03-14 23:21:37', '6', '/img/communityPic/1615810649043juzi.jpg');
 INSERT INTO `community` VALUES ('10', 'b', '0', '/song/1615810679285林宥嘉 - 兜圈.mp3', 'bbbb', '2021-03-14 23:23:25', '4', 'undefined');
-INSERT INTO `community` VALUES ('11', '333', '0', '/song/1615810692408五月天 - 温柔.mp3', '333333', '2021-03-14 23:27:17', '2', 'undefined');
-INSERT INTO `community` VALUES ('12', '22', '2', 'undefined', '这是图片哦', '2021-03-19 13:13:39', null, '/img/communityPic/1616130838151T001R300x300M000002qmiDg3pQbUU.jpg');
+INSERT INTO `community` VALUES ('11', '333', '0', '/song/1615810692408五月天 - 温柔.mp3', '333333', '2021-03-14 23:27:17', '1', 'undefined');
+INSERT INTO `community` VALUES ('12', '22', '2', 'undefined', '这是图片哦', '2021-03-19 13:13:39', '1', '/img/communityPic/1616130838151T001R300x300M000002qmiDg3pQbUU.jpg');
 INSERT INTO `community` VALUES ('13', '尔听°', '3', 'undefined', '这是文字哦', '2021-03-19 13:14:29', null, 'undefined');
-INSERT INTO `community` VALUES ('37', '333', '2', 'undefined', null, '2021-04-18 21:44:31', '4', '/img/communityPic/161875409075718252992533065802.jpg');
-INSERT INTO `community` VALUES ('38', '333', '2', 'undefined', null, '2021-04-18 21:46:13', null, '/img/communityPic/1618755682023300 (2).jpg');
-INSERT INTO `community` VALUES ('49', '333', '2', 'undefined', null, '2021-04-18 22:32:32', null, '/img/communityPic/1618756362564p.jpg');
+INSERT INTO `community` VALUES ('37', '333', '2', 'undefined', null, '2021-04-18 21:44:31', '3', '/img/communityPic/161875409075718252992533065802.jpg');
+INSERT INTO `community` VALUES ('38', '333', '2', 'undefined', null, '2021-04-18 21:46:13', '0', '/img/communityPic/1618755682023300 (2).jpg');
+INSERT INTO `community` VALUES ('49', '333', '2', 'undefined', null, '2021-04-18 22:32:32', '1', '/img/communityPic/1618756362564p.jpg');
 INSERT INTO `community` VALUES ('54', '333', '2', 'undefined', null, '2021-04-18 22:43:29', '1', '/img/communityPic/1618757017707109951165549520393.jpg');
 INSERT INTO `community` VALUES ('60', '333', '2', 'undefined', null, '2021-04-18 23:06:11', '1', '/img/communityPic/1618758381400T001R300x300M0000007sHCz2lllqK.jpg');
 INSERT INTO `community` VALUES ('61', '333', '1', '/video/1618758958201杨千嬅 - 可惜我是水瓶座.mp3', null, '2021-04-18 23:09:09', null, '/img/communityPic/16189941324771.jpg');
@@ -155,7 +155,7 @@ CREATE TABLE `community_up` (
   `community_id` int(11) DEFAULT NULL COMMENT '动态id',
   `like_status` int(11) DEFAULT NULL COMMENT '点赞的状态（0取消赞1已赞）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community_up
@@ -165,8 +165,13 @@ INSERT INTO `community_up` VALUES ('7', '1', '5', '0');
 INSERT INTO `community_up` VALUES ('38', '1', '9', '0');
 INSERT INTO `community_up` VALUES ('92', '1', '54', '0');
 INSERT INTO `community_up` VALUES ('124', '1', '60', '0');
-INSERT INTO `community_up` VALUES ('125', '1', '11', '0');
-INSERT INTO `community_up` VALUES ('126', '1', '1', '0');
+INSERT INTO `community_up` VALUES ('125', '1', '11', '1');
+INSERT INTO `community_up` VALUES ('126', '1', '1', '1');
+INSERT INTO `community_up` VALUES ('132', '1', '10', '0');
+INSERT INTO `community_up` VALUES ('133', '1', '37', '1');
+INSERT INTO `community_up` VALUES ('134', '1', '49', '1');
+INSERT INTO `community_up` VALUES ('135', '1', '12', '1');
+INSERT INTO `community_up` VALUES ('136', '1', '38', '0');
 
 -- ----------------------------
 -- Table structure for consumer

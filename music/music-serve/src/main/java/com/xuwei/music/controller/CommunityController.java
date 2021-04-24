@@ -3,6 +3,7 @@ package com.xuwei.music.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xuwei.music.dto.FileUploadDto;
 import com.xuwei.music.entity.Community;
+import com.xuwei.music.entity.CommunityUp;
 import com.xuwei.music.entity.Consumer;
 import com.xuwei.music.entity.Song;
 import com.xuwei.music.form.FileUploadForm;
@@ -311,7 +312,6 @@ public class CommunityController {
             for (Consumer e : consumerService.consumerByName(m.getName())) {
                 m.setUserpic(e.getUserpic());
             }
-
             if (m.getUrl() != null && m.getType() == 0) {
                 String sname = m.getUrl().substring(m.getUrl().lastIndexOf('/'));
                 String song_name = sname.substring(14, sname.lastIndexOf(".")).replace(" ", "");

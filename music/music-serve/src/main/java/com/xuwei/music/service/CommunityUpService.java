@@ -1,7 +1,7 @@
 package com.xuwei.music.service;
 
+
 import com.xuwei.music.entity.CommunityUp;
-import com.xuwei.music.entity.Up;
 
 import java.util.List;
 
@@ -12,21 +12,24 @@ public interface CommunityUpService {
      * @param id
      * @return
      */
-    int deleteUp(Integer id);
+    boolean deleteUp(Integer id);
 
     /**
      * 点赞
+     *
      * @param record
      * @return
      */
-    int insert(CommunityUp record);
+    boolean insert(CommunityUp record);
+
     /**
      * 检测用户是否点赞
      *
      * @param record
      * @return
      */
-    CommunityUp checkedUp(Up record);
+    CommunityUp checkedUp(CommunityUp record);
+
     /**
      * 查询用户所有的点赞信息
      *
@@ -37,11 +40,12 @@ public interface CommunityUpService {
 
     /**
      * 查询评论是否已点赞
+     *
      * @param community_id
      * @param consumer_id
      * @return
      */
-    List<CommunityUp> getLikedByCommunityId(Integer community_id,Integer consumer_id);
+    List<CommunityUp> getLikedByCommunityId(Integer community_id, Integer consumer_id);
 
     /**
      * 取消赞
@@ -49,5 +53,5 @@ public interface CommunityUpService {
      * @param record
      * @return
      */
-    int update(CommunityUp record);
+    boolean update(CommunityUp record);
 }

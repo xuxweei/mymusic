@@ -9,24 +9,14 @@
               show-word-limit :rows="4">
             </el-input>
           </div> -->
-          <el-button
-            icon="el-icon-edit"
-            type="primary"
-            size="mini"
-            @click="dialogVisible = true"
-            >发表动态</el-button
-          >
+          <el-button icon="el-icon-edit" type="primary" size="mini" @click="dialogVisible = true">发表动态</el-button>
           <!-- <span style="margin:-10px 25px;" @click="uploadVisible = true">
             <i style="fontSize:1.4rem;color:#888;cursor: pointer;" class="el-icon-picture-outline"></i>
           </span> -->
         </div>
         <div class="community_content">
           <ul class="community_list">
-            <li
-              class="community_list_item"
-              v-for="(val, index) in data"
-              :key="index"
-            >
+            <li class="community_list_item" v-for="(val, index) in data" :key="index">
               <div class="list_face">
                 <a>
                   <img :src="attachImageUrl(val.userpic)" />
@@ -43,24 +33,14 @@
                   <div class="list_source_img" v-if="val.type == 2">
                     <img :src="attachImageUrl(val.img)" />
                   </div>
-                  <video
-                    :src="headerurl + val.url"
-                    v-else-if="val.type == 1"
-                    style="height:300px;"
-                    controls
-                  ></video>
+                  <video :src="headerurl + val.url" v-else-if="val.type == 1" style="height:300px;" controls></video>
                   <div class="song_box" v-else-if="val.type == 0">
                     <div class="song_wrapper">
                       <div class="song_img">
-                        <img
-                          :src="attachImageUrl(val.songpic)"
-                          style="width:100%"
-                        />
+                        <img :src="attachImageUrl(val.songpic)" style="width:100%" />
                       </div>
                       <!-- @click="setSongUrl(val.url, getSongName(val.url))" -->
-                      <div
-                        class="play"
-                        @click="
+                      <div class="play" @click="
                           toPlay(
                             val.id,
                             val.url,
@@ -69,24 +49,15 @@
                             getSongName(val.url),
                             val.lyric
                           )
-                        "
-                      >
+                        ">
                         <div v-if="toggle !== getSongName(val.url)">
-                          <svg
-                            class="icon"
-                            aria-hidden="true"
-                            style="width:2rem;height:2rem;"
-                          >
+                          <svg class="icon" aria-hidden="true" style="width:2rem;height:2rem;">
                             <use xlink:href="#icon-bofang2"></use>
                           </svg>
                         </div>
                         <!--  -->
                         <div v-if="toggle === getSongName(val.url)">
-                          <svg
-                            class="icon"
-                            aria-hidden="true"
-                            style="width:2rem;height:2rem;"
-                          >
+                          <svg class="icon" aria-hidden="true" style="width:2rem;height:2rem;">
                             <use xlink:href="#icon-zanting2"></use>
                           </svg>
                         </div>
@@ -102,27 +73,18 @@
               </div>
               <div class="list_up">
                 <!-- 点赞 @click="deleteUp(val.id)"-->
-                <div class="up" ref="up">
-                  <svg
-                    class="icon_dianz"
-                    style="color:#F36161;"
-                    v-if="val.id != comid.id"
-                    @click="deleteUp(comid.id, index)"
-                  >
+                <div class="up" ref="up" @click="postUp(val.id, val.up, index)">
+                  <svg class="icon_dianz" style="color:#F36161;" v-if="lsts[index] === 1">
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
-                  <svg
-                    class="icon_dianz"
-                    style="color:#000;"
-                    v-else
-                    @click="postUp(val.id, val.up, index)"
-                  >
+                  <svg class="icon_dianz" style="color:#000;" v-else>
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
                   <span class="uptxt"> {{ val.up }}</span>
                 </div>
+
                 <!-- 评论 -->
-                <div class="up" ref="up" style="right: 20px;">
+                <div class="up" ref="comment" style="right: 20px;">
                   <svg class="icon_dianz" style="color:#000;">
                     <use xlink:href="#icon-pinglun"></use>
                   </svg>
@@ -155,24 +117,12 @@
     <!-- 分页 -->
     <div>
       <div class="pagination">
-        <el-pagination
-          background
-          layout="total,prev, pager, next"
-          :total="communityDatas.length"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-size="pageSize"
-        >
+        <el-pagination background layout="total,prev, pager, next" :total="communityDatas.length"
+          @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize">
         </el-pagination>
       </div>
     </div>
-    <el-dialog
-      title="添加动态"
-      :visible.sync="dialogVisible"
-      width="30%"
-      center
-      :before-close="handleClose"
-    >
+    <el-dialog title="添加动态" :visible.sync="dialogVisible" width="30%" center :before-close="handleClose">
       <!-- <el-steps :active="act">
         <el-step title="步骤 1" icon="el-icon-edit"></el-step>
         <el-step title="步骤 2" icon="el-icon-upload"></el-step>
@@ -181,25 +131,13 @@
       <el-form :model="addForm" ref="addForm" class="demo-ruleForm" id="af">
         <el-form-item prop="content">
           <div class="community_txt">
-            <el-input
-              type="textarea"
-              resize="none"
-              placeholder="一起聊聊吧~"
-              v-model="textarea"
-              maxlength="150"
-              show-word-limit
-              :rows="4"
-            >
+            <el-input type="textarea" resize="none" placeholder="一起聊聊吧~" v-model="textarea" maxlength="150"
+              show-word-limit :rows="4">
             </el-input>
           </div>
         </el-form-item>
         <el-form-item prop="type">
-          <el-select
-            v-model="addForm.type"
-            placeholder="请选择类型"
-            @change.native="getTypes"
-            @blur.native="getTypes"
-          >
+          <el-select v-model="addForm.type" placeholder="请选择类型" @change.native="getTypes" @blur.native="getTypes">
             <el-option label="歌曲" value="0"></el-option>
             <el-option label="视频" value="1"></el-option>
             <el-option label="图片" value="2"></el-option>
@@ -213,23 +151,14 @@
                 <!-- <el-upload class="upload-demo" ref="upload" :action="headerurl" :auto-upload="false"
                 :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload"> -->
                 <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar"> -->
-                <i
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;"
-                  class="el-icon-picture-outline"
-                ></i>
+                <i style="fontSize:1.4rem;color:#888;cursor: pointer;" class="el-icon-picture-outline"></i>
                 <!-- </el-upload> -->
               </span>
               <span style="margin:-10px;">
-                <i
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;"
-                  class="el-icon-video-camera"
-                ></i>
+                <i style="fontSize:1.4rem;color:#888;cursor: pointer;" class="el-icon-video-camera"></i>
               </span>
               <span style="margin:-10px 15px;">
-                <svg
-                  class="icon"
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;width:1.4rem;height:1.4rem;"
-                >
+                <svg class="icon" style="fontSize:1.4rem;color:#888;cursor: pointer;width:1.4rem;height:1.4rem;">
                   <use xlink:href="#icon-yinle"></use>
                 </svg>
               </span>
@@ -253,37 +182,19 @@
                 <label style="margin-left: 15px; margin-right: 5px;">视频上传</label>
                 <input type="file" name="file">
               </div> -->
-              <el-upload
-                v-if="this.addForm.type == 2"
-                class="upload-demo"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
-                :show-file-list="false"
-                :action="uploadImg(nextId)"
-                :auto-upload="false"
-              >
+              <el-upload v-if="this.addForm.type == 2" class="upload-demo" :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload" :show-file-list="false" :action="uploadImg(nextId)"
+                :auto-upload="false">
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
-              <el-upload
-                v-else-if="this.addForm.type == 0"
-                class="upload-demo"
-                :on-success="handleSongSuccess"
-                :before-upload="beforeSongUpload"
-                :show-file-list="false"
-                :action="uploadUrl(nextId)"
-                :auto-upload="false"
-              >
+              <el-upload v-else-if="this.addForm.type == 0" class="upload-demo" :on-success="handleSongSuccess"
+                :before-upload="beforeSongUpload" :show-file-list="false" :action="uploadUrl(nextId)"
+                :auto-upload="false">
                 <el-button size="mini" type="primary">上传歌曲</el-button>
               </el-upload>
-              <el-upload
-                v-else-if="this.addForm.type == 1"
-                class="upload-demo"
-                :on-success="handleUrlSuccess"
-                :before-upload="beforeUrlUpload"
-                :show-file-list="false"
-                :action="uploadUrl(nextId)"
-                :auto-upload="false"
-              >
+              <el-upload v-else-if="this.addForm.type == 1" class="upload-demo" :on-success="handleUrlSuccess"
+                :before-upload="beforeUrlUpload" :show-file-list="false" :action="uploadUrl(nextId)"
+                :auto-upload="false">
                 <el-button size="mini" type="primary">上传视频</el-button>
               </el-upload>
             </el-form-item>
@@ -299,439 +210,320 @@
 </template>
 
 <script>
-import {
-  getAllCommunity,
-  addCommunity,
-  getConsumerById,
-  addCommunityWithUrl,
-  communityLike,
-  likeThis,
-  deleteCommunityUp,
-  getLikes
-} from "../api/index";
-import { mapGetters } from "vuex";
-import { mixin } from "../mixins";
-export default {
-  inject: ["reload"],
-  mixins: [mixin],
-  name: "community",
-  data() {
-    return {
-      //社区数据
-      communityDatas: [],
-      // 一页有15条数据
-      pageSize: 15,
-      // 当前页数
-      currentPage: 1,
-      textarea: "",
-      // 用户头像
-      userpic: "",
-      // 用户名
-      username: "",
-      // 个人介绍
-      introduction: "",
-      headerurl: "http://localhost:8888/",
-      toggle: false,
-      isPlay: false,
-      imageUrl: "",
-      dialogVisible: false,
-      dialogImageUrl: "",
-      disabled: false,
-      //添加框
-      addForm: {
-        name: "",
-        type: "",
-        content: "",
-        time: ""
-      },
-      itemVisible: false,
-      nextId: "",
-      likeStatus: false,
-      like: 1,
-      comid: []
-    };
-  },
-
-  computed: {
-    //计算当前搜索结果表里的数据
+  import {
+    getAllCommunity,
+    addCommunity,
+    getConsumerById,
+    addCommunityWithUrl,
+    communityLike,
+    likeThis,
+    getLiked
+  } from "../api/index";
+  import {
+    mapGetters
+  } from "vuex";
+  import {
+    mixin
+  } from "../mixins";
+  export default {
+    inject: ["reload"],
+    mixins: [mixin],
+    name: "community",
     data() {
-      return this.communityDatas.slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      );
+      return {
+        //社区数据
+        communityDatas: [],
+        // 一页有15条数据
+        pageSize: 15,
+        // 当前页数
+        currentPage: 1,
+        textarea: "",
+        // 用户头像
+        userpic: "",
+        // 用户名
+        username: "",
+        // 个人介绍
+        introduction: "",
+        headerurl: "http://localhost:8888/",
+        toggle: false,
+        isPlay: false,
+        imageUrl: "",
+        dialogVisible: false,
+        dialogImageUrl: "",
+        disabled: false,
+        //添加框
+        addForm: {
+          name: "",
+          type: "",
+          content: "",
+          time: ""
+        },
+        itemVisible: false,
+        nextId: "",
+        likeStatus: false,
+        like: 1,
+        lsts: []
+      };
     },
-    ...mapGetters(["activeName", "loginIn", "userId"])
-  },
-  mounted() {
-    this.getUserMsg(this.userId);
-    this.getUserUp(this.userId);
-  },
 
-  created() {
-    this.getData();
-  },
-  destroyed() {
-    this.$store.commit("setIsPlay", false);
-  },
+    computed: {
+      //计算当前搜索结果表里的数据
+      data() {
+        return this.communityDatas.slice(
+          (this.currentPage - 1) * this.pageSize,
+          this.currentPage * this.pageSize
+        );
+      },
+      ...mapGetters(["activeName", "loginIn", "userId"])
+    },
+    mounted() {
+      this.getUserMsg(this.userId);
+      // this.getUserUp(this.userId);
+    },
 
-  methods: {
-    //关闭对话框
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then(_ => {
-          done();
-        })
-        .catch(_ => {});
-    },
-    // 获取当前页
-    handleCurrentChange(val) {
-      this.currentPage = val;
-    },
-    // 获取全部community数据
-    getData() {
-      this.communityDatas = [];
-      getAllCommunity().then(res => {
-        console.log(res);
-        this.communityDatas = res;
-        this.currentPage = 1;
-        this.nextId = res[res.length - 1].id;
-        // this.comid = res;
-        // console.log("22222", this.comid);
-      });
-    },
-    //添加动态
-    addCommunity() {
-      if (this.loginIn) {
-        this.$refs["addForm"].validate(valid => {
-          if (valid) {
-            let params = new URLSearchParams();
-            params.append("name", this.username);
-            params.append("type", this.addForm.type);
-            if (this.addForm.url != "") {
-              params.append("url", this.addForm.url);
-            } else if (
-              (this.addForm.type == 0 || this.addForm.type == 1) &&
-              this.addForm.url == ""
-            ) {
-              params.append("url", (this.addForm.url = ""));
-            }
-            if (this.addForm.content != "") {
-              params.append("content", this.addForm.content);
-            } else {
-              params.append("content", (this.addForm.content = ""));
-            }
-            if (this.addForm.img != "") {
-              console.log(this.addForm.img);
-              params.append("img", this.addForm.img);
-            } else {
-              params.append("img", (this.addForm.img = ""));
-            }
-            addCommunityWithUrl(params)
-              .then(res => {
-                if (res.code == 1) {
-                  this.getData();
-                  this.notify("提交成功", "success");
-
-                  // this.reload();
-                } else {
-                  this.notify("提交失败", "error");
-                }
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          }
-        });
-      } else {
-        this.notify("请先登录哦~", "warning");
-      }
-    },
-    // 获取用户信息
-    getUserMsg(userId) {
-      getConsumerById(userId)
-        .then(res => {
-          // console.log(res);
-          this.userpic = res.userpic;
-          this.username = res.username;
-          this.introduction = res.introduction;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    getUserUp(userId) {
-      getLikes(userId)
-        .then(res => {
-          console.log(res);
-          // for (var i = 0; i < res.length; i++) {
-          //   this.comid.push(res[i].id);
-          // }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    // 登录
-    goLoginIn() {
-      this.$router.push({
-        path: "/loginIn"
-      });
-    },
-    getSongName(url) {
-      var name = String(url).substr(url.lastIndexOf("/") + 14);
-      return name.substr(0, name.lastIndexOf("."));
-    },
-    //切换播放音乐
-    setSongUrl(url, song_name) {
-      // let player = this.$refs.player;
-      // this.$store.commit('setUrl', this.$store.state.config.HOST + url);
-      this.toggle = song_name;
-      console.log(this.toggle);
-      if (this.isPlay) {
-        console.log(this.isPlay);
-        // this.$store.commit('setIsPlay', false);
-        this.isPlay = false;
-      } else {
-        this.isPlay = true;
-        // this.$store.commit('setIsPlay', true);
-      }
-    },
-    getTypes(e) {
-      this.addForm.type = e.target.value;
-    },
-    uploadImg(id) {
-      // this.dialogVisible = false
-      // this.reload()
-      return `${this.$store.state.config.HOST}/community/uploadImg?id=${id}`;
-    },
-    //跟新歌曲url
-    uploadUrl(id) {
-      return `${this.$store.state.config.HOST}/community/uploadUrl?id=${id}`;
-    },
-    //上传地址
-    uploadAll() {
+    created() {
       this.getData();
-      // this.notify("提交成功", "success");
-      this.dialogVisible = false;
-      this.reload();
     },
-    validateFileSize(file, num, fileType) {
-      let fileName = file.name;
-      let index = fileName.lastIndexOf(".");
-      let docuType = fileName.substr(index, fileName.length).toLowerCase();
-      let fileTypeArr = [];
-      let isRight = false;
-      const isLtM = file.size / 1024 / 1024 < num;
-      switch (fileType) {
-        case 0:
-          fileTypeArr = [".mp3"];
-          isRight = fileTypeArr.includes(docuType);
-          if (!isRight) {
-            this.notify("上传视频只能是MP3格式", "error");
-          }
-          break;
-        case 1:
-          fileTypeArr = [".mp4"];
-          isRight = fileTypeArr.includes(docuType);
-          if (!isRight) {
-            this.notify("上传视频只能是MP4格式", "error");
-          }
-          break;
+    destroyed() {
+      this.$store.commit("setIsPlay", false);
+    },
 
-        case 2:
-          fileTypeArr = [".jpeg", ".jpg", ".png"];
-          isRight = fileTypeArr.includes(docuType);
-          if (!isRight) {
-            this.notify("上传头像图片只能是jpg或png或jpeg格式", "error");
-          }
-          break;
-      }
-      if (!isLtM) {
-        if (num < 10) {
-          this.notify("上传头像图片大小不能超过10MB!", "error");
-        } else {
-          this.notify("上传文件大小不能超过" + num + "MB!", "error");
-        }
-      }
-      return isLtM && isRight;
-    },
-    showLogo(file, fileList) {
-      if (this.validateFileSize(file, 10, 2)) {
-        console.log(file);
-        // this.imageUrl = file.name
-        this.addForm.img = URL.createObjectURL(file.raw);
-        // this.addForm.img = file.raw
-        // this.
-      }
-    },
-    //上传前的校验
-    beforeAvatarUpload(file) {
-      const isImg =
-        file.type === "image/jpeg" ||
-        file.type === "image/png" ||
-        file.type === "image/jpg";
-      const isLt2M = file.size / 1024 / 1024 < 2;
-      if (!isImg) {
-        this.$message.error("上传头像图片只能是jpg或png或jpeg格式");
-        return false;
-      }
-      if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
-        return false;
-      }
-      return true;
-    },
-    //上传图片成功之后
-    handleAvatarSuccess(res, file) {
-      let _this = this;
-      if (res.code === 1) {
-        // _this.imageUrl = URL.createObjectURL(file.raw);
-        console.log(URL.createObjectURL(file.raw));
-        _this.getData();
-        _this.$notify({
-          title: "上传成功",
-          type: "success"
-        });
-      } else {
-        _this.$notify({
-          title: "上传失败",
-          type: "error"
-        });
-      }
-    },
-    //上传歌曲前的校验
-    beforeSongUpload(file) {
-      //获取文件扩展名
-      var testMsg = file.name.substring(file.name.lastIndexOf(".") + 1);
-      // 判断是否为mp3或ogg格式
-      const extension = (testMsg === "mp3") | (testMsg === "ogg");
-      if (!extension) {
-        this.$message({
-          message: "上传文件只能是mp3格式或ogg格式",
-          type: "error"
-        });
-        return false;
-      }
-      return true;
-    },
-    //上传歌曲成功之后
-    handleSongSuccess(res, file) {
-      let _this = this;
-      if (res.code === 1) {
-        // _this.imageUrl = URL.createObjectURL(file.raw);
-        console.log(URL.createObjectURL(file.raw));
-        _this.getData();
-        _this.$notify({
-          title: "上传成功",
-          type: "success"
-        });
-      } else {
-        _this.$notify({
-          title: "上传失败",
-          type: "error"
-        });
-      }
-    },
-    //上传视频前的校验
-    beforeUrlUpload(file) {
-      //获取文件扩展名
-      var testMsg = file.name.substring(file.name.lastIndexOf(".") + 1);
-      const isLt10M = file.size / 1024 / 1024;
-      // 判断是否为mp4格式
-      const extension = testMsg === "mp4";
-      if (!extension) {
-        this.$message({
-          message: "上传文件只能是mp4格式",
-          type: "error"
-        });
-        return false;
-      }
-      if (!isLt10M) {
-        this.$message.error("上传视频大小不能超过 10MB!");
-        return false;
-      }
-      return true;
-    },
-    //上传视频成功之后
-    handleUrlSuccess(res, file) {
-      let _this = this;
-      if (res.code === 1) {
-        // _this.imageUrl = URL.createObjectURL(file.raw);
-        console.log(URL.createObjectURL(file.raw));
-        _this.getData();
-        _this.$notify({
-          title: "上传成功",
-          type: "success"
-        });
-      } else {
-        _this.$notify({
-          title: "上传失败",
-          type: "error"
-        });
-      }
-    },
-    postUp(id, up, index) {
-      if (this.loginIn) {
-        let pam = new URLSearchParams();
-        pam.append("consumer_id", this.userId);
-        pam.append("community_id", id);
-        communityLike(pam)
-          .then(r => {
-            if (r.code == 1) {
-              let params = new URLSearchParams();
-              params.append("id", id);
-              params.append("up", up + this.like);
-              likeThis(params).then(res => {
-                if (res.code == 1) {
-                  console.log("这里");
-                  this.notify("点赞成功", "success");
-                  this.$refs.up[index].children[0].style.color = "#F36161";
-                  this.like = 1;
-                  this.likeStatus = true;
-                  this.getData();
-                  this.reload();
-                }
-              });
-            } else {
-              this.notify("点赞失败", "error");
+    methods: {
+      //关闭对话框
+      handleClose(done) {
+        this.$confirm("确认关闭？")
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+      // 获取当前页
+      handleCurrentChange(val) {
+        this.currentPage = val;
+      },
+      // 获取全部community数据
+      getData() {
+        this.communityDatas = [];
+        getAllCommunity().then(res => {
+          console.log(res);
+          this.communityDatas = res;
+          this.currentPage = 1;
+          this.nextId = res[res.length - 1].id;
+          getLiked(this.userId).then(rs => {
+            console.log(rs);
+            for (let item of rs) {
+              this.lsts.push(item.like_status)
             }
           })
+        });
+      },
+      //添加动态
+      addCommunity() {
+        if (this.loginIn) {
+          this.$refs["addForm"].validate(valid => {
+            if (valid) {
+              let params = new URLSearchParams();
+              params.append("name", this.username);
+              params.append("type", this.addForm.type);
+              if (this.addForm.url != "") {
+                params.append("url", this.addForm.url);
+              } else if (
+                (this.addForm.type == 0 || this.addForm.type == 1) &&
+                this.addForm.url == ""
+              ) {
+                params.append("url", (this.addForm.url = ""));
+              }
+              if (this.addForm.content != "") {
+                params.append("content", this.addForm.content);
+              } else {
+                params.append("content", (this.addForm.content = ""));
+              }
+              if (this.addForm.img != "") {
+                console.log(this.addForm.img);
+                params.append("img", this.addForm.img);
+              } else {
+                params.append("img", (this.addForm.img = ""));
+              }
+              addCommunityWithUrl(params)
+                .then(res => {
+                  if (res.code == 1) {
+                    this.getData();
+                    this.notify("提交成功", "success");
+
+                    // this.reload();
+                  } else {
+                    this.notify("提交失败", "error");
+                  }
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          });
+        } else {
+          this.notify("请先登录哦~", "warning");
+        }
+      },
+      // 获取用户信息
+      getUserMsg(userId) {
+        getConsumerById(userId)
+          .then(res => {
+            // console.log(res);
+            this.userpic = res.userpic;
+            this.username = res.username;
+            this.introduction = res.introduction;
+          })
           .catch(err => {
-            this.notify("点赞失败", "error");
             console.log(err);
           });
-      } else {
-        this.notify("请先登录哦~", "warning");
-      }
-    },
-    deleteUp(id, index) {
-      deleteCommunityUp(id)
-        .then(rs => {
-          // deleteCommunityUp(id).then(rs => {
-          // });
-          console.log("调用了删除");
-          if (rs) {
-            console.log("哪里" + rs);
-            this.notify("删除成功", "success");
-            this.$refs.up[index].children[0].style.color = "#000";
-            this.likeStatus = false;
-            this.like = -1;
-            this.getData();
-            this.reload();
-          } else {
-            this.notify("删除失败", "error");
-          }
-        })
-        .catch(err => {
-          console.log(err);
+      },
+      // getUserUp(userId) {
+      //   getLikes(userId)
+      //     .then(res => {
+      //       console.log(res);
+      //       // for (var i = 0; i < res.length; i++) {
+      //       //   this.comid.push(res[i].id);
+      //       // }
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      // },
+      // 登录
+      goLoginIn() {
+        this.$router.push({
+          path: "/loginIn"
         });
-    }
-  },
+      },
+      getSongName(url) {
+        var name = String(url).substr(url.lastIndexOf("/") + 14);
+        return name.substr(0, name.lastIndexOf("."));
+      },
+      //切换播放音乐
+      setSongUrl(url, song_name) {
+        // let player = this.$refs.player;
+        // this.$store.commit('setUrl', this.$store.state.config.HOST + url);
+        this.toggle = song_name;
+        console.log(this.toggle);
+        if (this.isPlay) {
+          console.log(this.isPlay);
+          // this.$store.commit('setIsPlay', false);
+          this.isPlay = false;
+        } else {
+          this.isPlay = true;
+          // this.$store.commit('setIsPlay', true);
+        }
+      },
+      getTypes(e) {
+        this.addForm.type = e.target.value;
+      },
+      uploadImg(id) {
+        // this.dialogVisible = false
+        // this.reload()
+        return `${this.$store.state.config.HOST}/community/uploadImg?id=${id}`;
+      },
+      //跟新歌曲url
+      uploadUrl(id) {
+        return `${this.$store.state.config.HOST}/community/uploadUrl?id=${id}`;
+      },
 
-  components: {}
-};
+      validateFileSize(file, num, fileType) {
+        let fileName = file.name;
+        let index = fileName.lastIndexOf(".");
+        let docuType = fileName.substr(index, fileName.length).toLowerCase();
+        let fileTypeArr = [];
+        let isRight = false;
+        const isLtM = file.size / 1024 / 1024 < num;
+        switch (fileType) {
+          case 0:
+            fileTypeArr = [".mp3"];
+            isRight = fileTypeArr.includes(docuType);
+            if (!isRight) {
+              this.notify("上传视频只能是MP3格式", "error");
+            }
+            break;
+          case 1:
+            fileTypeArr = [".mp4"];
+            isRight = fileTypeArr.includes(docuType);
+            if (!isRight) {
+              this.notify("上传视频只能是MP4格式", "error");
+            }
+            break;
+
+          case 2:
+            fileTypeArr = [".jpeg", ".jpg", ".png"];
+            isRight = fileTypeArr.includes(docuType);
+            if (!isRight) {
+              this.notify("上传头像图片只能是jpg或png或jpeg格式", "error");
+            }
+            break;
+        }
+        if (!isLtM) {
+          if (num < 10) {
+            this.notify("上传头像图片大小不能超过10MB!", "error");
+          } else {
+            this.notify("上传文件大小不能超过" + num + "MB!", "error");
+          }
+        }
+        return isLtM && isRight;
+      },
+      showLogo(file, fileList) {
+        if (this.validateFileSize(file, 10, 2)) {
+          console.log(file);
+          // this.imageUrl = file.name
+          this.addForm.img = URL.createObjectURL(file.raw);
+          // this.addForm.img = file.raw
+          // this.
+        }
+      },
+      postUp(id, up, index) {
+        if (this.loginIn) {
+          let pam = new URLSearchParams();
+          pam.append("consumer_id", this.userId);
+          pam.append("community_id", id);
+          communityLike(pam)
+            .then(r => {
+              if (r.code == 1) {
+                let params = new URLSearchParams();
+                params.append("id", id);
+                params.append("up", up + this.like);
+                likeThis(params).then(res => {
+                  if (res.code == 1) {
+                    if (this.likeStatus) {
+                      console.log("哪里");
+                      this.notify("取消赞成功", "success");
+                      this.getData();
+                      this.likeStatus = false;
+                      this.like = 1;
+                    } else {
+                      console.log("这里");
+                      this.notify("点赞成功", "success");
+                      this.getData();
+                      this.likeStatus = true;
+                      this.like = -1;
+                    }
+                  }
+                });
+              } else {
+                this.notify("点赞失败", "error");
+              }
+            })
+            .catch(err => {
+              this.notify("点赞失败", "error");
+              console.log(err);
+            });
+        } else {
+          this.notify("请先登录哦~", "warning");
+        }
+      },
+    },
+
+    components: {}
+  };
+
 </script>
 
 <style scoped>
-@import "../assets/css/community.css";
+  @import "../assets/css/community.css";
+
 </style>
