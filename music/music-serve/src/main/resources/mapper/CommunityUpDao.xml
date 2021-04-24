@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuwei.music.dao.CommunityUpDao">
+  <resultMap id="BaseResultMap" type="com.xuwei.music.entity.CommunityUp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consumer_id" jdbcType="INTEGER" property="consumer_id" />
+    <result column="community_id" jdbcType="INTEGER" property="community_id" />
+    <result column="like_status" jdbcType="INTEGER" property="like_status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, consumer_id, community_id, like_status
+  </sql>
+  <select id="checkedUp" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from community_up
+    where community_id = #{community_id,jdbcType=INTEGER} and consumer_id = #{consumer_id,jdbcType=INTEGER}
+  </select>
+  <select id="getLiked" resultType="com.xuwei.music.entity.CommunityUp">
+    select like_status from community_up where consumer_id = #{consumer_id,jdbcType=INTEGER}
+  </select>
+  <select id="getLikedByCommunityId" resultType="com.xuwei.music.entity.CommunityUp" parameterType="java.lang.Integer">
+    select like_status from community_up where community_id = #{community_id,jdbcType=INTEGER} and consumer_id = #{consumer_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteUp" parameterType="java.lang.Integer">
+    delete from community_up
+    where consumer_id = #{consumer_id,jdbcType=INTEGER} and community_id = #{community_id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from community_up
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from community_up
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
+    insert into community_up (consumer_id, community_id, like_status
+      )
+    values (#{consumer_id,jdbcType=INTEGER}, #{community_id,jdbcType=INTEGER}, #{like_status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
+    insert into community_up
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="consumer_id != null">
+        consumer_id,
+      </if>
+      <if test="community_id != null">
+        community_id,
+      </if>
+      <if test="like_status != null">
+        like_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="consumer_id != null">
+        #{consumer_id,jdbcType=INTEGER},
+      </if>
+      <if test="community_id != null">
+        #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="like_status != null">
+        #{like_status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xuwei.music.entity.CommunityUp">
+    update community_up
+    <set>
+      <if test="consumer_id != null">
+        consumer_id = #{consumer_id,jdbcType=INTEGER},
+      </if>
+      <if test="community_id != null">
+        community_id = #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="like_status != null">
+        like_status = #{like_status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xuwei.music.entity.CommunityUp">
+    update community_up
+    set consumer_id = #{consumer_id,jdbcType=INTEGER},
+      community_id = #{community_id,jdbcType=INTEGER},
+      like_status = #{like_status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="update" parameterType="com.xuwei.music.entity.CommunityUp">
+    update community_up
+    set like_status=#{like_status,jdbcType=INTEGER}
+    where consumer_id = #{consumer_id,jdbcType=INTEGER} and community_id = #{community_id,jdbcType=INTEGER}
+  </update>
+</mapper>
