@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50730
 File Encoding         : 65001
 
-Date: 2021-04-23 17:52:38
+Date: 2021-04-24 11:57:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -162,9 +162,9 @@ CREATE TABLE `community_up` (
 -- ----------------------------
 INSERT INTO `community_up` VALUES ('2', '2', '1', '0');
 INSERT INTO `community_up` VALUES ('7', '1', '5', '0');
-INSERT INTO `community_up` VALUES ('38', '1', '9', '0');
+INSERT INTO `community_up` VALUES ('38', '1', '9', '1');
 INSERT INTO `community_up` VALUES ('92', '1', '54', '0');
-INSERT INTO `community_up` VALUES ('124', '1', '60', '0');
+INSERT INTO `community_up` VALUES ('124', '1', '60', '1');
 INSERT INTO `community_up` VALUES ('125', '1', '11', '0');
 INSERT INTO `community_up` VALUES ('126', '1', '1', '0');
 

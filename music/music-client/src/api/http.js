@@ -3,7 +3,8 @@ axios.defaults.timeout = 5000; //超时时间是5秒
 axios.defaults.withCredentials = true; //允许跨域
 //Content-type 访问方式 响应头
 // 设置post请求头
-axios.defaults.headers.post['Content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// axios.defaults.headers.post['Content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.headers.post['Content-type'] = 'application/json;charset=UTF-8';
 // axios.defaults.headers.post['Content-type'] = 'multipart/form-data;charset=UTF-8';
 //基础url
 axios.defaults.baseURL = "http://localhost:8888";
@@ -31,7 +32,7 @@ axios.interceptors.response.use(
             }
           });
           break;
-          //没找到
+        //没找到
         case 404:
           break;
       }
@@ -40,14 +41,14 @@ axios.interceptors.response.use(
   }
 );
 
-/* 
+/*
  * 封装get方法
  */
 export function get(url, params = {}) {
   return new Promise((resolve, reject) => {
     axios.get(url, {
-        params: params
-      })
+      params: params
+    })
       .then(response => {
         resolve(response.data);
       })
@@ -57,7 +58,7 @@ export function get(url, params = {}) {
   });
 }
 
-/* 
+/*
  * 封装post方法
  */
 export function post(url, data = {}) {
@@ -77,29 +78,29 @@ export function post(url, data = {}) {
    *
    */
 
-  export function deletes(url, data = {}) {
-    return new Promise((resolve, reject) => {
-      axios.delete(url, data)
-        .then(response => {
-          resolve(response.data);
-        }, err => {
-          reject(err)
-        })
-    })
-  }
-  
-  /**
-     * 封装put请求
-     * 
-     */
-  
-  export function put(url, data = {}) {
-    return new Promise((resolve, reject) => {
-      axios.put(url, data)
-        .then(response => {
-          resolve(response.data)
-        }, err => {
-          reject(err)
-        })
-    })
-  }
+export function deletes(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.delete(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err)
+      })
+  })
+}
+
+/**
+   * 封装put请求
+   *
+   */
+
+export function put(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.put(url, data)
+      .then(response => {
+        resolve(response.data)
+      }, err => {
+        reject(err)
+      })
+  })
+}
