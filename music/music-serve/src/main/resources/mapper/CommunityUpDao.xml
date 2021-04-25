@@ -36,13 +36,13 @@
     delete from community_up
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
     insert into community_up (consumer_id, community_id, like_status
       )
     values (#{consumer_id,jdbcType=INTEGER}, #{community_id,jdbcType=INTEGER}, #{like_status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.CommunityUp" useGeneratedKeys="true">
     insert into community_up
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="consumer_id != null">
