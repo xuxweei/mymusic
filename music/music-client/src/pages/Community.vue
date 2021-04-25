@@ -239,37 +239,34 @@
               <div v-else-if="this.addForm.type==1">
                 <label style="margin-left: 15px; margin-right: 5px;">视频上传</label>
                 <input type="file" name="file">
-              </div> -->
+              </div>  :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload":on-success="handleSongSuccess"-->
               <el-upload
                 v-if="this.addForm.type == 2"
                 class="upload-demo"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
                 :show-file-list="false"
-                :action="uploadImg(nextId)"
+                :action="uploadImg(this.nextId)"
                 :auto-upload="false"
+                multiple
               >
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
               <el-upload
                 v-else-if="this.addForm.type == 0"
                 class="upload-demo"
-                :on-success="handleSongSuccess"
-                :before-upload="beforeSongUpload"
                 :show-file-list="false"
-                :action="uploadUrl(nextId)"
+                :action="uploadUrl(this.nextId)"
                 :auto-upload="false"
+                multiple
               >
                 <el-button size="mini" type="primary">上传歌曲</el-button>
               </el-upload>
               <el-upload
                 v-else-if="this.addForm.type == 1"
                 class="upload-demo"
-                :on-success="handleUrlSuccess"
-                :before-upload="beforeUrlUpload"
                 :show-file-list="false"
-                :action="uploadUrl(nextId)"
+                :action="uploadUrl(this.nextId)"
                 :auto-upload="false"
+                multiple
               >
                 <el-button size="mini" type="primary">上传视频</el-button>
               </el-upload>
@@ -421,7 +418,6 @@ export default {
                 if (res.code == 1) {
                   this.getData();
                   this.notify("提交成功", "success");
-
                   this.reload();
                 } else {
                   this.notify("提交失败", "error");
@@ -531,7 +527,7 @@ export default {
       if (this.validateFileSize(file, 10, 2)) {
         console.log(file);
         // this.imageUrl = file.name
-        this.addForm.img = URL.createObjectURL(file.raw);
+        this.addForm.img = file.raw;
         // this.addForm.img = file.raw
         // this.
       }
