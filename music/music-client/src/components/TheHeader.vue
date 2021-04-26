@@ -196,6 +196,7 @@ export default {
           path: path
         });
         this.reload();
+        this.$router.go(0);
       }
     }
   },

@@ -135,6 +135,7 @@ export default {
             this.getUsers(item.user_id);
             this.lsts.push(item.like_status);
           }
+          console.log(this.lsts);
         })
         .catch(err => {
           this.notify("要登录才能才看评论哦~", "error");
@@ -168,7 +169,7 @@ export default {
               params.append("up", up + this.like);
               setLike(params).then(res => {
                 if (res.code == 1) {
-                  console.log(this.likeStatus);
+                  console.log(this.$refs.up[index].children[0]);
                   if (this.likeStatus) {
                     console.log("哪里");
                     this.notify("取消赞成功", "success");

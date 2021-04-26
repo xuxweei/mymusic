@@ -46,7 +46,7 @@
                   <video
                     :src="headerurl + val.url"
                     v-else-if="val.type == 1"
-                    style="height:300px;"
+                    style="height: 300px"
                     controls
                   ></video>
                   <div class="song_box" v-else-if="val.type == 0">
@@ -54,7 +54,7 @@
                       <div class="song_img">
                         <img
                           :src="attachImageUrl(val.songpic)"
-                          style="width:100%"
+                          style="width: 100%"
                         />
                       </div>
                       <!-- @click="setSongUrl(val.url, getSongName(val.url))" -->
@@ -75,7 +75,7 @@
                           <svg
                             class="icon"
                             aria-hidden="true"
-                            style="width:2rem;height:2rem;"
+                            style="width: 2rem; height: 2rem"
                           >
                             <use xlink:href="#icon-bofang2"></use>
                           </svg>
@@ -85,7 +85,7 @@
                           <svg
                             class="icon"
                             aria-hidden="true"
-                            style="width:2rem;height:2rem;"
+                            style="width: 2rem; height: 2rem"
                           >
                             <use xlink:href="#icon-zanting2"></use>
                           </svg>
@@ -105,20 +105,20 @@
                 <div class="up" ref="up" @click="postUp(val.id, val.up, index)">
                   <svg
                     class="icon_dianz"
-                    style="color:#F36161;"
                     v-if="lsts[index] === 1"
+                    style="color:#F36161;"
                   >
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
-                  <svg class="icon_dianz" style="color:#000;" v-else>
+                  <svg class="icon_dianz" v-else style="color:#000;">
                     <use xlink:href="#icon-dianzan1"></use>
                   </svg>
                   <span class="uptxt"> {{ val.up }}</span>
                 </div>
 
                 <!-- 评论 -->
-                <div class="up" ref="comment" style="right: 20px;">
-                  <svg class="icon_dianz" style="color:#000;">
+                <div class="up" ref="comment" style="right: 20px">
+                  <svg class="icon_dianz" style="color: #000">
                     <use xlink:href="#icon-pinglun"></use>
                   </svg>
                   <span class="uptxt"> {{ val.up }}</span>
@@ -200,22 +200,28 @@
         <div>
           <el-form-item>
             <div class="icon_controller" @click="itemVisible = true">
-              <span style="margin:-10px 15px;">
+              <span style="margin: -10px 15px">
                 <i
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;"
+                  style="fontsize: 1.4rem; color: #888; cursor: pointer"
                   class="el-icon-picture-outline"
                 ></i>
               </span>
-              <span style="margin:-10px;">
+              <span style="margin: -10px">
                 <i
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;"
+                  style="fontsize: 1.4rem; color: #888; cursor: pointer"
                   class="el-icon-video-camera"
                 ></i>
               </span>
-              <span style="margin:-10px 15px;">
+              <span style="margin: -10px 15px">
                 <svg
                   class="icon"
-                  style="fontSize:1.4rem;color:#888;cursor: pointer;width:1.4rem;height:1.4rem;"
+                  style="
+                    fontsize: 1.4rem;
+                    color: #888;
+                    cursor: pointer;
+                    width: 1.4rem;
+                    height: 1.4rem;
+                  "
                 >
                   <use xlink:href="#icon-yinle"></use>
                 </svg>
@@ -244,9 +250,10 @@
                 v-if="this.addForm.type == 2"
                 class="upload-demo"
                 :show-file-list="false"
-                :action="uploadImg(this.nextId)"
+                action="/"
                 :auto-upload="false"
                 multiple
+                :on-change="showLogo"
               >
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
@@ -254,7 +261,7 @@
                 v-else-if="this.addForm.type == 0"
                 class="upload-demo"
                 :show-file-list="false"
-                :action="uploadUrl(this.nextId)"
+                action="/"
                 :auto-upload="false"
                 multiple
               >
@@ -264,7 +271,7 @@
                 v-else-if="this.addForm.type == 1"
                 class="upload-demo"
                 :show-file-list="false"
-                :action="uploadUrl(this.nextId)"
+                action="/"
                 :auto-upload="false"
                 multiple
               >
@@ -378,13 +385,12 @@ export default {
         this.communityDatas = res;
         this.currentPage = 1;
         this.nextId = res[res.length - 1].id;
-        getLiked(this.userId).then(rs => {
-          console.log(rs);
-          for (let item of rs) {
-            this.lsts.push(item.like_status);
-          }
-        });
+        for (let item of res) {
+          this.lsts.push(item.like_status);
+        }
+        console.log(this.lsts);
       });
+      // this.reload();
     },
     //添加动态
     addCommunity() {
@@ -526,10 +532,7 @@ export default {
     showLogo(file, fileList) {
       if (this.validateFileSize(file, 10, 2)) {
         console.log(file);
-        // this.imageUrl = file.name
         this.addForm.img = file.raw;
-        // this.addForm.img = file.raw
-        // this.
       }
     },
     postUp(id, up, index) {
@@ -545,6 +548,7 @@ export default {
               params.append("up", up + this.like);
               likeThis(params).then(res => {
                 if (res.code == 1) {
+                  console.log(this.$refs.up[index].children[0]);
                   if (this.likeStatus) {
                     console.log("哪里");
                     this.likeStatus = false;
@@ -552,21 +556,20 @@ export default {
                     this.$refs.up[index].children[0].style.color = "#000";
                     this.notify("取消赞成功", "success");
                     this.getData();
-                    // this.reload();
                   } else {
                     this.likeStatus = true;
                     this.like = -1;
+                    this.$refs.up[index].children[0].style.color = "#f36161";
                     console.log("这里");
-                    this.$refs.up[index].children[0].style.color = "#F36161";
                     this.notify("点赞成功", "success");
                     this.getData();
-                    // this.reload();
                   }
                 }
               });
             } else {
               this.notify("点赞失败", "error");
             }
+            // this.reload();
           })
           .catch(err => {
             this.notify("点赞失败", "error");

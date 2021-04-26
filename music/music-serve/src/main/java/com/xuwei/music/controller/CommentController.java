@@ -179,11 +179,9 @@ public class CommentController {
         if (consumer_id == null) {
             return commentService.commentOfSongListID(slid);
         } else {
-//            Integer conid = ;
             for (Comment ct : commentService.commentOfSongListID(slid)) {
                 System.out.println("评论" + ct);
                 for (Up p : upService.getLikedByCommentId(ct.getId(), Integer.parseInt(consumer_id))) {
-//                System.out.println(session.getAttribute("userId"));
                     System.out.println("状态" + p.getLike_status());
                     ct.setLike_status(p.getLike_status());
                 }

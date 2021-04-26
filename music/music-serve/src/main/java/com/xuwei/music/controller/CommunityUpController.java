@@ -78,7 +78,7 @@ public class CommunityUpController {
     public Object getLikedById(HttpServletRequest request) {
         String consumer_id = request.getParameter("consumer_id").trim();
         String community_id = request.getParameter("community_id").trim();
-        return communityUpService.getLikedByCommunityId(Integer.parseInt(consumer_id),Integer.parseInt(community_id));
+        return communityUpService.getLikedByCommunityId(Integer.parseInt(community_id),Integer.parseInt(consumer_id));
     }
 
 

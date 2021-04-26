@@ -3,6 +3,7 @@ package com.xuwei.music.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xuwei.music.dto.FileUploadDto;
 import com.xuwei.music.entity.Community;
+import com.xuwei.music.entity.CommunityUp;
 import com.xuwei.music.entity.Consumer;
 import com.xuwei.music.entity.Song;
 import com.xuwei.music.form.FileUploadForm;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 社区管理类
@@ -99,6 +104,9 @@ public class CommunityController {
         System.out.println(form);
         //文件在本地的路径
         String path = fileService.writeFile(form.getFile(), form.getType());
+
+        String storePath = path.substring(21);
+        System.out.println(storePath);
         JSONObject jsonObject = new JSONObject();
         //用户名
         String name = request.getParameter("name").trim();
@@ -115,11 +123,11 @@ public class CommunityController {
         community.setType(Integer.parseInt(type));
         community.setContent(content);
         if (Integer.parseInt(type) == 0 || Integer.parseInt(type) == 1) {
-            community.setUrl(path);
+            community.setUrl(storePath);
             community.setImg(null);
         } else if (Integer.parseInt(type) == 2) {
             community.setUrl(null);
-            community.setImg(path);
+            community.setImg(storePath);
         }
         boolean flag = communityService.insert(community);
         if (flag) {
@@ -305,16 +313,16 @@ public class CommunityController {
      * @return
      */
     @GetMapping(value = "/allCommunity")
-    public List allCommunity() {
+    public List allCommunity(HttpServletRequest request) {
         List<Object> list1 = new ArrayList<>();
-
+        HttpSession session = request.getSession();
         for (Community m : communityService.allCommunity()) {
             for (Consumer e : consumerService.consumerByName(m.getName())) {
                 m.setUserpic(e.getUserpic());
-//                for (CommunityUp u : communityUpService.getLiked(e.getId())) {
-//                    System.out.println("状态"+u.getLikeStatus());
-////                    m.setLikeStatus(u.getLikeStatus());
-//                }
+            }
+            for (CommunityUp u : communityUpService.getLikedByCommunityId(m.getId(), (Integer) session.getAttribute("uid"))) {
+                System.out.println("状态"+u.getLike_status());
+                m.setLike_status(u.getLike_status());
             }
             if (m.getUrl() != null && m.getType() == 0) {
                 String sname = m.getUrl().substring(m.getUrl().lastIndexOf('/'));
@@ -343,18 +351,6 @@ public class CommunityController {
         String name = request.getParameter("name");
         return communityService.selectByUsername(name);
     }
-
-    /**
-     * 获得指定时间的动态列表
-     *
-     * @param request
-     * @return
-     */
-//    @GetMapping(value = "/communityOfTime")
-//    public Object communityOfTime(HttpServletRequest request) {
-//        Date time = request.getParameter("create_time");
-//        return communityService.selectByTime(Date.from(time));
-//    }
 
     /**
      * 点赞

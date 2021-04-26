@@ -242,11 +242,12 @@ public class ConsumerController {
         consumer.setUsername(username);
         consumer.setPassword(password);
         boolean res = consumerService.verifyPassword(username, password);
-
         if (res) {
             jsonObject.put(Consts.CODE, 1);
             jsonObject.put(Consts.MSG, "登录成功");
             jsonObject.put("userMsg", consumerService.consumerByUserName(username));
+            session.setAttribute("uid",consumerService.consumerByUserName(username).getId());
+            System.out.println(consumerService.consumerByUserName(username).getId());
             session.setAttribute("username", username);
             return jsonObject;
         } else {

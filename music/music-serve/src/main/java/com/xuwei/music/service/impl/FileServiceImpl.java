@@ -75,8 +75,8 @@ public class FileServiceImpl implements FileService {
                 System.out.println(e);
             }
         }
-
-        File targetFile = new File(dirPath + "/" + System.currentTimeMillis() + fileNmae);
+        long time = System.currentTimeMillis();
+        File targetFile = new File(dirPath + "/" + time + fileNmae);
         try {
             if (!targetFile.exists()) {
                 targetFile.createNewFile();
@@ -88,7 +88,7 @@ public class FileServiceImpl implements FileService {
             System.out.println(e);
         }
 
-        return baseRquest + "/" + t + "/" + System.currentTimeMillis() + fileNmae;
+        return baseRquest + "/" + t + "/" + time + fileNmae;
     }
 
 }

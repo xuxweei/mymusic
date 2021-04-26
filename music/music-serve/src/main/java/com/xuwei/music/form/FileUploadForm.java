@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 public class FileUploadForm {
 
-    private MultipartFile file;
+    private MultipartFile img;
 
     private Integer type;
 
@@ -22,11 +22,11 @@ public class FileUploadForm {
     private String content;
 
     public MultipartFile getFile() {
-        return file;
+        return img;
     }
 
     public void setFile(MultipartFile file) {
-        this.file = file;
+        this.img = img;
     }
 
     public Integer getType() {
