@@ -10,6 +10,7 @@ import java.util.List;
 public interface CommentService {
     /**
      * 删除
+     *
      * @param id
      * @return
      */
@@ -17,6 +18,7 @@ public interface CommentService {
 
     /**
      * 增加
+     *
      * @param record
      * @return
      */
@@ -26,6 +28,7 @@ public interface CommentService {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -33,6 +36,7 @@ public interface CommentService {
 
     /**
      * 更新评论
+     *
      * @param record
      * @return
      */
@@ -42,12 +46,14 @@ public interface CommentService {
 
     /**
      * 查询所有评论
+     *
      * @return
      */
     List<Comment> allComment();
 
     /**
      * 查询某一首歌的评论
+     *
      * @param songId
      * @return
      */
@@ -55,8 +61,17 @@ public interface CommentService {
 
     /**
      * 查询某歌单的评论
+     *
      * @param songListId
      * @return
      */
     List<Comment> commentOfSongListID(Integer songListId);
+
+    /**
+     * 查询某动态的评论
+     *
+     * @param community_id
+     * @return
+     */
+    List<Comment> commentOfCommunityID(Integer community_id);
 }

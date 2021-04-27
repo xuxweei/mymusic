@@ -49,6 +49,7 @@ public class CommentController {
         String type = request.getParameter("type"); //类型
         String song_id = request.getParameter("song_id"); //歌曲id
         String songlist_id = request.getParameter("songlist_id"); //歌单id
+        String community_id = request.getParameter("community_id");
 //        String create_time = request.getParameter("create_time").trim(); //创建时间
         String content = request.getParameter("content").trim(); //评论内容
 //        String up = request.getParameter("up").trim();
@@ -57,8 +58,10 @@ public class CommentController {
         comment.setType(Integer.parseInt(type));
         if (Integer.parseInt(type) == 0) {
             comment.setSong_id(Integer.parseInt(song_id));
-        } else {
+        } else if(Integer.parseInt(type) == 1) {
             comment.setSonglist_id(Integer.parseInt(songlist_id));
+        } else if (Integer.parseInt(type) == 2){
+            comment.setCommunity_id(Integer.parseInt(community_id));
         }
         comment.setContent(content);
         boolean flag = commentService.insert(comment);
@@ -189,6 +192,33 @@ public class CommentController {
             }
             return cmt;
         }
+    }
+    /**
+     * 获得指定动态id的评论列表
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping(value = "/commentOfCommunityID")
+    public List commentOfCommunityID(HttpServletRequest request) {
+//        List<Comment> cmt = new ArrayList<>();
+        String community_id = request.getParameter("community_id");
+        return commentService.commentOfCommunityID(Integer.parseInt(community_id));
+//        Integer cmid = Integer.parseInt(community_id);
+//        String consumer_id = request.getParameter("consumer_id");
+//        if (consumer_id == null) {
+//            return commentService.commentOfSongListID(cmid);
+//        } else {
+//            for (Comment ct : commentService.commentOfSongListID(slid)) {
+//                System.out.println("评论" + ct);
+//                for (Up p : upService.getLikedByCommentId(ct.getId(), Integer.parseInt(consumer_id))) {
+//                    System.out.println("状态" + p.getLike_status());
+//                    ct.setLike_status(p.getLike_status());
+//                }
+//                cmt.add(ct);
+//            }
+//            return cmt;
+//        }
     }
 
     /**

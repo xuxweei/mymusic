@@ -7,12 +7,13 @@
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="song_id" jdbcType="INTEGER" property="song_id"/>
         <result column="songlist_id" jdbcType="INTEGER" property="songlist_id"/>
+        <result column="community_id" jdbcType="INTEGER" property="community_id"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="up" jdbcType="INTEGER" property="up"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_id, `type`, song_id, songlist_id, create_time, content, up
+    id, user_id, `type`, song_id, songlist_id,community_id, create_time, content, up
   </sql>
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -36,6 +37,12 @@
         from comment
         where songlist_id = #{songListId,jdbcType=INTEGER}
     </select>
+    <select id="commentOfCommunityID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where community_id = #{community_id,jdbcType=INTEGER}
+    </select>
     <delete id="deleteById" parameterType="java.lang.Integer">
     delete from comment
     where id = #{id,jdbcType=INTEGER}
@@ -43,10 +50,10 @@
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Comment"
             useGeneratedKeys="true">
     insert into comment (user_id, `type`, song_id, 
-      songlist_id, create_time, content, 
+      songlist_id,community_id, create_time, content,
       up)
     values (#{user_id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{song_id,jdbcType=INTEGER},
-      #{songlist_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
+      #{songlist_id,jdbcType=INTEGER}, #{community_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR},
       #{up,jdbcType=INTEGER})
   </insert>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Comment"
@@ -64,6 +71,9 @@
             </if>
             <if test="songlist_id != null">
                 songlist_id,
+            </if>
+            <if test="community_id != null">
+                community_id,
             </if>
                 create_time,
             <if test="content != null">
@@ -85,6 +95,9 @@
             </if>
             <if test="songlist_id != null">
                 #{songlist_id,jdbcType=INTEGER},
+            </if>
+            <if test="community_id != null">
+                #{community_id,jdbcType=INTEGER},
             </if>
             now(),
             <if test="content != null">
@@ -110,6 +123,9 @@
             <if test="songlist_id != null">
                 songlist_id = #{songlist_id,jdbcType=INTEGER},
             </if>
+            <if test="community_id != null">
+                community_id = #{community_id,jdbcType=INTEGER},
+            </if>
             <if test="content != null">
                 content = #{content,jdbcType=VARCHAR},
             </if>
@@ -125,6 +141,7 @@
       `type` = #{type,jdbcType=INTEGER},
       song_id = #{song_id,jdbcType=INTEGER},
       songlist_id = #{songlist_id,jdbcType=INTEGER},
+      community_id = #{community_id,jdbcType=INTEGER},
       create_time = #{create_time,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=VARCHAR},
       up = #{up,jdbcType=INTEGER}

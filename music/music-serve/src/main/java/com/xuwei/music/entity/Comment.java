@@ -33,6 +33,11 @@ public class Comment implements Serializable {
     private Integer songlist_id;
 
     /**
+     * 评论动态id
+     */
+    private Integer community_id;
+
+    /**
      * 评论时间
      */
     private Date create_time;
@@ -95,6 +100,14 @@ public class Comment implements Serializable {
 
     public void setSonglist_id(Integer songlist_id) {
         this.songlist_id = songlist_id;
+    }
+
+    public Integer getCommunity_id() {
+        return community_id;
+    }
+
+    public void setCommunity_id(Integer community_id) {
+        this.community_id = community_id;
     }
 
     public Date getCreate_time() {

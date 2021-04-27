@@ -58,4 +58,11 @@ public interface CommentDao {
      * @return
      */
     List<Comment> commentOfSongListID(Integer songListId);
+
+    /**
+     * 查询某动态的评论
+     * @param community_id
+     * @return
+     */
+    List<Comment> commentOfCommunityID(Integer community_id);
 }

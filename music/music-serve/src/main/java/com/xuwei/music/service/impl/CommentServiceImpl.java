@@ -101,4 +101,15 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> commentOfSongListID(Integer songListId) {
         return commentDao.commentOfSongListID(songListId);
     }
+
+    /**
+     * 查询某动态的评论
+     *
+     * @param community_id
+     * @return
+     */
+    @Override
+    public List<Comment> commentOfCommunityID(Integer community_id) {
+        return commentDao.commentOfCommunityID(community_id);
+    }
 }

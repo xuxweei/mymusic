@@ -80,8 +80,10 @@ export const setLike = (params) => post('/comment/like', params)
 export const getAllComment = (type, id, uid) => {
   if (type == 0) {
     return get(`/comment/commentOfSongId?song_id=${id}`) //歌曲
-  } else {
+  } else if(type == 1) {
     return get(`/comment/commentOfSongListId?songlist_id=${id}&consumer_id=${uid}`) //歌单
+  }else if(type == 2){
+    return get(`/comment/commentOfCommunityID?community_id=${id}&consumer_id=${uid}`)
   }
 }
 

@@ -98,8 +98,10 @@ export default {
         let params = new URLSearchParams();
         if (this.type == 0) {
           params.append("song_id", this.playId);
-        } else {
+        } else if(this.type == 1) {
           params.append("songlist_id", this.playId);
+        }else if (this.type == 2) {
+          params.append("community_id",this.playId)
         }
         params.append("user_id", this.userId);
         params.append("type", this.type);
