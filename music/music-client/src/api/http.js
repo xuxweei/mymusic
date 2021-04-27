@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true; //允许跨域
 //Content-type 访问方式 响应头
 // 设置post请求头
 // axios.defaults.headers.post['Content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.headers.post['Content-type'] = 'application/json;charset=UTF-8';
+// axios.defaults.headers.post['Content-type'] = 'application/json;charset=UTF-8';
 // axios.defaults.headers.post['Content-type'] = 'multipart/form-data;charset=UTF-8';
 //基础url
 axios.defaults.baseURL = "http://localhost:8888";

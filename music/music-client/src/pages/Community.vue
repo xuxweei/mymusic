@@ -176,7 +176,7 @@
               type="textarea"
               resize="none"
               placeholder="一起聊聊吧~"
-              v-model="textarea"
+              v-model="addForm.content"
               maxlength="150"
               show-word-limit
               :rows="4"
@@ -250,9 +250,8 @@
                 v-if="this.addForm.type == 2"
                 class="upload-demo"
                 :show-file-list="false"
-                action="/"
+                action=""
                 :auto-upload="false"
-                multiple
                 :on-change="showLogo"
               >
                 <el-button size="mini" type="primary">上传图片</el-button>
@@ -261,7 +260,7 @@
                 v-else-if="this.addForm.type == 0"
                 class="upload-demo"
                 :show-file-list="false"
-                action="/"
+                action=""
                 :auto-upload="false"
                 multiple
               >
@@ -271,7 +270,7 @@
                 v-else-if="this.addForm.type == 1"
                 class="upload-demo"
                 :show-file-list="false"
-                action="/"
+                action=""
                 :auto-upload="false"
                 multiple
               >
@@ -397,27 +396,27 @@ export default {
       if (this.loginIn) {
         this.$refs["addForm"].validate(valid => {
           if (valid) {
-            let params = new URLSearchParams();
-            params.append("name", this.username);
-            params.append("type", this.addForm.type);
-            if (this.addForm.url != "") {
-              params.append("url", this.addForm.url);
-            } else if (
-              (this.addForm.type == 0 || this.addForm.type == 1) &&
-              this.addForm.url == ""
-            ) {
-              params.append("url", (this.addForm.url = ""));
-            }
+            let params = new FormData();
+            params.set("name", this.username);
+            params.set("type", this.addForm.type);
+            // if (this.addForm.url != "") {
+            //   params.append("url", this.addForm.url);
+            // } else if (
+            //   (this.addForm.type == 0 || this.addForm.type == 1) &&
+            //   this.addForm.url == ""
+            // ) {
+            //   params.append("url", (this.addForm.url = ""));
+            // }
             if (this.addForm.content != "") {
-              params.append("content", this.addForm.content);
+              params.set("content", this.addForm.content);
             } else {
-              params.append("content", (this.addForm.content = ""));
+              params.set("content", (this.addForm.content = ""));
             }
             if (this.addForm.img != "") {
               console.log(this.addForm.img);
-              params.append("img", this.addForm.img);
+              params.set("file", this.addForm.img);
             } else {
-              params.append("img", (this.addForm.img = ""));
+              params.set("file", (this.addForm.img = ""));
             }
             addCommunityWithUrl(params)
               .then(res => {
@@ -530,7 +529,7 @@ export default {
       return isLtM && isRight;
     },
     showLogo(file, fileList) {
-      if (this.validateFileSize(file, 10, 2)) {
+      if (this.validateFileSize(file, 9, 2)) {
         console.log(file);
         this.addForm.img = file.raw;
       }
