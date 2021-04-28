@@ -18,7 +18,6 @@
 .album_slide {
   float: left;
   width: 400px;
-
 }
 
 .album_slide .album_img {
@@ -35,6 +34,7 @@
 
 .album_slide .album_img img {
   width: 100%;
+  background-color: #fff;
 }
 
 /*信息*/
