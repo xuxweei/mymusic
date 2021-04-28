@@ -44,8 +44,18 @@
   color: #000000;
   font-size: 16px;
   font-weight: 500;
-  margin-top: -80px;
-  padding: 30px 40px 30px 60px;
+  margin-left: 300px;
+  width: 800px;
+  margin-top: -279px;
+  /* height: 300px; */
+  padding: 30px 40px 0px 60px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .album_slide .album_info span {
@@ -54,7 +64,8 @@
 
 /*歌单内容*/
 .album_content {
-  margin-left: 300px;
+  margin-top: 130px;
+  margin-left: 0px;
   padding: 0px 100px;
 }
 
@@ -63,22 +74,23 @@
   font-size: 30px;
   font-weight: 600;
   position: relative;
-  margin-left: 450px;
+  margin-left: 350px;
   top: -50px;
-
 }
 
 /*歌单打分*/
 .album_content .album_score {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0 50px;
 }
 
-.album_content .album_score>div {
+.album_content .album_score > div {
   margin-left: 100px;
 }
 
-.album_content .album_score>span {
+.album_content .album_score > span {
   font-size: 60px;
   margin-left: 10px;
   margin-top: 10px;

@@ -5,6 +5,7 @@
       <div class="community_left">
         <div class="community_header">
           <el-button
+            style="margin:10px 0 0;"
             icon="el-icon-edit"
             type="primary"
             size="mini"

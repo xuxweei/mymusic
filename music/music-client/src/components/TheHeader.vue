@@ -186,10 +186,10 @@ export default {
         this.$store.commit("setIsCollect", false);
         this.$store.commit("setCollectBtn", "#icon-xihuan");
         //刷新页面
-        this.$router.go(0);
         if (this.$route.path == "/myMusic") {
           this.goHome();
         }
+        this.$router.go(0);
         this.reload();
       } else {
         this.$router.push({

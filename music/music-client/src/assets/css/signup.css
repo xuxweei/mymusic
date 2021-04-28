@@ -1,27 +1,64 @@
+.login_container {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#1a1454),
+    to(#0e81a5)
+  );
+  background-image: linear-gradient(-180deg, #1a1454 0%, #0e81a5 100%);
+  /* background-image: url(../images/bg_login.png); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  top: 70px;
+  margin-bottom: 60px;
+  padding-bottom: 120px;
+}
+.el-form {
+  padding: 32px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
 .signUp {
-    position: absolute;
-    top: 90px;
-    background-color: #fff;
-    border-radius: 10px;
-    width: 350px;
-    left: 70%;
-    transform: translate(-44%);
-    padding: 30px 30px;
-  }
-  .signUp .signUp_head {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  .signUp .login_btn {
-    display: flex;
-    justify-content: space-around;
-    align-items: stretch;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-  .signUp .login_btn button {
-    display: block;
-    width: 20%;
-  }
+  position: absolute;
+  width: 370px;
+  height: 650px;
+  /* background-color: #fff; */
+  background-color: #2e527bb3;
+  border-radius: 5px;
+  /* position: absolute; */
+  left: 50%;
+  top: 47%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.signUp .signUp_head {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #fff;
+}
+.signUp .login_btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.signUp .login_btn button {
+  display: block;
+  width: 20%;
+  padding: 12px 12px;
+}
+.signUp .demo-ruleForm .white-font /deep/ .el-form-item__label {
+  color: #fff;
+}
+.signUp .demo-ruleForm .white-font /deep/ .el-radio__label {
+  color: #fff;
+}

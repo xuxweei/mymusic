@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localmusic
-Source Server Version : 50725
+Source Server Version : 50730
 Source Host           : localhost:3306
 Source Database       : music
 
 Target Server Type    : MYSQL
-Target Server Version : 50725
+Target Server Version : 50730
 File Encoding         : 65001
 
-Date: 2021-04-27 23:32:40
+Date: 2021-04-28 15:42:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -84,7 +84,7 @@ CREATE TABLE `comment` (
   `content` varchar(255) DEFAULT NULL COMMENT '评论内容',
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='评论';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='评论';
 
 -- ----------------------------
 -- Records of comment
@@ -96,7 +96,8 @@ INSERT INTO `comment` VALUES ('4', '17', '1', null, '1', null, '2021-02-18 16:45
 INSERT INTO `comment` VALUES ('5', '17', '1', null, '6', null, '2021-02-18 16:52:04', '好听', '15');
 INSERT INTO `comment` VALUES ('6', '18', '2', null, null, '5', '2021-04-27 16:52:04', '111', null);
 INSERT INTO `comment` VALUES ('7', '18', '1', null, '3', null, '2021-04-27 23:23:14', 'v', null);
-INSERT INTO `comment` VALUES ('8', '18', '2', null, null, '1', '2021-04-27 23:31:00', 'b', null);
+INSERT INTO `comment` VALUES ('8', '18', '2', null, null, '1', '2021-04-27 23:31:00', 'b', '0');
+INSERT INTO `comment` VALUES ('9', '18', '2', null, null, '5', '2021-04-28 10:27:36', '45', null);
 
 -- ----------------------------
 -- Table structure for comment_son
@@ -130,7 +131,7 @@ CREATE TABLE `community` (
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   `img` varchar(255) DEFAULT NULL COMMENT '用户上传的图片',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community
@@ -155,6 +156,10 @@ INSERT INTO `community` VALUES ('69', 'b', '2', null, '123', '2021-04-26 18:12:1
 INSERT INTO `community` VALUES ('70', 'b', '2', null, '456', '2021-04-26 18:23:26', null, '/img/communityPic/16194326060031.jpg');
 INSERT INTO `community` VALUES ('71', 'b', '2', null, '456', '2021-04-26 18:25:53', null, '/img/communityPic/16194327538061.jpg');
 INSERT INTO `community` VALUES ('72', 'b', '2', null, '456', '2021-04-26 18:28:01', null, '/img/communityPic/16194328814271.jpg');
+INSERT INTO `community` VALUES ('73', 'b', '2', null, '5', '2021-04-28 11:20:22', null, '/img/communityPic/16195800219951.jpg');
+INSERT INTO `community` VALUES ('74', 'b', '2', null, '5', '2021-04-28 11:21:31', null, '/img/communityPic/16195800911601.jpg');
+INSERT INTO `community` VALUES ('75', 'b', '2', null, '6', '2021-04-28 11:23:16', null, '/img/communityPic/16195801966551.jpg');
+INSERT INTO `community` VALUES ('76', 'b', '2', null, '4', '2021-04-28 11:24:46', '1', '/img/communityPic/16195802864871.jpg');
 
 -- ----------------------------
 -- Table structure for community_up
@@ -166,7 +171,7 @@ CREATE TABLE `community_up` (
   `community_id` int(11) DEFAULT NULL COMMENT '动态id',
   `like_status` int(11) DEFAULT NULL COMMENT '点赞的状态（0取消赞1已赞）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community_up
@@ -202,6 +207,7 @@ INSERT INTO `community_up` VALUES ('152', '18', '60', '1');
 INSERT INTO `community_up` VALUES ('153', '18', '54', '0');
 INSERT INTO `community_up` VALUES ('154', '18', '49', '1');
 INSERT INTO `community_up` VALUES ('155', '18', '37', '0');
+INSERT INTO `community_up` VALUES ('156', '18', '76', '1');
 
 -- ----------------------------
 -- Table structure for consumer
@@ -422,7 +428,7 @@ CREATE TABLE `up` (
   `comment_id` int(11) DEFAULT NULL COMMENT '评论id',
   `like_status` int(11) DEFAULT NULL COMMENT '点赞的状态（0取消赞1已赞）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of up
@@ -438,3 +444,4 @@ INSERT INTO `up` VALUES ('8', '17', '1', '0');
 INSERT INTO `up` VALUES ('9', '18', '1', '0');
 INSERT INTO `up` VALUES ('10', '18', '2', '1');
 INSERT INTO `up` VALUES ('11', '18', '3', '0');
+INSERT INTO `up` VALUES ('12', '18', '8', '0');

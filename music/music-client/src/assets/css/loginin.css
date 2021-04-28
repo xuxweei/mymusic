@@ -1,12 +1,27 @@
-.login {
+.login_container {
+  background-image: linear-gradient(-180deg, #1a1454 0%, #0e81a5 100%);
+  /*background-image: url("../images/bg_login.png");*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+.el-form {
+  padding: 32px;
   position: absolute;
-  margin-left: 800px;
-  width: 330px;
-  height: 250px;
-  top: 130px;
-  padding: 30px 50px;
-  border-radius: 10px;
-  background-color: #ffffff;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.login {
+  width: 290px;
+  height: 350px;
+  /* background-color: #fff; */
+  background-color: #2e527bb3;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
 }
 
 .login .login_head {
@@ -14,10 +29,11 @@
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: 600;
+  margin-top: 20px;
+  color: #fff;
 }
 
 .login .login_btn {
-  margin-left: 100px;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -32,11 +48,11 @@
 
 .el-form-item .el-form-item__content {
   margin-left: 50px;
-  display: flex!important;
-  justify-content: space-between!important;
-  align-items: stretch!important;
-  flex-direction: row!important;
-  flex-wrap: nowrap!important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
 }
 
 .code {
