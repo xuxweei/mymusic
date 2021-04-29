@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-20 09:33:13
- * @LastEditTime: 2021-04-28 17:16:15
+ * @LastEditTime: 2021-04-29 17:38:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Vue\mymusic\music\music-client\src\pages\Lyric.vue
@@ -35,11 +35,7 @@ export default {
       //当前歌曲的歌词
       lyrics: [],
       pic: "",
-      bgimg: {
-        backgroundImage: this.pic,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%"
-      }
+      bgimg: {}
     };
   },
   computed: {
@@ -56,6 +52,12 @@ export default {
     this.lyrics = this.lyric;
     this.pic = window.sessionStorage.getItem("picUrl");
     console.log(this.pic);
+    this.bgimg = {
+      backgroundImage: "url(" + this.pic + ")",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "70% 120%",
+      backgroundPosition: "center"
+    };
   },
   watch: {
     id: function() {
@@ -85,7 +87,7 @@ export default {
                 "bold";
             }
             if (i > 6) {
-              this.$refs.lyric.scrollTop = 30 * (i - 6);
+              this.$refs.lyric.scrollTop = 40 * (i - 6);
             }
           }
         }

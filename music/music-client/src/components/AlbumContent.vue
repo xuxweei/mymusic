@@ -1,51 +1,56 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-04-20 09:33:13
+ * @LastEditTime: 2021-04-29 17:25:32
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \Vue\mymusic\music\music-client\src\components\AlbumContent.vue
+-->
 <template>
-    <div class="content">
-        <h4 class="title">
-            <slot name="title"></slot>
-        </h4>
-        <ul>
-            <li class="list_title">
-                <div class="song_item">
-                    <span class="item_index"></span> 
-                    <!-- 专辑 -->
-                    <span class="item_intro">专辑名</span>
-                    <!-- 歌手 -->
-                    <span class="item_name">歌手</span>
-                   
-                </div>
-            </li>
-            <li v-for="(item,index) in songList" :key="index">
-                <div class="song_item">
-                    <span class="item_index"></span>
-                    <!-- 专辑 -->
-                    <span class="item_intro">{{item.song_intro}}</span>
-                    <!-- 歌手 -->
-                    <span class="item_name">{{replaceFrontName(item.song_name)}}</span>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <div class="content">
+    <h4 class="title">
+      <slot name="title"></slot>
+    </h4>
+    <ul>
+      <li class="list_title">
+        <div class="song_item">
+          <span class="item_index"></span>
+          <!-- 专辑 -->
+          <span class="item_intro">专辑名</span>
+          <!-- 歌手 -->
+          <span class="item_name">歌手</span>
+        </div>
+      </li>
+      <li v-for="(item, index) in songList" :key="index">
+        <div class="song_item">
+          <span class="item_index"></span>
+          <!-- 专辑 -->
+          <span class="item_intro">{{ item.song_intro }}</span>
+          <!-- 歌手 -->
+          <span class="item_name">{{ replaceFrontName(item.song_name) }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import { mixin } from '../mixins/index';
+import { mapGetters } from "vuex";
+import { mixin } from "../mixins/index";
 export default {
-    name:'albumContent',
-    props:[
-        'songList'
-    ],
-    mixins: [mixin],
-    data () {
-      return {}
-    },
+  name: "albumContent",
+  props: ["songList"],
+  mixins: [mixin],
+  data() {
+    return {};
+  },
 
-    methods: {},
+  methods: {},
 
-    components: {},
-}
+  components: {}
+};
 </script>
 
 <style scoped>
-@import '../assets/css/songcontent.css';
+@import "../assets/css/songcontent.css";
 </style>

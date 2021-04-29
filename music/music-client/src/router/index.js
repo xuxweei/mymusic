@@ -24,80 +24,80 @@ Router.prototype.push = function push(location) {
 
 export default new Router({
   routes: [{
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/songList',
-      name: 'SongList',
-      component: SongList
-    },
-    {
-      path: '/singer',
-      name: 'Singer',
-      component: Singer
-    },
-    {
-      path: '/mv',
-      name: 'Mv',
-      component: Mv
-    },
-    {
-      path: '/community',
-      name: 'Community',
-      component: Community
-    },
-    {
-      path: '/myMusic',
-      name: 'MyMusic',
-      component: MyMusic
-    },
-    {
-      path: '/search',
-      name: 'Search',
-      component: Search
-    },
-    {
-      path: '/lyric',
-      name: 'Lyric',
-      component: Lyric
-    },
-    {
-      path: '/signUp',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
-      path: '/loginIn',
-      name: 'LoginIn',
-      component: LoginIn
-    },
-    {
-      path: '/setting',
-      name: 'Setting',
-      component: Setting
-    },
-    {
-      path: '/songListAlbum/:id',
-      name: 'SongListAlbum',
-      component: SongListAlbum
-    },
-    {
-      path: '/singerAlbum/:id',
-      name: 'SingerAlbum',
-      component: SingerAlbum
-    },
-    {
-      path: '/playmv',
-      name: 'PlayMV',
-      component: PlayMV
-    },
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/songList',
+    name: 'SongList',
+    component: SongList
+  },
+  {
+    path: '/singer',
+    name: 'Singer',
+    component: Singer
+  },
+  {
+    path: '/mv',
+    name: 'Mv',
+    component: Mv
+  },
+  {
+    path: '/community',
+    name: 'Community',
+    component: Community
+  },
+  {
+    path: '/myMusic',
+    name: 'MyMusic',
+    component: MyMusic
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  },
+  {
+    path: '/lyric',
+    name: 'Lyric',
+    component: Lyric
+  },
+  {
+    path: '/signUp',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/loginIn',
+    name: 'LoginIn',
+    component: LoginIn
+  },
+  {
+    path: '/setting',
+    name: 'Setting',
+    component: Setting
+  },
+  {
+    path: '/songListAlbum/:id',
+    name: 'SongListAlbum',
+    component: SongListAlbum
+  },
+  {
+    path: '/singerAlbum/:id',
+    name: 'SingerAlbum',
+    component: SingerAlbum
+  },
+  {
+    path: '/playmv',
+    name: 'PlayMV',
+    component: PlayMV
+  },
   ],
   //轮播
   scrollBehavior(to, from, savedPosition) {

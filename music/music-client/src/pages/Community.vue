@@ -229,51 +229,39 @@
               </span>
             </div>
             <el-form-item v-if="itemVisible">
-              <!-- 图片 -->
-              <!-- <div v-if="this.addForm.type==2"> -->
-              <!-- <el-upload class="avatar-uploader" action="http://localhost:8888/community/addWithUrl"
-              :show-file-list="false" :on-change="showLogo" :auto-upload="false" multiple>
-              <img v-if="this.addForm.img" :src="this.addForm.img" class="avatar" />
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload> -->
-              <!-- <label style="margin-left: 15px; margin-right: 5px;">图片上传</label>
-                <input type="file" name="file">
-              </div>
-              <div v-else-if="this.addForm.type==0">
-                <label style="margin-left: 15px; margin-right: 5px;">歌曲上传</label>
-                <input type="file" name="file">
-              </div>
-              <div v-else-if="this.addForm.type==1">
-                <label style="margin-left: 15px; margin-right: 5px;">视频上传</label>
-                <input type="file" name="file">
-              </div>  :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload":on-success="handleSongSuccess"-->
               <el-upload
                 v-if="this.addForm.type == 2"
                 class="upload-demo"
-                :show-file-list="false"
+                style="display: flex;"
+                :show-file-list="true"
                 action=""
                 :auto-upload="false"
                 :on-change="showLogo"
+                :file-list="ImgfileList"
               >
                 <el-button size="mini" type="primary">上传图片</el-button>
               </el-upload>
               <el-upload
                 v-else-if="this.addForm.type == 0"
                 class="upload-demo"
-                :show-file-list="false"
+                :show-file-list="true"
                 action=""
                 :auto-upload="false"
-                multiple
+                :on-change="songIden"
+                style="display: flex;"
+                :file-list="songFileList"
               >
                 <el-button size="mini" type="primary">上传歌曲</el-button>
               </el-upload>
               <el-upload
                 v-else-if="this.addForm.type == 1"
                 class="upload-demo"
-                :show-file-list="false"
+                :show-file-list="true"
                 action=""
                 :auto-upload="false"
-                multiple
+                :on-change="videoIden"
+                style="display: flex;"
+                :file-list="videoFileList"
               >
                 <el-button size="mini" type="primary">上传视频</el-button>
               </el-upload>
@@ -341,7 +329,10 @@ export default {
       like: 1,
       lsts: [],
       communityId: "",
-      commentVisible: false
+      commentVisible: false,
+      ImgfileList: [],
+      songFileList: [],
+      videoFileList: []
     };
   },
 
@@ -403,28 +394,29 @@ export default {
             let params = new FormData();
             params.set("name", this.username);
             params.set("type", this.addForm.type);
-            // if (this.addForm.url != "") {
-            //   params.append("url", this.addForm.url);
-            // } else if (
-            //   (this.addForm.type == 0 || this.addForm.type == 1) &&
-            //   this.addForm.url == ""
-            // ) {
-            //   params.append("url", (this.addForm.url = ""));
-            // }
+            if (this.addForm.url != "" && this.addForm.url != undefined) {
+              console.log(this.addForm.url);
+              params.set("file", this.addForm.url);
+            } else if (
+              (this.addForm.type == 0 || this.addForm.type == 1) &&
+              this.addForm.url == ""
+            ) {
+              params.set("url", (this.addForm.url = ""));
+            }
             if (this.addForm.content != "") {
               params.set("content", this.addForm.content);
             } else {
               params.set("content", (this.addForm.content = ""));
             }
-            if (this.addForm.img != "") {
-              console.log(this.addForm.img);
+            if (this.addForm.img != "" && this.addForm.img != undefined) {
+              // console.log(this.addForm.img);
               params.set("file", this.addForm.img);
             } else {
-              params.set("file", (this.addForm.img = ""));
+              params.set("img", (this.addForm.img = ""));
             }
             addCommunityWithUrl(params)
               .then(res => {
-                // console.log(res.code);
+                // console.log(res);
                 // if (res.code == 1) {
                 this.getData();
                 this.notify("提交成功", "success");
@@ -484,8 +476,6 @@ export default {
       this.addForm.type = e.target.value;
     },
     uploadImg(id) {
-      // this.dialogVisible = false
-      // this.reload()
       return `${this.$store.state.config.HOST}/community/uploadImg?id=${id}`;
     },
     //跟新歌曲url
@@ -537,6 +527,30 @@ export default {
       if (this.validateFileSize(file, 9, 2)) {
         console.log(file);
         this.addForm.img = file.raw;
+        this.ImgfileList.push(this.addForm.img);
+      }
+      if (fileList.length > 0) {
+        this.ImgfileList = [fileList[fileList.length - 1]];
+      }
+    },
+    videoIden(file, fileList) {
+      if (this.validateFileSize(file, 10, 1)) {
+        console.log(file);
+        this.addForm.url = file.raw;
+        this.videoFileList.push(this.addForm.url);
+      }
+      if (fileList.length > 0) {
+        this.videoFileList = [fileList[fileList.length - 1]];
+      }
+    },
+    songIden(file, fileList) {
+      if (this.validateFileSize(file, 10, 0)) {
+        console.log(file);
+        this.addForm.url = file.raw;
+        this.songFileList.push(this.addForm.url);
+      }
+      if (fileList.length > 0) {
+        this.songFileList = [fileList[fileList.length - 1]];
       }
     },
     postUp(id, up, index) {

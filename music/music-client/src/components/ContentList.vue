@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-20 09:33:13
- * @LastEditTime: 2021-04-28 11:51:13
+ * @LastEditTime: 2021-04-29 09:19:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Vue\mymusic\music\music-client\src\components\ContentList.vue
@@ -17,7 +17,11 @@
             :key="index"
           >
             <div class="kuo" @click="goAlbum(item, item.name)">
-              <img :src="attachImageUrl(item.pic)" class="item_img" />
+              <img
+                v-lazy="attachImageUrl(item.pic)"
+                :key="attachImageUrl(item.pic)"
+                class="item_img"
+              />
               <div class="mask">
                 <svg
                   t="1608619694217"
