@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50730
 File Encoding         : 65001
 
-Date: 2021-04-28 15:42:25
+Date: 2021-04-29 18:03:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -131,7 +131,7 @@ CREATE TABLE `community` (
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   `img` varchar(255) DEFAULT NULL COMMENT '用户上传的图片',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community
@@ -148,7 +148,6 @@ INSERT INTO `community` VALUES ('38', '333', '2', 'undefined', null, '2021-04-18
 INSERT INTO `community` VALUES ('49', '333', '2', 'undefined', null, '2021-04-18 22:32:32', '3', '/img/communityPic/1618756362564p.jpg');
 INSERT INTO `community` VALUES ('54', '333', '2', 'undefined', null, '2021-04-18 22:43:29', '2', '/img/communityPic/1618757017707109951165549520393.jpg');
 INSERT INTO `community` VALUES ('60', '333', '2', 'undefined', null, '2021-04-18 23:06:11', '2', '/img/communityPic/1618758381400T001R300x300M0000007sHCz2lllqK.jpg');
-INSERT INTO `community` VALUES ('61', '333', '1', '/video/1618758958201杨千嬅 - 可惜我是水瓶座.mp3', null, '2021-04-18 23:09:09', '0', '/img/communityPic/16189941324771.jpg');
 INSERT INTO `community` VALUES ('66', '333', '2', null, '789', '2021-04-26 10:28:57', null, '/img/communityPic/16194041372141.jpg');
 INSERT INTO `community` VALUES ('67', '333', '2', null, '4', '2021-04-26 17:43:51', null, '/img/communityPic/16194302311201.jpg');
 INSERT INTO `community` VALUES ('68', 'b', '2', null, '098', '2021-04-26 17:45:31', null, '/img/communityPic/16194303317371.jpg');
@@ -156,10 +155,21 @@ INSERT INTO `community` VALUES ('69', 'b', '2', null, '123', '2021-04-26 18:12:1
 INSERT INTO `community` VALUES ('70', 'b', '2', null, '456', '2021-04-26 18:23:26', null, '/img/communityPic/16194326060031.jpg');
 INSERT INTO `community` VALUES ('71', 'b', '2', null, '456', '2021-04-26 18:25:53', null, '/img/communityPic/16194327538061.jpg');
 INSERT INTO `community` VALUES ('72', 'b', '2', null, '456', '2021-04-26 18:28:01', null, '/img/communityPic/16194328814271.jpg');
-INSERT INTO `community` VALUES ('73', 'b', '2', null, '5', '2021-04-28 11:20:22', null, '/img/communityPic/16195800219951.jpg');
 INSERT INTO `community` VALUES ('74', 'b', '2', null, '5', '2021-04-28 11:21:31', null, '/img/communityPic/16195800911601.jpg');
 INSERT INTO `community` VALUES ('75', 'b', '2', null, '6', '2021-04-28 11:23:16', null, '/img/communityPic/16195801966551.jpg');
 INSERT INTO `community` VALUES ('76', 'b', '2', null, '4', '2021-04-28 11:24:46', '1', '/img/communityPic/16195802864871.jpg');
+INSERT INTO `community` VALUES ('77', 'b', '2', null, '1', '2021-04-29 09:39:16', null, '/img/communityPic/16196603565770.jpg');
+INSERT INTO `community` VALUES ('78', 'b', '2', null, '3', '2021-04-29 10:24:06', null, '/img/communityPic/16196630465840.jpg');
+INSERT INTO `community` VALUES ('79', 'b', '2', null, '3', '2021-04-29 10:35:45', null, '/img/communityPic/16196637454741.jpg');
+INSERT INTO `community` VALUES ('80', 'b', '2', null, '2', '2021-04-29 10:48:07', null, '/img/communityPic/16196644874870.jpg');
+INSERT INTO `community` VALUES ('81', 'b', '2', null, '3', '2021-04-29 11:33:57', null, '/img/communityPic/16196672376080.jpg');
+INSERT INTO `community` VALUES ('82', 'b', '2', null, '0', '2021-04-29 14:03:33', null, '/img/communityPic/16196762137310.jpg');
+INSERT INTO `community` VALUES ('83', '333', '1', '/video/1619679191376weibo_dm_20210222_095908.mp4', '视频', '2021-04-29 14:53:11', null, null);
+INSERT INTO `community` VALUES ('84', 'b', '1', '/video/1619679861087weibo_dm_20210222_095908.mp4', '4', '2021-04-29 15:04:21', null, null);
+INSERT INTO `community` VALUES ('85', 'b', '1', '/video/1619679887902weibo_dm_20210222_095908.mp4', '3', '2021-04-29 15:04:47', null, null);
+INSERT INTO `community` VALUES ('86', 'b', '1', '/video/1619679979345WeChat_20210429092831.mp4', '5', '2021-04-29 15:06:19', null, null);
+INSERT INTO `community` VALUES ('87', 'b', '2', null, '图片', '2021-04-29 15:06:36', null, '/img/communityPic/16196799964180.jpg');
+INSERT INTO `community` VALUES ('88', 'b', '0', '/song/1619680012808张震岳 - 很难.mp3', '音乐', '2021-04-29 15:06:52', null, null);
 
 -- ----------------------------
 -- Table structure for community_up
