@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-20 09:33:13
- * @LastEditTime: 2021-04-29 17:59:51
+ * @LastEditTime: 2021-04-30 11:45:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Vue\mymusic\music\music-client\src\components\MyMusicContent.vue
@@ -12,7 +12,7 @@
       <slot name="title"></slot>
     </h4>
     <ul>
-      <li class="list_title">
+      <li class="list_title" flagid="0">
         <div class="song_item">
           <span class="item_index"></span>
           <!-- 歌曲名 -->
@@ -24,12 +24,12 @@
         </div>
       </li>
       <li
+        class="lis"
         v-for="(item, index) in songList"
         :key="index"
-        @click="changeActive(index)"
+        @click="changeActive($event)"
       >
         <div
-          :class="{ active_item: index == isActive }"
           class="song_item"
           @click="
             toPlay(
@@ -42,12 +42,9 @@
             )
           "
         >
-          <span class="item_index" v-if="index != isActive">{{
-            index + 1
-          }}</span>
+          <span class="item_index">{{ index + 1 }}</span>
           <i
             class="el-icon-video-play"
-            v-else
             style="font-size: 1.5em;height: 50px;width: 5%;color: #f36161;line-height: 50px;"
           ></i>
           <!-- 歌曲名 -->
@@ -72,49 +69,30 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      isActive: false
+      isActive: false,
+      clickNum: 0
     };
   },
 
   methods: {
-    changeActive(index) {
-      this.isActive = index;
+    changeActive(e) {
+      console.log(e.currentTarget);
+      let lis = document.querySelectorAll(".lis");
+      // var li = e.currentTarget.children[0];
+      for (var i = 0; i < lis.length; i++) {
+        // lis[i].onclick = () => {
+        lis[i].children[0].classList.add("active_item");
+        console.log("22", lis[i].children[0]);
+        // console.log(lis[i].parentNode);
+        let child = lis[i].parentNode.children;
+        for (let j = 0; j < child.length; j++) {
+          if (child[j] != lis[i]) {
+            child[j].children[0].classList.remove("active_item");
+          }
+          // }
+        }
+      }
     }
-    // clickHandle: function(e) {
-    //   console.log(this);
-    //   console.log("点击了...");
-    //   console.log(e.currentTarget); //e.currentTarget  表示绑定事件的元素
-    //   console.log(e.target); // e.target  表示当前点击的元素
-    //   var currentTarget = e.currentTarget;
-    //   console.log(currentTarget.getAttribute("flagid"));
-    //   var flagId = currentTarget.getAttribute("flagid");
-    //   console.log(flagId);
-
-    //   if (flagId == 0) {
-    //     //当前是未点击状态下的情况
-    //     var liList = document.querySelectorAll("li"); //获取列表项
-    //     console.log(liList.length);
-    //     //循环遍历列表，使列表项的flagID都置为初始化值：0
-    //     for (var i = 0; i < liList.length; i++) {
-    //       console.log(liList[i]);
-    //       liList[i].setAttribute("flagid", 0);
-    //       liList[i].setAttribute("class", " ");
-    //     }
-    //     flagId = 1;
-
-    //     currentTarget.setAttribute("flagid", flagId);
-
-    //     currentTarget.setAttribute("class", "changeBg"); //添加点击效果，原生JS动态添加class属性
-    //   }
-    //   // else{
-    //   //     //此时flagid = 1时，点击时对按钮的操作
-    //   //     flagId = 0;
-
-    //   //     currentTarget.setAttribute('flagid',flagId);  //原生JS动态修改flagID属性值
-
-    //   //     liList[i].setAttribute('class',' ');//不添加点击效果，原生JS动态添加属性class
-    //   // }
-    // }
   },
 
   components: {}
