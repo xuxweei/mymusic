@@ -37,15 +37,19 @@
   width: 100%;
 }
 
-.album_slide .info {
+.album_content .info {
+  display: flex;
+    position: relative;
     color: #000000;
     font-size: 16px;
     font-weight: 500;
     margin-top: -100px;
-    padding: 30px 80px 30px 100px;
+    /* margin-left: 350px; */
+    padding: 20px 80px 30px 0px;
+    width: 500px;
 }
 
-.album_slide .info li {
+.album_content .info li {
   width: 100%;
   height: 40px;
 }
@@ -62,12 +66,12 @@
 .album_content .intro h2{
     font-weight: 600;
     position: relative;
-    top: -70px;
+    top: -100px;
 }
 
-.album_content .intro span {
+.album_content .intro p {
   color: rgba(0, 0, 0, 0.5);
   position: relative;
-    top: -30px;
+  top: -20px;
 }
 

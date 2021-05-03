@@ -4,17 +4,18 @@
       <div class="singer_img">
         <img :src="attachImageUrl(singer.pic)" alt="">
       </div>
-      <ul class="info">
-        <li v-if="singer.sex==0||singer.sex==1||singer.sex==2">{{getSingerSex(singer.sex)}}</li>
-        <li v-if="singer.sex==0||singer.sex==1">生日:{{attachBirth(singer.singer_birth)}}</li>
-        <li v-else-if="singer.sex==2">出道日：{{attachBirth(singer.singer_birth)}}</li>
-        <li>地区：{{singer.singer_location}}</li>
-      </ul>
+      
     </div>
     <div class="album_content">
       <div class="intro">
         <h2>{{singer.name}}</h2>
-        <span>{{singer.singer_intro}}</span>
+        <ul class="info">
+        <li v-if="singer.sex==0||singer.sex==1||singer.sex==2" style="width:20%;">{{getSingerSex(singer.sex)}}</li>
+        <li v-if="singer.sex==0||singer.sex==1" style="width:70%;">生日:{{attachBirth(singer.singer_birth)}}</li>
+        <li v-else-if="singer.sex==2" style="width:70%;">出道日：{{attachBirth(singer.singer_birth)}}</li>
+        <li>地区：{{singer.singer_location}}</li>
+      </ul>
+        <p>{{singer.singer_intro}}</p>
       </div>
       <div class="content">
         <song-content :songList="listOfSongs" style="padding: 0px 20px 20px 0px;"></song-content>
