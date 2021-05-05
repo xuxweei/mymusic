@@ -1,0 +1,203 @@
+.content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 0px 40px;
+  min-width: 700px;
+}
+
+.content .title {
+  text-align: center;
+  font-size: 25px;
+}
+
+.community_left .community_content {
+  position: relative;
+  text-shadow: none;
+}
+
+.community_content .community_list {
+  position: relative;
+  width: 100%;
+}
+
+.community_content .community_list .community_list_item {
+  border-color: #e8e8e9;
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 1px solid #a4a4a4;
+  width: 100%;
+}
+
+.community_list .community_list_item:first-child {
+  border-top: none;
+}
+
+.community_list .community_list_item .list_face {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 54px;
+}
+
+.community_list .community_list_item .list_face a {
+  float: left;
+  position: relative;
+  zoom: 1;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.community_list .community_list_item .list_face a img {
+  display: block;
+  width: 100%;
+}
+
+.community_list .community_list_item .list_face a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.list_content {
+  position: relative;
+  zoom: 1;
+  margin-left: 55px;
+  padding-top: 4px;
+}
+
+.list_content .list_name {
+  font-size: 14px;
+  position: relative;
+  left: 14px;
+}
+
+.list_content .list_txt {
+  font-size: 14px;
+  position: relative;
+  left: 14px;
+}
+
+.community_list .community_list_item .list_content .list_name a {
+  color: #0c73c2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.list_content .list_name a:hover {
+  text-decoration: underline;
+}
+
+.list_source_img {
+  width: 200px;
+  height: 200px;
+}
+
+.list_source_img img {
+  width: 100%;
+}
+
+.song_box {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+  height: 50px;
+  padding: 0 5px 10px;
+}
+
+.song_box .song_wrapper {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  justify-content: start;
+  padding: 0 4%;
+  border-radius: 5px;
+  position: relative;
+}
+
+.song_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.play {
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  top: 0px;
+  left: 45px;
+}
+
+.song_name {
+  position: absolute;
+  width: 200px;
+  top: 15px;
+  left: 105px;
+}
+
+.icon {
+  width: 2em;
+  height: 2em;
+  color: rgba(255, 255, 255, 0.75);
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.list_up {
+  line-height: 30px;
+  position: relative;
+  top: 10px;
+  height: 30px;
+}
+
+.up {
+  width: 50px;
+  line-height: 30px;
+  position: absolute;
+  right: 60px;
+  height: 30px;
+}
+
+.uptxt {
+  position: absolute;
+  top: -2px;
+  left: 18px;
+}
+
+.icon_dianz {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  color: #000000;
+  fill: currentColor;
+  overflow: hidden;
+  position: relative;
+}
+
+.active_icon {
+  color: #f36161;
+}
+
+.delete_btn {
+  position: absolute;
+  right: 50px;
+  top: 0;
+}
