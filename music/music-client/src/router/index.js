@@ -13,6 +13,7 @@ import LoginIn from '../pages/LoginIn.vue'
 import Setting from '../pages/Setting.vue'
 import SingerAlbum from '../pages/SingerAlbum.vue'
 import SongListAlbum from '../pages/SongListAlbum.vue'
+import CommunityAlbum from '../pages/CommunityAlbum.vue'
 import PlayMV from '../pages/PlayMV.vue'
 Vue.use(Router)
 //获取原型对象上的push函数
@@ -97,6 +98,11 @@ export default new Router({
     path: '/playmv',
     name: 'PlayMV',
     component: PlayMV
+  },
+  {
+    path: '/communityAlbum/:username',
+    name: 'CommunityAlbum',
+    component: CommunityAlbum
   },
   ],
   //轮播

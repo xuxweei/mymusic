@@ -23,15 +23,8 @@
           <span class="item_intro">专辑</span>
         </div>
       </li>
-      <li
-        class="lis"
-        v-for="(item, index) in songList"
-        :key="index"
-        @click="changeActive($event)"
-      >
-        <div
-          class="song_item"
-          @click="
+      <li class="lis" v-for="(item, index) in songList" :key="index" @click="changeActive(index)">
+        <div :class="{active_item:index===getIndex}" class="song_item" @click="
             toPlay(
               item.id,
               item.url,
@@ -40,13 +33,10 @@
               item.song_name,
               item.lyric
             )
-          "
-        >
+          ">
           <span class="item_index">{{ index + 1 }}</span>
-          <i
-            class="el-icon-video-play"
-            style="font-size: 1.5em;height: 50px;width: 5%;color: #f36161;line-height: 50px;"
-          ></i>
+          <!-- <i class="el-icon-video-play"
+            style="font-size: 1.5em;height: 50px;width: 5%;color: #f36161;line-height: 50px;"></i> -->
           <!-- 歌曲名 -->
           <span class="item_title">{{
             replaceLatterName(item.song_name)
@@ -62,43 +52,32 @@
 </template>
 
 <script>
-import { mixin } from "../mixins/index";
-export default {
-  name: "myMusicContent",
-  props: ["songList"],
-  mixins: [mixin],
-  data() {
-    return {
-      isActive: false,
-      clickNum: 0
-    };
-  },
+  import {
+    mixin
+  } from "../mixins/index";
+  export default {
+    name: "myMusicContent",
+    props: ["songList"],
+    mixins: [mixin],
+    data() {
+      return {
+        isActive: true,
+        getIndex: "",
+      };
+    },
 
-  methods: {
-    changeActive(e) {
-      console.log(e.currentTarget);
-      let lis = document.querySelectorAll(".lis");
-      // var li = e.currentTarget.children[0];
-      for (var i = 0; i < lis.length; i++) {
-        // lis[i].onclick = () => {
-        lis[i].children[0].classList.add("active_item");
-        console.log("22", lis[i].children[0]);
-        // console.log(lis[i].parentNode);
-        let child = lis[i].parentNode.children;
-        for (let j = 0; j < child.length; j++) {
-          if (child[j] != lis[i]) {
-            child[j].children[0].classList.remove("active_item");
-          }
-          // }
-        }
+    methods: {
+      changeActive: function (index) {
+        this.getIndex = index;
       }
-    }
-  },
+    },
 
-  components: {}
-};
+    components: {}
+  };
+
 </script>
 
 <style scoped>
-@import "../assets/css/songcontent.css";
+  @import "../assets/css/songcontent.css";
+
 </style>

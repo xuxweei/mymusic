@@ -63,6 +63,7 @@
   width: 70px;
   height: 70px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .user_info_box .face img {
@@ -72,6 +73,7 @@
   padding: 2px;
   background: #fff;
   border: 1px solid #dadada;
+  cursor: pointer;
 }
 
 .user_info_box h5 {

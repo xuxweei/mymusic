@@ -348,8 +348,26 @@ public class CommunityController {
      */
     @GetMapping(value = "/communityOfUsername")
     public Object communityOfUsername(HttpServletRequest request) {
+        List<Object> list2 = new ArrayList<>();
+
         String name = request.getParameter("name");
-        return communityService.selectByUsername(name);
+        for (Community m : communityService.selectByUsername(name)) {
+            for (Consumer e : consumerService.consumerByName(m.getName())) {
+                m.setUserpic(e.getUserpic());
+                m.setUserid(e.getId());
+            }
+            if (m.getUrl() != null && m.getType() == 0) {
+                String sname = m.getUrl().substring(m.getUrl().lastIndexOf('/'));
+                String song_name = sname.substring(14, sname.lastIndexOf(".")).replace(" ", "");
+                System.out.println(song_name);
+                for (Song s : songService.songOfSongName(song_name)) {
+                    m.setSongpic(s.getSong_pic());
+                    m.setLyric(s.getLyric());
+                }
+            }
+            list2.add(m);
+        }
+        return list2;
     }
 
     /**

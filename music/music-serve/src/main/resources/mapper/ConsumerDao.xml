@@ -53,7 +53,7 @@
     </select>
     <select id="consumerByName" resultType="com.xuwei.music.entity.Consumer">
         select
-        userpic
+        userpic,id
         from consumer
         where username = #{username,jdbcType=VARCHAR}
     </select>
