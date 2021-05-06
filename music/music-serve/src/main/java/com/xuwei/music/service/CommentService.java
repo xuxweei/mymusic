@@ -52,14 +52,6 @@ public interface CommentService {
     List<Comment> allComment();
 
     /**
-     * 查询某一首歌的评论
-     *
-     * @param songId
-     * @return
-     */
-    List<Comment> commentOfSongID(Integer songId);
-
-    /**
      * 查询某歌单的评论
      *
      * @param songListId

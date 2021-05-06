@@ -106,15 +106,4 @@ public class CollectServiceImpl implements CollectService {
         return collectDao.existSongId(user_id, song_id) > 0 ? true : false;
     }
 
-    /**
-     * 查询某个用户是否已经收藏了某个歌单
-     *
-     * @param user_id
-     * @param songlist_id
-     * @return
-     */
-    @Override
-    public boolean existSongListId(Integer user_id, Integer songlist_id) {
-        return collectDao.existSongListId(user_id, songlist_id) > 0 ? true : false;
-    }
 }

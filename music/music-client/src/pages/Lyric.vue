@@ -55,7 +55,7 @@ export default {
     this.bgimg = {
       backgroundImage: "url(" + this.pic + ")",
       backgroundRepeat: "no-repeat",
-      backgroundSize: "70% 120%",
+      backgroundSize: "100% 120%",
       backgroundPosition: "center"
     };
   },

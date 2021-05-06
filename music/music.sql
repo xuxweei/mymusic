@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localmusic
-Source Server Version : 50730
+Source Server Version : 50725
 Source Host           : localhost:3306
 Source Database       : music
 
 Target Server Type    : MYSQL
-Target Server Version : 50730
+Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2021-04-29 18:03:10
+Date: 2021-05-07 00:57:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,34 +40,34 @@ CREATE TABLE `collect` (
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `type` int(1) DEFAULT NULL COMMENT '收藏类型（0歌曲1歌单）',
   `song_id` int(11) DEFAULT NULL COMMENT '歌曲id',
-  `songlist_id` int(11) DEFAULT NULL COMMENT '歌单id',
   `create_time` datetime DEFAULT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='收藏';
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='收藏';
 
 -- ----------------------------
 -- Records of collect
 -- ----------------------------
-INSERT INTO `collect` VALUES ('1', '17', '0', '36', null, '2021-02-23 00:01:14');
-INSERT INTO `collect` VALUES ('2', '17', '0', '24', null, '2021-02-23 00:13:38');
-INSERT INTO `collect` VALUES ('4', '17', '0', '29', null, '2021-02-23 14:24:48');
-INSERT INTO `collect` VALUES ('5', '17', '0', '13', null, '2021-02-23 14:33:13');
-INSERT INTO `collect` VALUES ('7', '17', '0', '37', null, '2021-02-23 14:42:56');
-INSERT INTO `collect` VALUES ('9', '18', '0', '15', null, '2021-02-23 14:57:54');
-INSERT INTO `collect` VALUES ('11', '18', '0', '20', null, '2021-02-23 15:39:39');
-INSERT INTO `collect` VALUES ('16', '17', '0', '19', null, '2021-02-23 15:51:37');
-INSERT INTO `collect` VALUES ('17', '17', '0', '15', null, '2021-02-23 15:52:09');
-INSERT INTO `collect` VALUES ('18', '17', '0', '39', null, '2021-02-23 15:58:16');
-INSERT INTO `collect` VALUES ('19', '17', '0', '4', null, '2021-02-23 16:20:25');
-INSERT INTO `collect` VALUES ('21', '1', '0', '12', null, '2021-02-23 16:38:18');
-INSERT INTO `collect` VALUES ('24', '1', '0', '15', null, '2021-02-23 22:19:09');
-INSERT INTO `collect` VALUES ('25', '1', '0', '25', null, '2021-02-23 22:20:10');
-INSERT INTO `collect` VALUES ('26', '1', '0', '26', null, '2021-02-23 22:22:27');
-INSERT INTO `collect` VALUES ('27', '1', '0', '23', null, '2021-02-23 22:25:00');
-INSERT INTO `collect` VALUES ('28', '1', '0', '40', null, '2021-02-23 22:55:30');
-INSERT INTO `collect` VALUES ('29', '1', '0', '13', null, '2021-03-14 21:15:51');
-INSERT INTO `collect` VALUES ('30', '1', '0', '14', null, '2021-03-14 21:24:18');
-INSERT INTO `collect` VALUES ('31', '19', '0', '20', null, '2021-03-30 20:46:17');
+INSERT INTO `collect` VALUES ('4', '17', '0', '29', '2021-02-23 14:24:48');
+INSERT INTO `collect` VALUES ('5', '17', '0', '13', '2021-02-23 14:33:13');
+INSERT INTO `collect` VALUES ('7', '17', '0', '37', '2021-02-23 14:42:56');
+INSERT INTO `collect` VALUES ('9', '18', '0', '15', '2021-02-23 14:57:54');
+INSERT INTO `collect` VALUES ('11', '18', '0', '20', '2021-02-23 15:39:39');
+INSERT INTO `collect` VALUES ('16', '17', '0', '19', '2021-02-23 15:51:37');
+INSERT INTO `collect` VALUES ('17', '17', '0', '15', '2021-02-23 15:52:09');
+INSERT INTO `collect` VALUES ('18', '17', '0', '39', '2021-02-23 15:58:16');
+INSERT INTO `collect` VALUES ('19', '17', '0', '4', '2021-02-23 16:20:25');
+INSERT INTO `collect` VALUES ('21', '1', '0', '12', '2021-02-23 16:38:18');
+INSERT INTO `collect` VALUES ('24', '1', '0', '15', '2021-02-23 22:19:09');
+INSERT INTO `collect` VALUES ('25', '1', '0', '25', '2021-02-23 22:20:10');
+INSERT INTO `collect` VALUES ('26', '1', '0', '26', '2021-02-23 22:22:27');
+INSERT INTO `collect` VALUES ('27', '1', '0', '23', '2021-02-23 22:25:00');
+INSERT INTO `collect` VALUES ('28', '1', '0', '40', '2021-02-23 22:55:30');
+INSERT INTO `collect` VALUES ('29', '1', '0', '13', '2021-03-14 21:15:51');
+INSERT INTO `collect` VALUES ('30', '1', '0', '14', '2021-03-14 21:24:18');
+INSERT INTO `collect` VALUES ('31', '19', '0', '20', '2021-03-30 20:46:17');
+INSERT INTO `collect` VALUES ('32', '17', '0', '27', '2021-05-06 17:14:36');
+INSERT INTO `collect` VALUES ('34', '17', '0', '24', '2021-05-06 20:37:34');
+INSERT INTO `collect` VALUES ('36', '17', '0', '36', '2021-05-06 20:37:58');
 
 -- ----------------------------
 -- Table structure for comment
@@ -76,46 +76,29 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `type` int(1) DEFAULT NULL COMMENT '评论类型（0歌曲1歌单2动态）',
-  `song_id` int(11) DEFAULT NULL COMMENT '评论歌曲id',
+  `type` int(1) DEFAULT NULL COMMENT '评论类型（1歌单2动态）',
   `songlist_id` int(11) DEFAULT NULL COMMENT '评论歌单id',
   `community_id` int(11) DEFAULT NULL COMMENT '动态id',
   `create_time` datetime DEFAULT NULL COMMENT '评论时间',
   `content` varchar(255) DEFAULT NULL COMMENT '评论内容',
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='评论';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='评论';
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES ('1', '17', '1', null, '3', null, '2021-02-18 14:39:00', 'good', '63');
-INSERT INTO `comment` VALUES ('2', '17', '1', null, '3', null, '2021-02-18 15:03:07', '非常好', '27');
-INSERT INTO `comment` VALUES ('3', '17', '1', null, '3', null, '2021-02-18 15:13:39', '11', '15');
-INSERT INTO `comment` VALUES ('4', '17', '1', null, '1', null, '2021-02-18 16:45:29', '不错', '1');
-INSERT INTO `comment` VALUES ('5', '17', '1', null, '6', null, '2021-02-18 16:52:04', '好听', '15');
-INSERT INTO `comment` VALUES ('6', '18', '2', null, null, '5', '2021-04-27 16:52:04', '111', null);
-INSERT INTO `comment` VALUES ('7', '18', '1', null, '3', null, '2021-04-27 23:23:14', 'v', null);
-INSERT INTO `comment` VALUES ('8', '18', '2', null, null, '1', '2021-04-27 23:31:00', 'b', '0');
-INSERT INTO `comment` VALUES ('9', '18', '2', null, null, '5', '2021-04-28 10:27:36', '45', null);
-
--- ----------------------------
--- Table structure for comment_son
--- ----------------------------
-DROP TABLE IF EXISTS `comment_son`;
-CREATE TABLE `comment_son` (
-  `id` int(11) NOT NULL COMMENT '主键',
-  `user_id` int(11) DEFAULT NULL COMMENT '评论者id',
-  `to_id` int(11) DEFAULT NULL COMMENT '被评论者id',
-  `up` int(11) DEFAULT NULL COMMENT '点赞数',
-  `content` varchar(255) DEFAULT NULL COMMENT '评论内容',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of comment_son
--- ----------------------------
+INSERT INTO `comment` VALUES ('1', '17', '1', '3', null, '2021-02-18 14:39:00', 'good', '63');
+INSERT INTO `comment` VALUES ('2', '17', '1', '3', null, '2021-02-18 15:03:07', '非常好', '27');
+INSERT INTO `comment` VALUES ('3', '17', '1', '3', null, '2021-02-18 15:13:39', '11', '15');
+INSERT INTO `comment` VALUES ('4', '17', '1', '1', null, '2021-02-18 16:45:29', '不错', '1');
+INSERT INTO `comment` VALUES ('5', '17', '1', '6', null, '2021-02-18 16:52:04', '好听', '15');
+INSERT INTO `comment` VALUES ('6', '18', '2', null, '5', '2021-04-27 16:52:04', '111', null);
+INSERT INTO `comment` VALUES ('7', '18', '1', '3', null, '2021-04-27 23:23:14', 'v', null);
+INSERT INTO `comment` VALUES ('8', '18', '2', null, '1', '2021-04-27 23:31:00', 'b', '0');
+INSERT INTO `comment` VALUES ('9', '18', '2', null, '5', '2021-04-28 10:27:36', '45', null);
+INSERT INTO `comment` VALUES ('10', '17', '1', '8', null, '2021-05-06 17:14:14', '2', null);
+INSERT INTO `comment` VALUES ('11', '17', '2', null, '5', '2021-05-06 17:16:42', '3', null);
 
 -- ----------------------------
 -- Table structure for community
@@ -150,12 +133,8 @@ INSERT INTO `community` VALUES ('54', '333', '2', 'undefined', null, '2021-04-18
 INSERT INTO `community` VALUES ('60', '333', '2', 'undefined', null, '2021-04-18 23:06:11', '2', '/img/communityPic/1618758381400T001R300x300M0000007sHCz2lllqK.jpg');
 INSERT INTO `community` VALUES ('66', '333', '2', null, '789', '2021-04-26 10:28:57', null, '/img/communityPic/16194041372141.jpg');
 INSERT INTO `community` VALUES ('67', '333', '2', null, '4', '2021-04-26 17:43:51', null, '/img/communityPic/16194302311201.jpg');
-INSERT INTO `community` VALUES ('68', 'b', '2', null, '098', '2021-04-26 17:45:31', null, '/img/communityPic/16194303317371.jpg');
 INSERT INTO `community` VALUES ('69', 'b', '2', null, '123', '2021-04-26 18:12:13', null, '/img/communityPic/16194319334331.jpg');
-INSERT INTO `community` VALUES ('70', 'b', '2', null, '456', '2021-04-26 18:23:26', null, '/img/communityPic/16194326060031.jpg');
-INSERT INTO `community` VALUES ('71', 'b', '2', null, '456', '2021-04-26 18:25:53', null, '/img/communityPic/16194327538061.jpg');
 INSERT INTO `community` VALUES ('72', 'b', '2', null, '456', '2021-04-26 18:28:01', null, '/img/communityPic/16194328814271.jpg');
-INSERT INTO `community` VALUES ('74', 'b', '2', null, '5', '2021-04-28 11:21:31', null, '/img/communityPic/16195800911601.jpg');
 INSERT INTO `community` VALUES ('75', 'b', '2', null, '6', '2021-04-28 11:23:16', null, '/img/communityPic/16195801966551.jpg');
 INSERT INTO `community` VALUES ('76', 'b', '2', null, '4', '2021-04-28 11:24:46', '1', '/img/communityPic/16195802864871.jpg');
 INSERT INTO `community` VALUES ('77', 'b', '2', null, '1', '2021-04-29 09:39:16', null, '/img/communityPic/16196603565770.jpg');
@@ -295,7 +274,7 @@ CREATE TABLE `rank` (
   `score` int(11) DEFAULT NULL COMMENT '评分',
   PRIMARY KEY (`id`),
   UNIQUE KEY `consumer_id` (`songlist_id`,`consumer_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='评价';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='评价';
 
 -- ----------------------------
 -- Records of rank
@@ -303,6 +282,7 @@ CREATE TABLE `rank` (
 INSERT INTO `rank` VALUES ('1', '6', '18', '7');
 INSERT INTO `rank` VALUES ('2', '6', '17', '10');
 INSERT INTO `rank` VALUES ('3', '1', '1', '5');
+INSERT INTO `rank` VALUES ('4', '3', '17', '10');
 
 -- ----------------------------
 -- Table structure for singer

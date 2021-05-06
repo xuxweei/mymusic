@@ -66,11 +66,7 @@
         </div>
         <!-- 收藏 -->
         <div class="item" @click="collection">
-          <!-- <svg class="icon" :class="{active:isCollect}" v-if="isCollect">
-            <use xlink:href="#icon-xihuan1"></use>
-          </svg>  -->
           <svg class="icon">
-            <!--  :class="{active:isCollect}" -->
             <use :xlink:href="collectBtn"></use>
           </svg>
         </div>
@@ -98,7 +94,8 @@
   import {
     download,
     setCollect,
-    getCollectOfUserId
+    getCollectOfUserId,
+    cancelCollection
   } from '../api/index'
   export default {
     name: 'PlayBar',
@@ -151,13 +148,7 @@
           this.$store.commit('setPlayBtn', '#icon-bofang1');
         }
       },
-      // isCollect(val) {
-      //   if (val) {
-      //     this.$store.commit('setCollectBtn', '#icon-xihuan1');
-      //   } else {
-      //     this.$store.commit('setCollectBtn', '#icon-xihuan');
-      //   }
-      // },
+
       // 当前时间
       currentTime() {
         this.nowTime = this.formatTime(this.currentTime);
@@ -440,6 +431,7 @@
           // }
           params.append('type', 0)
           setCollect(params).then(res => {
+            console.log(res);
             if (res.code == 1) {
               // if (!this.isCollect) {
               // this.$store.commit('setIsCollect', true)
@@ -448,7 +440,14 @@
               // }
               this.notify('收藏成功', 'success')
             } else if (res.code == 2) {
-              this.notify('已收藏', 'warning')
+              cancelCollection(this.userId, this.id).then(rs => {
+                console.log(rs);
+                this.notify('取消收藏', 'warning')
+                this.$store.commit('setCollectBtn', '#icon-xihuan')
+                this.$store.commit('setIsCollect', false)
+              })
+
+
             } else {
               this.notify('收藏失败', 'error')
             }

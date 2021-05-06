@@ -66,10 +66,4 @@ public interface CollectService {
      */
     boolean existSongId(@Param("user_id")Integer user_id, @Param("song_id")Integer song_id);
 
-    /**
-     * 查询某个用户是否已经收藏了某个歌单
-     * @param songlist_id
-     * @return
-     */
-    boolean existSongListId(@Param("user_id")Integer user_id,@Param("songlist_id")Integer songlist_id);
 }

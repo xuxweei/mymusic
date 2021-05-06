@@ -27,10 +27,6 @@ public class Collect implements Serializable {
      */
     private Integer song_id;
 
-    /**
-     * 歌单id
-     */
-    private Integer songlist_id;
 
     /**
      * 收藏时间
@@ -67,14 +63,6 @@ public class Collect implements Serializable {
 
     public void setSong_id(Integer song_id) {
         this.song_id = song_id;
-    }
-
-    public Integer getSonglist_id() {
-        return songlist_id;
-    }
-
-    public void setSonglist_id(Integer songlist_id) {
-        this.songlist_id = songlist_id;
     }
 
     public Date getCreate_time() {

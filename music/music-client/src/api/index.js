@@ -78,9 +78,7 @@ export const addComment = (params) => post('/comment/add', params)
 export const setLike = (params) => post('/comment/like', params)
 // 返回当前歌单或歌曲的评论列表
 export const getAllComment = (type, id, uid) => {
-  if (type == 0) {
-    return get(`/comment/commentOfSongId?song_id=${id}`) //歌曲
-  } else if(type == 1) {
+  if (type == 1) {
     return get(`/comment/commentOfSongListId?songlist_id=${id}&consumer_id=${uid}`) //歌单
   }else if(type == 2){
     return get(`/comment/commentOfCommunityID?community_id=${id}&consumer_id=${uid}`)
@@ -97,6 +95,8 @@ export const getLike = (uid, cid) => get(`/up/getLikedById?uid=${uid}&cid=${cid}
 export const setCollect = (params) => post(`/collect/add`, params)
 // 指定用户的收藏列表
 export const getCollectOfUserId = (userId) => get(`/collect/collectOfUserId?user_id=${userId}`)
+//取消收藏
+export const cancelCollection = (userId,songId) =>get(`/collect/deleteByUserIdAndSongId?user_id=${userId}&song_id=${songId}`)
 // ==================社区=====================
 //添加动态
 export const addCommunity = (params) => post(`community/add`, params);

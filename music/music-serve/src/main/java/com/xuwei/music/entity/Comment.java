@@ -23,11 +23,6 @@ public class Comment implements Serializable {
     private Integer type;
 
     /**
-     * 评论歌曲id
-     */
-    private Integer song_id;
-
-    /**
      * 评论歌单id
      */
     private Integer songlist_id;
@@ -84,14 +79,6 @@ public class Comment implements Serializable {
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    public Integer getSong_id() {
-        return song_id;
-    }
-
-    public void setSong_id(Integer song_id) {
-        this.song_id = song_id;
     }
 
     public Integer getSonglist_id() {

@@ -6,11 +6,10 @@
         <result column="user_id" jdbcType="INTEGER" property="user_id"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="song_id" jdbcType="INTEGER" property="song_id"/>
-        <result column="songlist_id" jdbcType="INTEGER" property="songlist_id"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_id, `type`, song_id, songlist_id, create_time
+    id, user_id, `type`, song_id, create_time
   </sql>
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -34,13 +33,6 @@
     from collect
     where user_id=#{user_id,jdbcType=INTEGER} and song_id=#{song_id,jdbcType=INTEGER}
   </select>
-  <select id="existSongListId" resultType="java.lang.Integer" >
-    select
-    count(*)
-    from collect
-    where user_id=#{user_id,jdbcType=INTEGER} and songlist_id=#{songlist_id,jdbcType=INTEGER}
-  </select>
-
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from collect
     where id = #{id,jdbcType=INTEGER}
@@ -51,10 +43,9 @@
   </delete>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Collect"
             useGeneratedKeys="true">
-    insert into collect (user_id, `type`, song_id, 
-      songlist_id, create_time)
-    values (#{user_id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{song_id,jdbcType=INTEGER}, 
-      #{songlist_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP})
+    insert into collect (user_id, `type`, song_id
+     , create_time)
+    values (#{user_id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{song_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xuwei.music.entity.Collect"
             useGeneratedKeys="true">
@@ -69,9 +60,7 @@
             <if test="song_id != null">
                 song_id,
             </if>
-            <if test="songlist_id != null">
-                songlist_id,
-            </if>
+
                 create_time,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -84,9 +73,7 @@
             <if test="song_id != null">
                 #{song_id,jdbcType=INTEGER},
             </if>
-            <if test="songlist_id != null">
-                #{songlist_id,jdbcType=INTEGER},
-            </if>
+
             now()
         </trim>
     </insert>
@@ -102,9 +89,7 @@
             <if test="song_id != null">
                 song_id = #{song_id,jdbcType=INTEGER},
             </if>
-            <if test="songlist_id != null">
-                songlist_id = #{songlist_id,jdbcType=INTEGER},
-            </if>
+
             <if test="create_time != null">
                 create_time = #{create_time,jdbcType=TIMESTAMP},
             </if>
@@ -116,7 +101,6 @@
     set user_id = #{user_id,jdbcType=INTEGER},
       `type` = #{type,jdbcType=INTEGER},
       song_id = #{song_id,jdbcType=INTEGER},
-      songlist_id = #{songlist_id,jdbcType=INTEGER},
       create_time = #{create_time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

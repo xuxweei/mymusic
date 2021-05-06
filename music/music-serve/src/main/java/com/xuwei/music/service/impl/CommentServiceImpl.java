@@ -80,16 +80,6 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.allComment();
     }
 
-    /**
-     * 查询某一首歌的评论
-     *
-     * @param songId
-     * @return
-     */
-    @Override
-    public List<Comment> commentOfSongID(Integer songId) {
-        return commentDao.commentOfSongID(songId);
-    }
 
     /**
      * 查询某歌单的评论
