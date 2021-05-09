@@ -34,7 +34,7 @@ const song = ({
     //当前歌曲在歌单中的位置
     listIndex:null,
     //音量
-    volume:10
+    volume:100
   },
   getters: {
     listOfSongs:state =>{

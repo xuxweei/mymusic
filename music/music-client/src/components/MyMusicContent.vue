@@ -69,6 +69,7 @@
     methods: {
       changeActive: function (index) {
         this.getIndex = index;
+        this.$store.commit("setListOfSongs", this.songList);
       }
     },
 

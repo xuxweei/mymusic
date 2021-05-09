@@ -7,6 +7,7 @@ import mv from './mv'
 Vue.use(Vuex)
 //存放缓存数据
 const store = new Vuex.Store({
+  //将 store 分割成模块
   modules:{
       config,
       user,

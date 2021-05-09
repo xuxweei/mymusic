@@ -31,7 +31,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import { mixin } from '../mixins/index';
 export default {
     name:'songlistalbumContent',

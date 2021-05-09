@@ -26,7 +26,7 @@ public class ListSongController {
     public Object deleteById(HttpServletRequest request) {
         String song_id = request.getParameter("song_id");
         String songlist_id = request.getParameter("songlist_id");
-        return listSongService.deleteBySongIdAndSongListId(Integer.parseInt(song_id),Integer.parseInt(songlist_id));
+        return listSongService.deleteBySongIdAndSongListId(Integer.parseInt(song_id), Integer.parseInt(songlist_id));
 
     }
 

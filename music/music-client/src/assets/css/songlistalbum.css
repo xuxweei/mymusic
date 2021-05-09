@@ -107,3 +107,8 @@
   padding: 0 0 50px 0;
   min-width: 700px;
 }
+
+.btn{
+  width: 120px;
+  height: 42px;
+}

@@ -33,6 +33,7 @@ export default {
   methods:{
     reload(){
       this.isRouterAlive = false;
+      //将回调延迟到下次DOM更新循环之后执行
       this.$nextTick(function(){
         this.isRouterAlive = true
       })

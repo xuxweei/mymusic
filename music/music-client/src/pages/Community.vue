@@ -10,7 +10,7 @@
         <div class="community_content">
           <ul class="community_list">
             <li class="community_list_item" v-for="(val, index) in data" :key="index">
-              <div class="list_face" @click="goCommunity(val.name)">
+              <div class="list_face" @click="goCommunityOther(val.name)">
                 <a>
                   <img :src="attachImageUrl(val.userpic)" />
                 </a>
@@ -182,12 +182,10 @@
 <script>
   import {
     getAllCommunity,
-    addCommunity,
     getConsumerById,
     addCommunityWithUrl,
     communityLike,
     likeThis,
-    getLiked
   } from "../api/index";
   import {
     mapGetters
@@ -512,6 +510,15 @@
       goCommunity(uname) {
         this.$router.push({
           path: `communityAlbum/${uname}`,
+          query: {
+            usname: uname
+          }
+        });
+
+      },
+      goCommunityOther(uname) {
+        this.$router.push({
+          path: `communityAlbumOther/${uname}`,
           query: {
             usname: uname
           }

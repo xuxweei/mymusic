@@ -14,7 +14,9 @@ import Setting from '../pages/Setting.vue'
 import SingerAlbum from '../pages/SingerAlbum.vue'
 import SongListAlbum from '../pages/SongListAlbum.vue'
 import CommunityAlbum from '../pages/CommunityAlbum.vue'
+import CommunityAlbumOther from '../pages/CommunityAlbumOther.vue'
 import PlayMV from '../pages/PlayMV.vue'
+// 注册router
 Vue.use(Router)
 //获取原型对象上的push函数
 const originalPush = Router.prototype.push
@@ -103,6 +105,11 @@ export default new Router({
     path: '/communityAlbum/:username',
     name: 'CommunityAlbum',
     component: CommunityAlbum
+  },
+  {
+    path: '/communityAlbumOther/:username',
+    name: 'CommunityAlbumOther',
+    component: CommunityAlbumOther
   },
   ],
   //轮播

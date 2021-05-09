@@ -133,11 +133,6 @@ export default {
     );
   },
   methods: {
-    // open() {
-    //   this.$alert('<strong>这是 弹窗</strong>', '弹窗', {
-    //     dangerouslyUseHTMLString: true
-    //   });
-    // },
     //提示信息
     notify(title, type) {
       this.$notify({

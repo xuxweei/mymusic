@@ -50,6 +50,7 @@ Vue.config.productionTip = false
 // 使用组件
 Vue.use(ElementUI)
 /* eslint-disable no-new */
+//注入到根实例中
 new Vue({
   el: '#app',
   router,

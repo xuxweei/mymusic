@@ -44,6 +44,7 @@ public class ConsumerController {
     public Object addConsumerInfo(HttpServletRequest request) {
         //返回json数据
         JSONObject jsonObject = new JSONObject();
+        //获取通过http协议提交过来的数据
         String username = request.getParameter("username").trim(); //姓名
         String password = request.getParameter("password").trim(); //密码
         String sex = request.getParameter("sex").trim(); //性别

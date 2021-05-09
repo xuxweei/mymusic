@@ -63,7 +63,7 @@ public class CommunityUpController {
     }
 
     /**
-     * 点赞
+     * 获取用户点赞
      */
     @GetMapping(value = "/getLiked")
     public Object getLiked(HttpServletRequest request) {

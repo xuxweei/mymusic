@@ -1,6 +1,5 @@
 <template>
   <div class="login_container">
-    <!-- <login-logo></login-logo> -->
     <div class="login">
       <div class="login_head">
         <span>用户登录</span>

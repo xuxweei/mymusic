@@ -70,6 +70,8 @@ export const updateUserMsg = (params) => post(`consumer/update`, params)
 export const addRank = (params) => post(`/rank/add`, params)
 //获取指定歌单的评分
 export const getRankOfSongListID = (songlist_id) => get(`/rank/average?songlist_id=${songlist_id}`)
+//获取分数人数
+export const rankNum = (songlist_id)=>get(`/rank/rankNum?songlist_id=${songlist_id}`)
 
 //==================评论=====================
 // 新增评论

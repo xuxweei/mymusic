@@ -51,4 +51,13 @@ public class RankController {
         String songlist_id = request.getParameter("songlist_id").trim();
         return rankService.rankOfSongListId(Integer.parseInt(songlist_id));
     }
+
+    /**
+     * 查总评分人数
+     */
+    @GetMapping(value = "/rankNum")
+    public Object selectRankNum(HttpServletRequest request){
+        String songlist_id = request.getParameter("songlist_id").trim();
+        return rankService.selectRankNum(Integer.parseInt(songlist_id));
+    }
 }

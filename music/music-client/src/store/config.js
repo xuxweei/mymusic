@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 //存放缓存数据
 const config = ({
+ //对数据的全局存储
   state: {
     //后台访问地址根目录
     HOST: 'http://localhost:8888',
@@ -17,6 +18,7 @@ const config = ({
     isCollect: false,
     collectBtn: '#icon-xihuan',
   },
+  //对数据进行计算
   getters: {
     activeName: state => {
       let activeName = state.activeName;
@@ -54,6 +56,7 @@ const config = ({
       return collectBtn;
     },
   },
+  //对数据的同步更改
   mutations: {
     setActiveName: (state, activeName) => {
       state.activeName = activeName;

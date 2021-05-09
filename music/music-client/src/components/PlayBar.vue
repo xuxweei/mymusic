@@ -114,7 +114,7 @@
         //拖拽开始结束的标志，当开始拖拽时，它的值才会变成true
         tag: false,
         //音量 默认10
-        volume: 10,
+        volume: 100,
         //显示隐藏播放器页面
         toggle: true
       }
@@ -242,8 +242,12 @@
         }
         if (this.tag) {
           //滑块移动的距离
+          // clientX点击位置距离当前body可视区域的x坐标
           let movementX = e.clientX - this.mouseStartX;
+          // 现在进度条的距离
+          // getBoundingClientRect获取某个元素相对于视窗的位置集合
           let currentLength = this.$refs.cur_progress.getBoundingClientRect().width;
+          // 总的进度条长度
           this.progressLength = this.$refs.progress.getBoundingClientRect().width
           let newPercent = ((movementX + currentLength) / this.progressLength) * 100;
           if (newPercent > 100) {
