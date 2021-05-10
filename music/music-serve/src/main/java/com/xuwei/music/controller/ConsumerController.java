@@ -145,7 +145,7 @@ public class ConsumerController {
         Consumer consumer = new Consumer();
         consumer.setId(Integer.parseInt(id));
         consumer.setUsername(username);
-        consumer.setPassword(username);
+        consumer.setPassword(password);
         consumer.setSex(new Integer(sex));
         consumer.setPhone_num(phone_num);
         consumer.setEmail(email);

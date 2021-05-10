@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2021-05-07 00:57:06
+Date: 2021-05-11 00:17:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +42,7 @@ CREATE TABLE `collect` (
   `song_id` int(11) DEFAULT NULL COMMENT '歌曲id',
   `create_time` datetime DEFAULT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='收藏';
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='收藏';
 
 -- ----------------------------
 -- Records of collect
@@ -68,6 +68,7 @@ INSERT INTO `collect` VALUES ('31', '19', '0', '20', '2021-03-30 20:46:17');
 INSERT INTO `collect` VALUES ('32', '17', '0', '27', '2021-05-06 17:14:36');
 INSERT INTO `collect` VALUES ('34', '17', '0', '24', '2021-05-06 20:37:34');
 INSERT INTO `collect` VALUES ('36', '17', '0', '36', '2021-05-06 20:37:58');
+INSERT INTO `collect` VALUES ('37', '20', '0', '15', '2021-05-10 23:40:30');
 
 -- ----------------------------
 -- Table structure for comment
@@ -83,7 +84,7 @@ CREATE TABLE `comment` (
   `content` varchar(255) DEFAULT NULL COMMENT '评论内容',
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='评论';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='评论';
 
 -- ----------------------------
 -- Records of comment
@@ -93,12 +94,16 @@ INSERT INTO `comment` VALUES ('2', '17', '1', '3', null, '2021-02-18 15:03:07', 
 INSERT INTO `comment` VALUES ('3', '17', '1', '3', null, '2021-02-18 15:13:39', '11', '15');
 INSERT INTO `comment` VALUES ('4', '17', '1', '1', null, '2021-02-18 16:45:29', '不错', '1');
 INSERT INTO `comment` VALUES ('5', '17', '1', '6', null, '2021-02-18 16:52:04', '好听', '15');
-INSERT INTO `comment` VALUES ('6', '18', '2', null, '5', '2021-04-27 16:52:04', '111', null);
+INSERT INTO `comment` VALUES ('6', '18', '2', null, '5', '2021-04-27 16:52:04', '111', '0');
 INSERT INTO `comment` VALUES ('7', '18', '1', '3', null, '2021-04-27 23:23:14', 'v', null);
 INSERT INTO `comment` VALUES ('8', '18', '2', null, '1', '2021-04-27 23:31:00', 'b', '0');
 INSERT INTO `comment` VALUES ('9', '18', '2', null, '5', '2021-04-28 10:27:36', '45', null);
 INSERT INTO `comment` VALUES ('10', '17', '1', '8', null, '2021-05-06 17:14:14', '2', null);
 INSERT INTO `comment` VALUES ('11', '17', '2', null, '5', '2021-05-06 17:16:42', '3', null);
+INSERT INTO `comment` VALUES ('12', '17', '1', '3', null, '2021-05-09 13:39:11', '11', null);
+INSERT INTO `comment` VALUES ('13', '17', '2', null, '90', '2021-05-11 00:11:52', '1', null);
+INSERT INTO `comment` VALUES ('14', '17', '2', null, '90', '2021-05-11 00:12:04', '2', null);
+INSERT INTO `comment` VALUES ('15', '17', '2', null, '9', '2021-05-11 00:12:49', '1', null);
 
 -- ----------------------------
 -- Table structure for community
@@ -114,13 +119,13 @@ CREATE TABLE `community` (
   `up` int(11) DEFAULT NULL COMMENT '点赞数',
   `img` varchar(255) DEFAULT NULL COMMENT '用户上传的图片',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community
 -- ----------------------------
-INSERT INTO `community` VALUES ('1', '333', '3', null, '333', '2021-03-14 19:42:00', '89', null);
-INSERT INTO `community` VALUES ('5', 'a', '1', '/video/1615806676327WeChat_20210315171143.mp4', '图片测试', '2021-03-14 20:25:04', '35', 'null');
+INSERT INTO `community` VALUES ('1', '333', '3', null, '333', '2021-03-14 19:42:00', '94', null);
+INSERT INTO `community` VALUES ('5', 'aa', '1', '/video/1615806676327WeChat_20210315171143.mp4', '图片测试', '2021-03-14 20:25:04', '36', 'null');
 INSERT INTO `community` VALUES ('9', 'b', '2', null, '图片测试', '2021-03-14 23:21:37', '12', '/img/communityPic/1615810649043juzi.jpg');
 INSERT INTO `community` VALUES ('10', 'b', '0', '/song/1615810679285林宥嘉 - 兜圈.mp3', 'bbbb', '2021-03-14 23:23:25', '18', 'undefined');
 INSERT INTO `community` VALUES ('11', '333', '0', '/song/1615810692408五月天 - 温柔.mp3', '333333', '2021-03-14 23:27:17', '2', 'undefined');
@@ -149,6 +154,9 @@ INSERT INTO `community` VALUES ('85', 'b', '1', '/video/1619679887902weibo_dm_20
 INSERT INTO `community` VALUES ('86', 'b', '1', '/video/1619679979345WeChat_20210429092831.mp4', '5', '2021-04-29 15:06:19', null, null);
 INSERT INTO `community` VALUES ('87', 'b', '2', null, '图片', '2021-04-29 15:06:36', null, '/img/communityPic/16196799964180.jpg');
 INSERT INTO `community` VALUES ('88', 'b', '0', '/song/1619680012808张震岳 - 很难.mp3', '音乐', '2021-04-29 15:06:52', null, null);
+INSERT INTO `community` VALUES ('90', 'aa', '0', '/song/1620532535019五月天 - 温柔.mp3', 'gequ', '2021-05-09 11:55:35', '-1', null);
+INSERT INTO `community` VALUES ('91', 'aa', '1', '/video/1620532560536WeChat_20210418231022.mp4', 'shipin', '2021-05-09 11:56:00', null, null);
+INSERT INTO `community` VALUES ('92', 'aa', '2', null, '22', '2021-05-09 13:42:43', null, '/img/communityPic/1620538963434300 (2).jpg');
 
 -- ----------------------------
 -- Table structure for community_up
@@ -160,7 +168,7 @@ CREATE TABLE `community_up` (
   `community_id` int(11) DEFAULT NULL COMMENT '动态id',
   `like_status` int(11) DEFAULT NULL COMMENT '点赞的状态（0取消赞1已赞）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community_up
@@ -175,9 +183,9 @@ INSERT INTO `community_up` VALUES ('126', '1', '1', '1');
 INSERT INTO `community_up` VALUES ('132', '1', '12', '0');
 INSERT INTO `community_up` VALUES ('133', '1', '13', '0');
 INSERT INTO `community_up` VALUES ('134', '17', '1', '1');
-INSERT INTO `community_up` VALUES ('135', '17', '5', '0');
+INSERT INTO `community_up` VALUES ('135', '17', '5', '1');
 INSERT INTO `community_up` VALUES ('136', '17', '9', '0');
-INSERT INTO `community_up` VALUES ('137', '17', '11', '1');
+INSERT INTO `community_up` VALUES ('137', '17', '11', '0');
 INSERT INTO `community_up` VALUES ('138', '17', '10', '0');
 INSERT INTO `community_up` VALUES ('139', '17', '12', '1');
 INSERT INTO `community_up` VALUES ('140', '17', '54', '1');
@@ -197,6 +205,7 @@ INSERT INTO `community_up` VALUES ('153', '18', '54', '0');
 INSERT INTO `community_up` VALUES ('154', '18', '49', '1');
 INSERT INTO `community_up` VALUES ('155', '18', '37', '0');
 INSERT INTO `community_up` VALUES ('156', '18', '76', '1');
+INSERT INTO `community_up` VALUES ('157', '17', '90', '1');
 
 -- ----------------------------
 -- Table structure for consumer
@@ -216,7 +225,7 @@ CREATE TABLE `consumer` (
   `create_time` datetime DEFAULT NULL COMMENT '用户创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='前端用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='前端用户表';
 
 -- ----------------------------
 -- Records of consumer
@@ -226,9 +235,10 @@ INSERT INTO `consumer` VALUES ('2', '尔听°', '111', '0', '13123331333', '暂�
 INSERT INTO `consumer` VALUES ('6', '22', '22', '0', '13223331222', '暂无电子邮箱', '2000-02-02 00:00:00', '这个人很懒，暂无介绍', '火星', '/img/consumerPic/consumerPic.png', '2020-12-20 17:27:29', '2020-12-20 17:27:29');
 INSERT INTO `consumer` VALUES ('7', '2233', '2233', '0', '13422333322', '暂无电子邮箱', '1992-02-02 00:00:00', '这个人很懒，暂无介绍', '中国', '/img/consumerPic/consumerPic.png', '2020-12-20 17:32:13', '2020-12-20 17:32:13');
 INSERT INTO `consumer` VALUES ('8', '44', '44', '1', '14434542444', '144044412@qq.com', '2020-12-01 00:00:00', '这个人很懒，暂无介绍', '中国', '/img/consumerPic/consumerPic.png', '2020-12-20 17:33:23', '2020-12-20 17:33:23');
-INSERT INTO `consumer` VALUES ('17', 'a', 'a', '0', '13450879046', '', '1995-03-15 00:00:00', '这个人很懒，暂无介绍', '福建省', '/img/consumerPic/1616075027102juzi.jpg', '2021-03-18 21:45:56', '2021-03-18 21:45:56');
+INSERT INTO `consumer` VALUES ('17', 'aa', 'aa', '0', '13450879046', '', '1995-03-15 00:00:00', '这个人很懒，暂无介绍', '福建省', '/img/consumerPic/1620661125742jieni.jpg', '2021-05-10 23:38:14', '2021-05-10 23:38:14');
 INSERT INTO `consumer` VALUES ('18', 'b', '123', '1', '', '', '2014-06-10 00:00:00', '', '江苏省', '/img/consumerPic/consumerPic.png', '2021-02-13 16:05:56', '2021-02-13 16:05:56');
 INSERT INTO `consumer` VALUES ('19', 'c', 'c', '0', '', '', '2021-03-10 00:00:00', 'cccc', '省', '/img/consumerPic/16171082257510069lkcAly1fjt9qi3vn8j305x05xmy2.jpg', '2021-03-30 20:41:20', '2021-03-30 20:41:20');
+INSERT INTO `consumer` VALUES ('20', 'd', 'd', '0', '', '', '2021-05-11 00:00:00', '', '', '/img/consumerPic/consumerPic.png', '2021-05-10 23:39:45', '2021-05-10 23:39:45');
 
 -- ----------------------------
 -- Table structure for list_song
@@ -274,7 +284,7 @@ CREATE TABLE `rank` (
   `score` int(11) DEFAULT NULL COMMENT '评分',
   PRIMARY KEY (`id`),
   UNIQUE KEY `consumer_id` (`songlist_id`,`consumer_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='评价';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='评价';
 
 -- ----------------------------
 -- Records of rank
@@ -283,6 +293,11 @@ INSERT INTO `rank` VALUES ('1', '6', '18', '7');
 INSERT INTO `rank` VALUES ('2', '6', '17', '10');
 INSERT INTO `rank` VALUES ('3', '1', '1', '5');
 INSERT INTO `rank` VALUES ('4', '3', '17', '10');
+INSERT INTO `rank` VALUES ('11', '9', '17', '8');
+INSERT INTO `rank` VALUES ('14', '8', '17', '9');
+INSERT INTO `rank` VALUES ('15', '8', '18', '8');
+INSERT INTO `rank` VALUES ('17', '3', '18', '10');
+INSERT INTO `rank` VALUES ('21', '9', '18', '8');
 
 -- ----------------------------
 -- Table structure for singer
@@ -418,7 +433,7 @@ CREATE TABLE `up` (
   `comment_id` int(11) DEFAULT NULL COMMENT '评论id',
   `like_status` int(11) DEFAULT NULL COMMENT '点赞的状态（0取消赞1已赞）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of up
@@ -435,3 +450,4 @@ INSERT INTO `up` VALUES ('9', '18', '1', '0');
 INSERT INTO `up` VALUES ('10', '18', '2', '1');
 INSERT INTO `up` VALUES ('11', '18', '3', '0');
 INSERT INTO `up` VALUES ('12', '18', '8', '0');
+INSERT INTO `up` VALUES ('13', '17', '6', '0');
