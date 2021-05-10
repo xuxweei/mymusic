@@ -26,13 +26,13 @@
         <div style="margin-left:50px;">
           <h3>歌单评分:</h3>
           <el-rate v-model="average" disabled :colors="colors"> </el-rate>
-          {{num}}
+          <!-- {{num}} -->
         </div>
         <span>{{ average * 2 }}</span>
         <div>
           <h3>评价：</h3>
           <div @click="setRank">
-            <el-rate v-model="rank" :colors="colors" text-color="#ff9900" allow-half show-score score-template="{value}"></el-rate>
+            <el-rate v-model="rank" :colors="colors" text-color="#ff9900" allow-half show-text :texts="texts"></el-rate>
           </div>
         </div>
         <div style="padding:0 50px;">
@@ -94,6 +94,7 @@
         // 评价
         rank: 0,
         colors: ["#99A9BF", "#F7BA2A", "#ff5500"],
+        texts:["差劲","失望","一般","良好","优秀"],
         value:0,
         num:0
       };
